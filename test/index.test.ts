@@ -1,15 +1,10 @@
-import { describe, expect, it } from "vitest";
-import { add, VERSION } from "../src/index";
+import { describe, it } from "vitest";
+import { getZeTa, getYiTaBoo, getKujior } from "../src/index";
 
-describe("add", () => {
-  it("两数相加", () => {
-    expect(add(1, 2)).toBe(3);
-    expect(add(-1, 1)).toBe(0);
-  });
-});
-
-describe("VERSION", () => {
-  it("导出字符串版本号", () => {
-    expect(typeof VERSION).toBe("string");
+describe("components/getDate", () => {
+  it("彝族日历", () => {
+    console.log(getYiTaBoo("2027-02-06"));
+    console.log(getZeTa("2027-02-06"));
+    console.log(getKujior("2027-02-06"));
   });
 });

@@ -40,6 +40,7 @@
   "license": "MIT",
   "devDependencies": {
     "@eslint/js": "^9.39.5",
+    "@rolldown/binding-darwin-arm64": "1.2.13",
     "@types/node": "^26.6.5",
     "eslint": "^9.39.5",
     "prettier": "^3.9.10",
@@ -47,5 +48,9 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.71.1",
     "vitest": "^4.1.11"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.23",
+    "lunar-typescript": "^1.8.6"
   }
 }
