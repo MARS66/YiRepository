@@ -7,6 +7,7 @@ import { getYiTaBoo } from "./components/getTaBoo";
 import { getLaSe } from "./components/getLaSe";
 import { getKujior } from "./components/getKujior";
 import { getZeTa } from "./components/getZeTa";
+import { getTodayFortune } from "./components/getTodayFortune";
 /** 库版本号 */
 export const VERSION = "0.1.0";
-export { getYiDate, getYiTaBoo, getLaSe, getKujior, getZeTa };
+export { getYiDate, getYiTaBoo, getLaSe, getKujior, getZeTa, getTodayFortune };

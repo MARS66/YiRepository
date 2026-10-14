@@ -45,10 +45,12 @@ export const getYiTaBoo = (date?: string) => {
   const yearZodiacIndex = ZODIAC.indexOf(year[0] as string);
   const monIndex = Math.floor(yearZodiacIndex / 3);
   const fatIndex = Math.floor(monZodiacIndex / 3);
+  const tabooIndex = dayIndex % 10;
   return {
     ...yiDate,
     tabooMon: [TABOO_MON_YI[monIndex], TABOO_MON_CN[monIndex]],
     tabooFat: [TABOO_FAT_YI[fatIndex], TABOO_FAT_CN[fatIndex]],
-    tabooSon: [TABOO_SON_YI[dayIndex], TABOO_SON_CN[dayIndex]],
+    tabooSon: [TABOO_SON_YI[tabooIndex], TABOO_SON_CN[tabooIndex]],
+    tabooIndex,
   };
 };

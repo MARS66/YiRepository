@@ -2,6 +2,7 @@ import { Solar } from "lunar-typescript";
 import {
   ZODIAC_TO_YI,
   ZODIAC,
+  ZODIAC_CN,
   ZODIAC_TO_CN,
   MONTH_DARK,
   MONTH_DARK_CN,
@@ -29,5 +30,8 @@ export const getYiDate = (date?: string, startIndex: number = 7) => {
     dayMoon: [MONTH_DARK[dayIndex], MONTH_DARK_CN[dayIndex]],
     dayIndex,
     monthIndex,
+    dayZodiacIndex: ZODIAC_CN.indexOf(lunar.getDayShengXiao()),
+    monthZodiacIndex: ZODIAC.indexOf(newZodiac[monthIndex]),
+    yearZodiacIndex: ZODIAC_CN.indexOf(lunar.getYearShengXiao()),
   };
 };
