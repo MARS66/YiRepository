@@ -1,5 +1,5 @@
 // pages/index/index.ts
-import { getYiTaBoo, getTodayFortune,getKujior,getLaSe,getZeTa } from '../../utils/yinar'
+import { getYiTaBoo, getTodayFortune, getKujior, getLaSe, getZeTa } from '../../utils/yi-lunar/index'
 import { YiAudioPlayer } from '../../utils/howler'
 import dayjs from "dayjs";
 const CH_MONTHS = [ '一' , '二' , '三' , '四' , '五' , '六' , '七' , '八' , '九' , '十' , '十一' , '十二' ]

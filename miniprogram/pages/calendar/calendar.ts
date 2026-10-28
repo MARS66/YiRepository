@@ -1,6 +1,7 @@
 // pages/calendar/calendar.ts
-import { getYiTaBoo, Lunar,getKujior,getLaSe,getZeTa } from '../../utils/yinar'
+import { getYiTaBoo, getKujior,getLaSe,getZeTa } from '../../utils/yi-lunar/index'
 import { getFestival } from 'chinese-workday'
+import { Lunar } from '../../utils/lunar-typescript';
 
 /** 火把节起始日：每年农历六月二十四对应的阳历日期 */
 function getTorchStart(year: number): Date {
@@ -53,8 +54,8 @@ Page({
    * 日历加载完成
    */
   onCalendarLoad(e: WechatMiniprogram.CustomEvent) {
-    console.log( wx.getAppBaseInfo().SDKVersion);
     if (e.detail.checked) this.updateSelected(e.detail.checked);
+    this.buildMarks(e.detail.range);
   },
 
   /**
@@ -99,7 +100,7 @@ Page({
       const month = cur.getMonth() + 1;
       const day = cur.getDate();
       const dateStr = fmt(cur);
-      const yi = getYiTaBoo(cur);
+      const yi = getYiTaBoo(dateStr);
       const ts = torch.get(year)!;
       const te = new Date(ts);
       te.setDate(ts.getDate() + 6);
@@ -152,7 +153,7 @@ Page({
 
     const d = new Date(checked.year, checked.month - 1, checked.day);
     const today = new Date();
-    const yiDate = getYiTaBoo(d);
+    const yiDate = getYiTaBoo(fmt(d));
     // 按自然日计算与今天的差值（忽略时分秒），得出「今天 / N天前 / N天后」
     const d0 = new Date(d.getFullYear(), d.getMonth(), d.getDate());
     const today0 = new Date(today.getFullYear(), today.getMonth(), today.getDate());
@@ -162,8 +163,8 @@ Page({
     this.setData({
       yiDate,
       kuJior:getKujior().kujior,
-      laSe:getLaSe(d),
-      zeta:getZeTa(d),
+      laSe:getLaSe(fmt(d)),
+      zeta:getZeTa(fmt(d)),
       selectedLabel: `${checked.year}年${checked.month}月${checked.day}日 · 星期${weekdays[d.getDay()]}`,
       relativeDay
     });

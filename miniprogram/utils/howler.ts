@@ -13,7 +13,7 @@
 //    防止 stop() 触发的回调串进下一次播放，把新一轮播放提前终止
 //  - 起播前统一清理上一轮的 BufferSource，解码 / 合成结果按素材缓存，二次播放秒开
 //  - onended 异常提前触发时回退分段播放，保证每次点击都有声音
-import { getYiTaBoo } from './yinar'
+import { getYiTaBoo } from './yi-lunar/index'
 
 const SILENCE_THRESHOLD = 0.02
 const EDGE_PADDING_SEC = 0.03
