@@ -16,6 +16,7 @@ export default defineConfig([
     entry: ["src/index.ts"],
     outDir: "miniprogram_dist",
     format: ["cjs"],
+    dts: true,
     target: "es2015",
     clean: true,
     sourcemap: false,
