@@ -5,7 +5,7 @@
       id="calendar"
       areas="{{calendarAreas}}"
       marks="{{marks}}"
-      weekstart="0"
+      weekstart="{{1}}"
       darkmode="{{isDark}}"
       style="{{calendarStyle}}"
       bindload="onCalendarLoad"

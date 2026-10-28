@@ -1,0 +1,56 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@lspriv/wx-calendar':
+        specifier: 1.7.2
+        version: 1.7.2
+      chinese-workday:
+        specifier: ^1.10.0
+        version: 1.16.1
+      dayjs:
+        specifier: ^1.11.13
+        version: 1.11.23
+      lunar-typescript:
+        specifier: ^1.8.6
+        version: 1.8.6
+    devDependencies:
+      miniprogram-api-typings:
+        specifier: ^2.8.3-1
+        version: 2.12.0
+
+packages:
+
+  '@lspriv/wx-calendar@1.7.2':
+    resolution: {integrity: sha512-6xYVJzF00wJXD47zNgH7YuyBCsrfoBGenuIgYfNdYMIos2P+fb47b0ZDs9Ghjwhqb2mPXP7CCjj4OmsBajyeoQ==}
+    engines: {node: '>=16.13.0'}
+
+  chinese-workday@1.16.1:
+    resolution: {integrity: sha512-8rG41XRoN8QT+EOmNZiEeC3gM1BJO9Gq9+uvWoqurTGGpzAxNoYQejb8OZtb5J6/RzAaHjwpCMuTo9htH6PFAw==}
+
+  dayjs@1.11.23:
+    resolution: {integrity: sha512-QDTCU0M0MxR3hQfnlDJfwekQiaanm1ubOD231u73WBckQ/fsamwRLiE2GBz6D3a/xF1NgfiDLJjXBa1hYOYTtQ==}
+
+  lunar-typescript@1.8.6:
+    resolution: {integrity: sha512-5Eo4T/cnuXfrgO4k5LCpOGHIUOuz5hCF/IfNv0T29WY2shR36Hiz+ecN9WjnUuxUKhql9gbOkPaQoqLFKtPRNA==}
+
+  miniprogram-api-typings@2.12.0:
+    resolution: {integrity: sha512-ibvbqeslVFur0IAvTxLMvsbtvVcMo6gwvOnj0YZHV7aeDLu091VQRrETT2QuiG9P6aZWRcxeNGJChRKVPCp9VQ==}
+
+snapshots:
+
+  '@lspriv/wx-calendar@1.7.2': {}
+
+  chinese-workday@1.16.1: {}
+
+  dayjs@1.11.23: {}
+
+  lunar-typescript@1.8.6: {}
+
+  miniprogram-api-typings@2.12.0: {}
