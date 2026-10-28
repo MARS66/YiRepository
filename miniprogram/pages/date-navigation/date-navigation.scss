@@ -214,8 +214,6 @@
 
   .fortune-strip {
     display: flex;
-    align-items: center;
-    flex-direction: column;
     gap: 20rpx;
     margin-top: 20rpx;
     padding-top: 22rpx;
@@ -223,13 +221,23 @@
 
     .fortune-label {
       flex-shrink: 0;
-      font-size: 22rpx;
-      font-weight: 700;
-      color: var(--fire);
+      font-size: 30rpx;
+      font-weight: 500;
       letter-spacing: 2rpx;
       padding: 10rpx 18rpx;
-      border-radius: 198rpx;
+      letter-spacing: 8rpx;
+      border-radius: 24rpx;
       background: #9c2d2518;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .green{
+        color: var(--green);
+      }
+      .fire{
+        color: var(--fire);
+      }
     }
 
     .fortune-body {
@@ -274,8 +282,8 @@
         border-right: 2rpx solid var(--line);
       }
 
-      &:nth-child(3),
-      &:nth-child(4) {
+      &:nth-child(7),
+      &:nth-child(8) {
         border-bottom: none;
       }
 
@@ -290,6 +298,70 @@
         font-weight: 700;
         color: var(--coal);
         text-align: right;
+      }
+    }
+  }
+
+  .lunar-rows {
+    margin: 0 -30rpx;
+    border-top: 2rpx solid var(--line);
+
+    .lunar-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 20rpx;
+      padding: 22rpx 30rpx;
+      border-bottom: 2rpx solid var(--line);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .row-label {
+        color: var(--muted);
+        font-size: 22rpx;
+        flex-shrink: 0;
+        line-height: 1.5;
+        margin-top: 4rpx;
+      }
+
+      .row-val {
+        flex: 1;
+        font-size: 24rpx;
+        color: var(--coal);
+        line-height: 1.5;
+      }
+    }
+  }
+
+  .pos-row {
+    display: flex;
+    margin: 30rpx -30rpx 0;
+    border-top: 2rpx solid var(--line);
+    border-bottom: 2rpx solid var(--line);
+    margin-top: 0;
+    .pos-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8rpx;
+      padding: 24rpx 6rpx;
+      box-sizing: border-box;
+
+      & + .pos-item {
+        border-left: 2rpx solid var(--line);
+      }
+
+      .pos-label {
+        font-size: 20rpx;
+        color: var(--muted);
+      }
+
+      .pos-val {
+        font-size: 28rpx;
+        font-weight: 700;
+        color: var(--fire);
       }
     }
   }

@@ -58,7 +58,10 @@
 
     <!-- 彝历宜忌 -->
     <view class="fortune-strip">
-      <view class="fortune-label">今日宜忌</view>
+      <view class="fortune-label">
+        <view>彝历</view>
+        <view><text class="green">宜</text><text class="fire">忌</text></view>
+      </view>
       <view class="fortune-body">
         <text class="fortune-main">{{todayFortune.taboo[0]}}，{{todayFortune.taboo[1]}}</text>
         <text class="fortune-desc">{{todayFortune.tabooFull}}</text>
@@ -74,20 +77,76 @@
     </view>
     <view class="lunar-grid">
       <view class="lunar-item">
+        <text class="lunar-label">农历</text>
+        <text class="lunar-val">{{lunarText}}</text>
+      </view>
+      <view class="lunar-item">
+        <text class="lunar-label">月相</text>
+        <text class="lunar-val">{{yueXiang}}</text>
+      </view>
+      <view class="lunar-item">
         <text class="lunar-label">年干支</text>
         <text class="lunar-val">{{yearGanZhi}} · {{shengXiao}}</text>
       </view>
       <view class="lunar-item">
         <text class="lunar-label">日干支</text>
-        <text class="lunar-val">{{dayGanZhi}}</text>
+        <text class="lunar-val">{{dayGanZhi}} · {{naYin}}</text>
       </view>
       <view class="lunar-item">
-        <text class="lunar-label">纳音</text>
-        <text class="lunar-val">{{naYin}}</text>
+        <text class="lunar-label">值日</text>
+        <text class="lunar-val">{{zhiXing}}日 · {{dayTianShen}}</text>
       </view>
       <view class="lunar-item">
-        <text class="lunar-label">冲煞</text>
-        <text class="lunar-val">{{chongSha}}</text>
+        <text class="lunar-label">星宿</text>
+        <text class="lunar-val">{{xiu}}宿 · {{xiuLuck}}</text>
+      </view>
+      <view class="lunar-item">
+        <text class="lunar-label">节气</text>
+        <text class="lunar-val">{{jieQi || '无'}}</text>
+      </view>
+      <view class="lunar-item">
+        <text class="lunar-label">旬空</text>
+        <text class="lunar-val">{{xunKong}}</text>
+      </view>
+    </view>
+    <view class="lunar-rows">
+      <view class="lunar-row">
+        <text class="row-label">彭祖百忌</text>
+        <text class="row-val">{{pengZu}}</text>
+      </view>
+      <view class="lunar-row">
+        <text class="row-label">冲煞</text>
+        <text class="row-val">{{chongSha}}</text>
+      </view>
+      <view class="lunar-row">
+        <text class="row-label">吉神宜趋</text>
+        <text class="row-val">{{jiShen}}</text>
+      </view>
+      <view class="lunar-row">
+        <text class="row-label">凶煞宜忌</text>
+        <text class="row-val">{{xiongSha}}</text>
+      </view>
+    </view>
+    <view class="pos-row">
+      <view class="pos-item">
+        <text class="pos-label">喜神</text>
+        <text class="pos-val">{{posXi}}</text>
+      </view>
+      <view class="pos-item">
+        <text class="pos-label">福神</text>
+        <text class="pos-val">{{posFu}}</text>
+      </view>
+      <view class="pos-item">
+        <text class="pos-label">财神</text>
+        <text class="pos-val">{{posCai}}</text>
+      </view>
+      <view class="pos-item">
+        <text class="pos-label">阳贵</text>
+        <text class="pos-val">{{posYangGui}}</text>
+      </view>
+      <view class="pos-item">
+        <text class="pos-label">阴贵</text>
+        <text class="pos-val">{{posYinGui}}</text>
       </view>
     </view>
     <view class="yi-ji">

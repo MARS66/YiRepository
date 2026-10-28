@@ -56,7 +56,21 @@ Page({
     naYin: '',
     chongSha: '',
     lunarYi: '',
-    lunarJi: ''
+    lunarJi: '',
+    yueXiang: '',
+    zhiXing: '',
+    dayTianShen: '',
+    xiu: '',
+    xiuLuck: '',
+    xunKong: '',
+    pengZu: '',
+    jiShen: '',
+    xiongSha: '',
+    posXi: '',
+    posFu: '',
+    posCai: '',
+    posYangGui: '',
+    posYinGui: ''
   },
 
   /**
@@ -110,7 +124,21 @@ Page({
       naYin: lunar.getDayNaYin(),
       chongSha,
       lunarYi: lunar.getDayYi().slice(0, 4).join(' · '),
-      lunarJi: lunar.getDayJi().slice(0, 4).join(' · ')
+      lunarJi: lunar.getDayJi().slice(0, 4).join(' · '),
+      yueXiang: lunar.getYueXiang(),
+      zhiXing: lunar.getZhiXing(),
+      dayTianShen: lunar.getDayTianShen(),
+      xiu: lunar.getXiu(),
+      xiuLuck: lunar.getXiuLuck(),
+      xunKong: lunar.getDayXunKong(),
+      pengZu: `${lunar.getPengZuGan()} ${lunar.getPengZuZhi()}`,
+      jiShen: lunar.getDayJiShen().slice(0, 4).join(' · ') || '无',
+      xiongSha: lunar.getDayXiongSha().slice(0, 4).join(' · ') || '无',
+      posXi: lunar.getDayPositionXi(),
+      posFu: lunar.getDayPositionFu(),
+      posCai: lunar.getDayPositionCai(),
+      posYangGui: lunar.getDayPositionYangGui(),
+      posYinGui: lunar.getDayPositionYinGui()
     })
   },
 
