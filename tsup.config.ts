@@ -14,9 +14,10 @@ export default defineConfig([
   // 微信小程序构建：纯 CJS、全量打包、无 sourcemap、低版本 ES6 语法
   {
     entry: ["src/index.ts"],
-    outDir: "miniprogram_dist",
+    outDir: "yi-lunar",
     format: ["cjs"],
     dts: true,
+    minify: true,
     target: "es2015",
     clean: true,
     sourcemap: false,
