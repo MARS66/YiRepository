@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>彝族生活日历 · 交互原型</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="stage">
+    <section class="phone" aria-label="彝族生活日历交互原型">
+      <div class="status"><span>9:41</span><strong>● ◒ ▰</strong></div>
+      <header class="appbar">
+        <div><p class="eyebrow" id="pageEyebrow">YI LIFE CALENDAR</p><h1 id="pageTitle">彝族生活日历</h1></div>
+        <div class="app-actions"><button class="round ghost" data-action="theme" aria-label="切换深色模式" id="themeToggle">◐</button><button class="round ghost" data-action="more" aria-label="更多">•••</button></div>
+      </header>
+
+      <div class="view active" id="todayView">
+        <section class="hero yi-pattern">
+          <div class="hero-top"><span class="chip gold">今日彝历</span><button class="audio" data-action="audio">◉ 读给我听</button></div>
+          <div class="date-line"><strong>01</strong><div><span>九月</span><small>星期二</small></div></div>
+          <p class="yi-text">ꇐꈎꌋꆪꉌꑍ</p><p class="muted light">龙年 · 拉色月 · 鼠日</p>
+          <div class="solar"><span>2026</span><i></i><span>SEPTEMBER</span></div>
+        </section>
+        <section class="card daily-word"><p class="section-label">今天一句话</p><h2>宜安排家庭事务，<br>重要决定宜从容。</h2><p>今日库觉为吉，适合沟通、整理与探访亲友。</p></section>
+        <div class="fortune-grid">
+          <section class="fortune good"><span>宜</span><div><b>会友 · 出行</b><small>整理家宅 · 祈福</small></div></section>
+          <section class="fortune bad"><span>忌</span><div><b>争执 · 仓促</b><small>重大动土 · 远行</small></div></section>
+        </div>
+        <section class="section-block"><div class="section-head"><h2>常用助手</h2><button data-nav="tools">全部工具 →</button></div><div class="quick-grid">
+          <button data-flow="marry"><i>囍</i><span>结婚吉日</span></button><button data-flow="move"><i>迁</i><span>乔迁吉日</span></button><button data-action="translate"><i>译</i><span>彝汉互译</span></button><button data-action="favorite"><i>☆</i><span>收藏今日</span></button>
+        </div></section>
+        <section class="card detail-card"><div class="section-head"><h2>今日彝历详情</h2><button data-action="explain">术语说明</button></div><div class="detail-grid"><div><span>ꆿꌋ</span><small>拉色</small><b>木</b></div><div><span>ꈏꐡ</span><small>库觉</small><b>吉</b></div><div><span>ꍀꌋ</span><small>日色</small><b>东方</b></div><div><span>ꄮꇬ</span><small>时辰</small><b>午时</b></div></div></section>
+      </div>
+
+      <div class="view" id="calendarView">
+        <div class="month-head"><button>‹</button><div><p>2026</p><h2>九月</h2></div><button>›</button></div>
+        <section class="calendar card"><div class="week"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div class="days" id="calendarDays"></div></section>
+        <section class="card selected-date"><div class="section-head"><div><span class="chip red">今天</span><h2>9月1日 · 星期二</h2></div><button data-action="favorite">☆</button></div><p class="yi-text dark">ꇐꈎꌋꆪꉌꑍ</p><p class="muted">龙年 · 拉色月 · 鼠日</p><div class="button-row three-buttons"><button class="secondary" data-action="favorite">☆ 收藏</button><button class="secondary" data-action="share" data-share-type="date">↗ 分享</button><button class="primary" data-action="remind">提醒我</button></div></section>
+        <section class="festival-card yi-pattern"><span>距离彝族年</span><strong>81</strong><b>天</b><p>11月21日 · 开启节日提醒</p><button data-action="remind">开启提醒</button></section>
+      </div>
+
+      <div class="view" id="toolsView">
+        <label class="search"><span>⌕</span><input placeholder="搜索结婚、乔迁、翻译…" /></label>
+        <section class="section-block"><div class="section-head"><h2>最近使用</h2></div><div class="quick-grid three"><button data-flow="marry"><i>囍</i><span>结婚吉日</span></button><button data-flow="move"><i>迁</i><span>乔迁吉日</span></button><button data-action="translate"><i>译</i><span>彝汉互译</span></button></div></section>
+        <section class="card tool-list"><div class="section-head"><h2>婚嫁助手</h2><span class="chip gold">热门</span></div>
+          <button data-flow="marry"><i>囍</i><div><b>结婚吉日</b><small>选择双方生肖与年龄</small></div><span>›</span></button><button data-flow="engage"><i>约</i><div><b>订婚吉日</b><small>查看未来三个月</small></div><span>›</span></button><button data-action="compat"><i>合</i><div><b>生肖合婚</b><small>文化参考与相处建议</small></div><span>›</span></button><button data-action="compat"><i>德</i><div><b>西德合婚</b><small>彝族传统文化参考</small></div><span>›</span></button>
+        </section>
+        <section class="section-block"><div class="section-head"><h2>家庭与居家</h2></div><div class="quick-grid"><button data-flow="build"><i>建</i><span>建房</span></button><button data-flow="move"><i>迁</i><span>乔迁</span></button><button data-flow="baby"><i>婴</i><span>新生儿</span></button><button data-flow="bury"><i>礼</i><span>传统礼俗</span></button></div></section>
+      </div>
+
+      <div class="view" id="profileView">
+        <section class="profile-card yi-pattern"><div class="avatar">月</div><div><h2>欢迎使用彝族生活日历</h2><p>登录后同步收藏、提醒与家庭资料</p></div><button data-action="login">微信登录</button></section>
+        <section class="card"><div class="section-head"><h2>家庭成员</h2><button data-action="family">管理 →</button></div><div class="family"><button><i>我</i><span>属鼠</span></button><button><i>伴</i><span>属龙</span></button><button data-action="family"><i>＋</i><span>添加</span></button></div></section>
+        <div class="stats"><div><b>12</b><span>收藏日期</span></div><div><b>4</b><span>测算记录</span></div><div><b>2</b><span>已设提醒</span></div></div>
+        <section class="card menu"><button data-action="favorite"><i>☆</i><span>我的收藏</span><b>›</b></button><button data-action="remind"><i>◷</i><span>日期与节日提醒</span><b>›</b></button><button data-action="history"><i>⌛</i><span>择吉历史记录</span><b>›</b></button><button data-action="font"><i>字</i><span>大字与语言设置</span><b>›</b></button><button data-action="member"><i>♛</i><span>文化助手会员</span><b>›</b></button><button data-action="feedback"><i>?</i><span>内容纠错与反馈</span><b>›</b></button></section>
+        <section class="member yi-pattern"><span>文化助手会员</span><h2>专注内容，告别打扰</h2><p>无广告 · 家庭档案 · 无限详细结果</p><button data-action="member">查看会员权益</button></section>
+      </div>
+
+      <nav class="tabbar"><button class="active" data-nav="today"><i>◉</i><span>今日</span></button><button data-nav="calendar"><i>▦</i><span>日历</span></button><button data-nav="tools"><i>✦</i><span>助手</span></button><button data-nav="profile"><i>●</i><span>我的</span></button></nav>
+    </section>
+  </main>
+
+  <div class="sheet-backdrop" id="backdrop"></div>
+  <section class="sheet" id="flowSheet" aria-modal="true"><div class="grab"></div><button class="sheet-close" data-action="close">×</button><div id="sheetContent"></div></section>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>

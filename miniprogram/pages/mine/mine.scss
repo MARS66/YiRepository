@@ -1,0 +1,231 @@
+/* pages/mine/mine.wxss */
+
+.profile-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--soft);
+  color: var(--coal);
+  border: 2rpx solid var(--line);
+  border-radius: 36rpx;
+  padding: 32rpx;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20rpx;
+
+  .avatar {
+    width: 92rpx;
+    height: 92rpx;
+    border-radius: 28rpx;
+    background: var(--fire);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40rpx;
+    font-weight: 700;
+  }
+
+  .profile-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6rpx;
+    min-width: 0;
+
+    .profile-title {
+      font-size: 30rpx;
+      font-weight: bold;
+    }
+
+    .profile-desc {
+      font-size: 22rpx;
+      color: var(--muted);
+    }
+  }
+
+  .profile-btn {
+    width: 100%;
+    border: 2rpx solid var(--accent-border);
+    background: var(--paper);
+    color: var(--accent);
+    border-radius: 20rpx;
+    padding: 14rpx 20rpx;
+    font-size: 24rpx;
+    line-height: 1.4;
+    margin-top: 8rpx;
+
+    &::after {
+      border: none;
+    }
+  }
+}
+
+.card {
+  background: var(--paper);
+  border: 2rpx solid var(--line);
+  border-radius: 36rpx;
+  padding: 30rpx;
+  box-shadow: 0 10rpx 30rpx rgba(45, 28, 15, 0.045);
+  margin-top: 24rpx;
+
+  .section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .section-title {
+      font-size: 32rpx;
+      font-weight: bold;
+    }
+
+    .section-link {
+      font-size: 22rpx;
+      color: var(--fire);
+    }
+  }
+
+  .family {
+    display: flex;
+    gap: 50rpx;
+    margin-top: 28rpx;
+
+    .family-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12rpx;
+
+      .family-icon {
+        width: 88rpx;
+        height: 88rpx;
+        border-radius: 28rpx;
+        background: var(--soft);
+        color: var(--accent);
+        border: 2rpx solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 36rpx;
+      }
+
+      .family-label {
+        font-size: 20rpx;
+        color: var(--coal);
+      }
+    }
+  }
+}
+
+.stats {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 24rpx;
+
+  .stat-item {
+    flex: 1;
+    background: var(--paper);
+    border: 2rpx solid var(--line);
+    border-radius: 28rpx;
+    padding: 24rpx 10rpx;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 6rpx;
+
+    .stat-num {
+      color: var(--fire);
+      font-size: 40rpx;
+      font-weight: bold;
+    }
+
+    .stat-label {
+      font-size: 18rpx;
+      color: var(--muted);
+    }
+  }
+}
+
+.menu {
+  padding-top: 0;
+  padding-bottom: 0;
+
+  .menu-item {
+    width: 100%;
+    height: 94rpx;
+    border-top: 2rpx solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 12rpx;
+
+    &:first-child {
+      border-top: 0;
+    }
+
+    .menu-icon {
+      font-style: normal;
+      color: var(--fire);
+      font-size: 30rpx;
+      width: 50rpx;
+    }
+
+    .menu-label {
+      flex: 1;
+      font-size: 28rpx;
+      color: var(--coal);
+    }
+
+    .menu-arrow {
+      color: var(--muted);
+      font-size: 36rpx;
+    }
+  }
+}
+
+.member {
+  position: relative;
+  overflow: hidden;
+  background: var(--soft);
+  color: var(--coal);
+  border: 2rpx solid var(--line);
+  border-radius: 36rpx;
+  padding: 32rpx;
+  margin-top: 24rpx;
+  margin-bottom: 40rpx;
+
+  .member-label {
+    font-size: 22rpx;
+    color: var(--fire);
+    font-weight: 700;
+  }
+
+  .member-title {
+    font-size: 38rpx;
+    font-weight: bold;
+    margin: 14rpx 0;
+    display: block;
+  }
+
+  .member-desc {
+    font-size: 22rpx;
+    color: var(--muted);
+    display: block;
+  }
+
+  .member-btn {
+    margin-top: 20rpx;
+    border: 2rpx solid var(--accent-border);
+    background: var(--paper);
+    color: var(--accent);
+    border-radius: 20rpx;
+    padding: 14rpx 20rpx;
+    font-size: 24rpx;
+    line-height: 1.4;
+
+    &::after {
+      border: none;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/assistant/assistant",
+    "pages/mine/mine",
+    "pages/calendar/calendar"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "backgroundColor": "#fffdf7",
+    "color": "#70695e",
+    "selectedColor": "#9c2d25",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "今日",
+        "iconPath": "/static/index.png",
+        "selectedIconPath": "/static/index_active.png"
+      },
+      {
+        "pagePath": "pages/calendar/calendar",
+        "text": "日历",
+        "iconPath": "/static/calendar.png",
+        "selectedIconPath": "/static/calendar_active.png"
+      },
+      {
+        "pagePath": "pages/assistant/assistant",
+        "text": "助手",
+        "iconPath": "/static/assistant.png",
+        "selectedIconPath": "/static/assistant_active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "/static/mine.png",
+        "selectedIconPath": "/static/mine_active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "rendererOptions": {
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents":{
+    "layout":"/components/layout/layout"
+  }
+}

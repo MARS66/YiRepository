@@ -1,0 +1,145 @@
+<!--pages/index/index.wxml-->
+<layout>
+  <view class="hero">
+    <view class="hero-top">
+      <text class="chip gold">今日彝历</text>
+      <text class="audio" bindtap="playAudio">{{audioPlaying ? '◉ 播放中…' : '◉ 读给我听'}}</text>
+    </view>
+    <view class="date-line">
+      <text class="date-strong">{{date}}</text>
+      <view class="date-meta">
+        <text class="date-month">{{year}}</text>
+        <text class="date-month">{{month}}月</text>
+        <text class="date-weekday">星期{{weekday}}</text>
+      </view>
+    </view>
+    <text class="yi-text">{{yiDate.year[0]}}ꈎ·{{yiDate.month[0]}}ꆪ·{{yiDate.day[0]}}ꑍ·{{yiDate.dayMoon[0]}}ꑍ</text>
+    <text class="muted light">{{yiDate.year[1]}}年·{{yiDate.month[1]}}月·{{yiDate.day[1]}}日·{{yiDate.dayMoon[1]}}日</text>
+    <view class="solar">
+      <text>{{year}}</text>
+      <view class="solar-divider"></view>
+      <text>{{monthEn}}</text>
+    </view>
+  </view>
+
+  <view class="card daily-word">
+    <text class="section-label">今日宜忌</text>
+    <text class="daily-title">{{todayFortune.taboo[0]}} , {{todayFortune.taboo[1]}}</text>
+    <text class="daily-desc">{{todayFortune.tabooFull}}</text>
+  </view>
+
+  <!-- <view class="fortune-grid">
+    <view class="fortune good">
+      <text class="fortune-icon">宜</text>
+      <view class="fortune-content">
+        <text class="fortune-main">{{goodFortune.main}}</text>
+        <text class="fortune-sub">{{goodFortune.sub}}</text>
+      </view>
+    </view>
+    <view class="fortune bad">
+      <text class="fortune-icon">忌</text>
+      <view class="fortune-content">
+        <text class="fortune-main">{{badFortune.main}}</text>
+        <text class="fortune-sub">{{badFortune.sub}}</text>
+      </view>
+    </view>
+  </view> -->
+
+  <view class="section-block">
+    <view class="section-head">
+      <text class="section-title">常用助手</text>
+      <text class="section-link">全部助手</text>
+    </view>
+    <view class="quick-grid">
+      <view class="quick-item">
+        <text class="quick-icon">囍</text>
+        <text class="quick-label">结婚吉日</text>
+      </view>
+      <view class="quick-item">
+        <text class="quick-icon">囍</text>
+        <text class="quick-label">结婚吉日</text>
+      </view>
+      <view class="quick-item">
+        <text class="quick-icon">迁</text>
+        <text class="quick-label">乔迁吉日</text>
+      </view>
+      <view class="quick-item">
+        <text class="quick-icon">译</text>
+        <text class="quick-label">彝汉互译</text>
+      </view>
+      <view class="quick-item">
+        <text class="quick-icon">☆</text>
+        <text class="quick-label">收藏今日</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="card detail-card">
+    <view class="section-head">
+      <text class="section-title">今日彝历详情</text>
+      <text class="section-link">术语说明</text>
+    </view>
+    <view class="detail-grid">
+      <view class="detail-item">
+        <view class="detail-left">
+          <text class="detail-yi">ꄤꁨꌺ</text>
+          <text class="detail-label">塔博惹</text>
+        </view>
+        <view class="detail-val">
+          <view class="detail-yi">{{yiDate.tabooSon[0]}}</view>
+          <view class="detail-label">{{yiDate.tabooSon[1]}}</view>
+        </view>
+      </view>
+      <view class="detail-item">
+        <view class="detail-left">
+          <text class="detail-yi">ꈐꐡ</text>
+          <text class="detail-label">库觉</text>
+        </view>
+        <view class="detail-val">
+          <view class="detail-yi">{{kuJior[0]}}</view>
+          <view class="detail-label">{{kuJior[1]}}</view>
+        </view>
+      </view>
+      <view class="detail-item">
+        <view class="detail-left">
+          <text class="detail-yi">ꆿꌋ</text>
+          <text class="detail-label">狼色</text>
+        </view>
+        <view class="detail-val">
+          <view class="detail-yi">{{laSe[0]}}</view>
+          <view class="detail-label">{{laSe[1]}}</view>
+        </view>
+      </view>
+      <view class="detail-item">
+        <view class="detail-left">
+          <text class="detail-yi">ꃅꌋꋠꑍ</text>
+          <text class="detail-label">木色则尼</text>
+        </view>
+        <view class="detail-val">
+          <view class="detail-yi">{{zeta[0]}}</view>
+          <view class="detail-label">{{zeta[1]}}</view>
+        </view>
+      </view>
+      <view class="detail-item">
+        <view class="detail-left">
+          <text class="detail-yi">ꄤꁨꀋꃀ</text>
+          <text class="detail-label">母塔博</text>
+        </view>
+        <view class="detail-val">
+          <view class="detail-yi">{{yiDate.tabooMon[0]}}</view>
+          <view class="detail-label">{{yiDate.tabooMon[1]}}</view>
+        </view>
+      </view>
+      <view class="detail-item">
+        <view class="detail-left">
+          <text class="detail-yi">ꄤꁨꀋꀮ</text>
+          <text class="detail-label">公塔博</text>
+        </view>
+        <view class="detail-val">
+          <view class="detail-yi">{{yiDate.tabooFat[0]}}</view>
+          <view class="detail-label">{{yiDate.tabooFat[1]}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</layout>

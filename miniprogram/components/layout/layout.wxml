@@ -1,0 +1,15 @@
+<!--components/navigation-bar/navigation-bar.wxml-->
+<view class="layout {{isDark ? 'theme-dark' : ''}}">
+  <view class="navi-bar" style=" padding-top: {{statusBarHeight}}px;">
+    <view class="navi-title">
+      <view class="eyebrow">{{eyebrow}}</view>
+      <view class="pageTitle">{{title}}</view>
+    </view>
+    <view class="ghost" bindtap="onToggleTheme" style="height: {{menu.height}}px;width: {{menu.height}}px; right: {{menu.width+10}}px; top: {{menu.top  }}px;">
+      {{isDark?light:dark}}
+    </view>
+  </view>
+  <view class="container" style="height: calc(100% - {{navHeight+statusBarHeight+25}}px);">
+    <slot></slot> 
+  </view>
+</view>

@@ -1,0 +1,29 @@
+/**app.wxss**/
+page {
+  --coal: #201d18;
+  --coal2: #79211c;
+  --fire: #9c2d25;
+  --fire2: #9c2d25;
+  --gold: #aa7b2d;
+  --cream: #f8f4eb;
+  --paper: #fffdf7;
+  --muted: #70695e;
+  --line: #ddd3c2;
+  --green: #427553;
+  --shadow: 0 10px 26px rgba(32, 29, 24, .08);
+  --soft: #f2eadb;
+  --accent: #79211c;
+  --accent-border: #aa7b2d66;
+  --good-bg: #e8f0e9;
+  --bad-bg: #f4e3df;
+  background: var(--cream);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  .container{
+    border-top: 1rpx solid #ddd3c2;
+    height:100%;
+    overflow-y: auto;
+  }
+}

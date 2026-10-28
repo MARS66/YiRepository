@@ -1,0 +1,91 @@
+<!--pages/calendar/calendar.wxml-->
+<layout bind:themechange="onThemeChange">
+  <view class="calendar-card">
+    <calendar
+      id="calendar"
+      areas="{{calendarAreas}}"
+      marks="{{marks}}"
+      weekstart="0"
+      darkmode="{{isDark}}"
+      style="{{calendarStyle}}"
+      bindload="onCalendarLoad"
+      bindclick="onCalendarClick"
+      bindchange="onCalendarChange"
+    />
+  </view>
+
+  <view class="card selected-date">
+    <view class="section-head">
+      <view class="selected-head">
+        <text class="chip red">{{relativeDay}}</text>
+        <text class="selected-title">{{selectedLabel}}</text>
+      </view>
+      <text class="favorite-btn">☆</text>
+    </view>
+    <text class="yi-text dark">{{yiDate.year[0]}}ꈎ·{{yiDate.month[0]}}ꆪ·{{yiDate.day[0]}}ꑍ·{{yiDate.dayMoon[0]}}ꑍ</text>
+    <text class="muted">{{yiDate.year[1]}}年·{{yiDate.month[1]}}月·{{yiDate.day[1]}}日·{{yiDate.dayMoon[1]}}日</text>
+ 
+    <view class="detail-grid">
+      <view class="detail-item">
+        <view class="detail-left">
+          <text class="detail-yi">ꄤꁨꌺ</text>
+          <text class="detail-label">塔博惹</text>
+        </view>
+        <view class="detail-val">
+          <view class="detail-yi">{{yiDate.tabooSon[0]}}</view>
+          <view class="detail-label">{{yiDate.tabooSon[1]}}</view>
+        </view>
+      </view>
+      <view class="detail-item">
+        <view class="detail-left">
+          <text class="detail-yi">ꈐꐡ</text>
+          <text class="detail-label">库觉</text>
+        </view>
+        <view class="detail-val">
+          <view class="detail-yi">{{kuJior[0]}}</view>
+          <view class="detail-label">{{kuJior[1]}}</view>
+        </view>
+      </view>
+      <view class="detail-item">
+        <view class="detail-left">
+          <text class="detail-yi">ꆿꌋ</text>
+          <text class="detail-label">狼色</text>
+        </view>
+        <view class="detail-val">
+          <view class="detail-yi">{{laSe[0]}}</view>
+          <view class="detail-label">{{laSe[1]}}</view>
+        </view>
+      </view>
+      <view class="detail-item">
+        <view class="detail-left">
+          <text class="detail-yi">ꃅꌋꋠꑍ</text>
+          <text class="detail-label">木色则尼</text>
+        </view>
+        <view class="detail-val">
+          <view class="detail-yi">{{zeta[0]}}</view>
+          <view class="detail-label">{{zeta[1]}}</view>
+        </view>
+      </view>
+      <view class="detail-item">
+        <view class="detail-left">
+          <text class="detail-yi">ꄤꁨꀋꃀ</text>
+          <text class="detail-label">母塔博</text>
+        </view>
+        <view class="detail-val">
+          <view class="detail-yi">{{yiDate.tabooMon[0]}}</view>
+          <view class="detail-label">{{yiDate.tabooMon[1]}}</view>
+        </view>
+      </view>
+      <view class="detail-item">
+        <view class="detail-left">
+          <text class="detail-yi">ꄤꁨꀋꀮ</text>
+          <text class="detail-label">公塔博</text>
+        </view>
+        <view class="detail-val">
+          <view class="detail-yi">{{yiDate.tabooFat[0]}}</view>
+          <view class="detail-label">{{yiDate.tabooFat[1]}}</view>
+        </view>
+      </view>
+    </view>
+ </view>
+</layout>
