@@ -7,7 +7,7 @@
       marks="{{marks}}"
       i-class="calendar"
       weekstart="{{1}}"
-      alignDate=“baseline”
+      alignDate="baseline"
       darkmode="{{isDark}}"
       style="{{calendarStyle}}"
       bindload="onCalendarLoad"

@@ -1,0 +1,104 @@
+<!--pages/date-navigation/date-navigation.wxml-->
+<layout title="彝历查询" eyebrow="YI ALIVE ASSISTANT">
+
+  <!-- 日期导航工具栏 -->
+  <view class="card toolbar">
+    <view class="toolbar-main">
+      <view class="nav-btn" hover-class="nav-btn-hover" bindtap="prevDay">‹</view>
+      <picker class="date-picker" mode="date" value="{{solarDate}}" start="1900-01-01" end="2100-12-31" bindchange="onDateChange">
+        <view class="date-block">
+          <view class="date-main">{{yearText}}年{{monthText}}月{{dateText}}日</view>
+          <view class="date-sub">{{lunarText}} · 星期{{weekday}}<text class="pick-hint"> 点选 ▾</text></view>
+        </view>
+      </picker>
+      <view class="nav-btn" hover-class="nav-btn-hover" bindtap="nextDay">›</view>
+    </view>
+  </view>
+
+  <!-- 彝历罗盘 -->
+  <view class="card compass-card">
+    <view class="compass">
+      <view class="ring outer"></view>
+      <view class="ring inner"></view>
+      <view class="spoke" style="transform: rotate(0deg);"></view>
+      <view class="spoke" style="transform: rotate(60deg);"></view>
+      <view class="spoke" style="transform: rotate(120deg);"></view>
+
+      <view class="compass-center">
+        <text class="center-year">{{yiDate.year[0]}}ꈎ · {{yiDate.month[0]}}ꆪ</text>
+        <text class="center-day">{{yiDate.day[0]}}ꑍ · {{yiDate.dayMoon[0]}}ꑍ</text>
+        <text class="center-cn">{{yiDate.year[1]}}年·{{yiDate.month[1]}}月·{{yiDate.day[1]}}日·{{yiDate.dayMoon[1]}}日</text>
+      </view>
+
+      <view class="compass-item" style="transform: rotate(0deg) translateY(-205rpx) rotate(0deg);">
+        <text class="item-yi">{{yiDate.tabooSon[0]}}</text>
+        <text class="item-label">塔博惹</text>
+      </view>
+      <view class="compass-item" style="transform: rotate(60deg) translateY(-205rpx) rotate(-60deg);">
+        <text class="item-yi">{{kuJior[0]}}</text>
+        <text class="item-label">库觉</text>
+      </view>
+      <view class="compass-item" style="transform: rotate(120deg) translateY(-205rpx) rotate(-120deg);">
+        <text class="item-yi">{{laSe[0]}}</text>
+        <text class="item-label">狼色</text>
+      </view>
+      <view class="compass-item" style="transform: rotate(180deg) translateY(-205rpx) rotate(-180deg);">
+        <text class="item-yi">{{zeta[0]}}</text>
+        <text class="item-label">木色则尼</text>
+      </view>
+      <view class="compass-item" style="transform: rotate(240deg) translateY(-205rpx) rotate(-240deg);">
+        <text class="item-yi">{{yiDate.tabooMon[0]}}</text>
+        <text class="item-label">母塔博</text>
+      </view>
+      <view class="compass-item" style="transform: rotate(300deg) translateY(-205rpx) rotate(-300deg);">
+        <text class="item-yi">{{yiDate.tabooFat[0]}}</text>
+        <text class="item-label">公塔博</text>
+      </view>
+    </view>
+
+    <!-- 彝历宜忌 -->
+    <view class="fortune-strip">
+      <view class="fortune-label">今日宜忌</view>
+      <view class="fortune-body">
+        <text class="fortune-main">{{todayFortune.taboo[0]}}，{{todayFortune.taboo[1]}}</text>
+        <text class="fortune-desc">{{todayFortune.tabooFull}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 农历黄历 -->
+  <view class="card lunar-card">
+    <view class="section-head">
+      <text class="section-title">农历黄历</text>
+      <text class="section-link">{{lunarText}}</text>
+    </view>
+    <view class="lunar-grid">
+      <view class="lunar-item">
+        <text class="lunar-label">年干支</text>
+        <text class="lunar-val">{{yearGanZhi}} · {{shengXiao}}</text>
+      </view>
+      <view class="lunar-item">
+        <text class="lunar-label">日干支</text>
+        <text class="lunar-val">{{dayGanZhi}}</text>
+      </view>
+      <view class="lunar-item">
+        <text class="lunar-label">纳音</text>
+        <text class="lunar-val">{{naYin}}</text>
+      </view>
+      <view class="lunar-item">
+        <text class="lunar-label">冲煞</text>
+        <text class="lunar-val">{{chongSha}}</text>
+      </view>
+    </view>
+    <view class="yi-ji">
+      <view class="yi-ji-block good">
+        <text class="yi-ji-title">宜</text>
+        <text class="yi-ji-content">{{lunarYi}}</text>
+      </view>
+      <view class="yi-ji-block bad">
+        <text class="yi-ji-title">忌</text>
+        <text class="yi-ji-content">{{lunarJi}}</text>
+      </view>
+    </view>
+  </view>
+</layout>

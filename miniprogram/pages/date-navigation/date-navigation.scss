@@ -1,0 +1,338 @@
+/* pages/date-navigation/date-navigation.wxss */
+
+.card {
+  background: var(--paper);
+  border: 2rpx solid var(--line);
+  border-radius: 36rpx;
+  padding: 30rpx;
+  box-shadow: 0 10rpx 30rpx rgba(45, 28, 15, 0.045);
+  margin-top: 24rpx;
+
+  .section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .section-title {
+      font-size: 32rpx;
+      font-weight: bold;
+    }
+
+    .section-link {
+      color: var(--fire);
+      font-size: 22rpx;
+    }
+  }
+}
+
+/* 日期导航工具栏 */
+.toolbar {
+  padding: 24rpx 30rpx;
+
+  .toolbar-main {
+    display: flex;
+    align-items: center;
+    gap: 20rpx;
+
+    .nav-btn {
+      width: 72rpx;
+      height: 72rpx;
+      border-radius: 50%;
+      background: var(--soft);
+      border: 2rpx solid var(--line);
+      color: var(--fire);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40rpx;
+      font-weight: 700;
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+
+    .nav-btn-hover {
+      opacity: 0.7;
+    }
+
+    .date-picker {
+      flex: 1;
+      min-width: 0;
+      display: block;
+    }
+
+    .date-block {
+      text-align: center;
+
+      .date-main {
+        font-size: 40rpx;
+        font-weight: 800;
+        color: var(--coal);
+      }
+
+      .date-sub {
+        font-size: 22rpx;
+        color: var(--muted);
+        margin-top: 4rpx;
+
+        .pick-hint {
+          color: var(--fire);
+        }
+      }
+    }
+  }
+
+  .tag-row {
+    display: flex;
+    align-items: center;
+    gap: 12rpx;
+    margin-top: 20rpx;
+
+    .chip {
+      display: inline-flex;
+      padding: 8rpx 16rpx;
+      border-radius: 198rpx;
+      font-size: 20rpx;
+      font-weight: 700;
+
+      &.gold {
+        background: #aa7b2d2b;
+        color: var(--gold);
+        border: 2rpx solid #aa7b2d55;
+      }
+
+      &.plain {
+        background: var(--soft);
+        color: var(--muted);
+        border: 2rpx solid var(--line);
+      }
+    }
+  }
+}
+
+/* 彝历罗盘 */
+.compass-card {
+  padding-bottom: 24rpx;
+
+  .compass {
+    position: relative;
+    width: 600rpx;
+    height: 600rpx;
+    margin: 6rpx auto 0;
+
+    .ring {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border-radius: 50%;
+      box-sizing: border-box;
+
+      &.outer {
+        width: 560rpx;
+        height: 560rpx;
+        margin: -280rpx 0 0 -280rpx;
+        border: 2rpx dashed var(--accent-border);
+      }
+
+      &.inner {
+        width: 360rpx;
+        height: 360rpx;
+        margin: -180rpx 0 0 -180rpx;
+        border: 2rpx solid var(--line);
+        background: var(--soft);
+        box-shadow: inset 0 0 24rpx rgba(45, 28, 15, 0.06);
+      }
+    }
+
+    .spoke {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 2rpx;
+      height: 100%;
+      margin-left: -1rpx;
+      background: var(--line);
+      opacity: 0.6;
+    }
+
+    .compass-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 320rpx;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8rpx;
+      text-align: center;
+
+      .center-year {
+        font-size: 26rpx;
+        color: var(--gold);
+        letter-spacing: 2rpx;
+        font-weight: 700;
+      }
+
+      .center-day {
+        font-size: 40rpx;
+        font-weight: 800;
+        color: var(--coal);
+        letter-spacing: 2rpx;
+      }
+
+      .center-cn {
+        font-size: 20rpx;
+        color: var(--muted);
+      }
+    }
+
+    .compass-item {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 150rpx;
+      height: 100rpx;
+      margin: -50rpx 0 0 -75rpx;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4rpx;
+
+      .item-yi {
+        font-size: 36rpx;
+        font-weight: 800;
+        color: var(--fire);
+      }
+
+      .item-label {
+        font-size: 20rpx;
+        color: var(--muted);
+      }
+    }
+  }
+
+  .fortune-strip {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20rpx;
+    margin-top: 20rpx;
+    padding-top: 22rpx;
+    border-top: 2rpx solid var(--line);
+
+    .fortune-label {
+      flex-shrink: 0;
+      font-size: 22rpx;
+      font-weight: 700;
+      color: var(--fire);
+      letter-spacing: 2rpx;
+      padding: 10rpx 18rpx;
+      border-radius: 198rpx;
+      background: #9c2d2518;
+    }
+
+    .fortune-body {
+      display: flex;
+      flex-direction: column;
+      gap: 6rpx;
+      min-width: 0;
+
+      .fortune-main {
+        font-size: 30rpx;
+        font-weight: 700;
+        color: var(--coal);
+      }
+
+      .fortune-desc {
+        font-size: 22rpx;
+        color: var(--muted);
+      }
+    }
+  }
+}
+
+/* 农历黄历 */
+.lunar-card {
+  margin-bottom: 50rpx;
+
+  .lunar-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 24rpx -30rpx 0;
+    border-top: 2rpx solid var(--line);
+
+    .lunar-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24rpx 30rpx;
+      box-sizing: border-box;
+      border-bottom: 2rpx solid var(--line);
+
+      &:nth-child(odd) {
+        border-right: 2rpx solid var(--line);
+      }
+
+      &:nth-child(3),
+      &:nth-child(4) {
+        border-bottom: none;
+      }
+
+      .lunar-label {
+        color: var(--muted);
+        font-size: 22rpx;
+        flex-shrink: 0;
+      }
+
+      .lunar-val {
+        font-size: 26rpx;
+        font-weight: 700;
+        color: var(--coal);
+        text-align: right;
+      }
+    }
+  }
+
+  .yi-ji {
+    display: flex;
+    gap: 20rpx;
+    margin-top: 24rpx;
+
+    .yi-ji-block {
+      flex: 1;
+      border-radius: 28rpx;
+      padding: 22rpx;
+      display: flex;
+      flex-direction: column;
+      gap: 8rpx;
+
+      &.good {
+        background: var(--good-bg);
+
+        .yi-ji-title {
+          color: var(--green);
+        }
+      }
+
+      &.bad {
+        background: var(--bad-bg);
+
+        .yi-ji-title {
+          color: var(--fire);
+        }
+      }
+
+      .yi-ji-title {
+        font-size: 24rpx;
+        font-weight: 800;
+      }
+
+      .yi-ji-content {
+        font-size: 22rpx;
+        color: var(--coal);
+        line-height: 1.5;
+      }
+    }
+  }
+}

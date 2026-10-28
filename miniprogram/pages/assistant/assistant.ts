@@ -5,18 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    marryTools: [
-      { icon: '囍', label: '结婚吉日', desc: '选择双方生肖与年龄' },
-      { icon: '约', label: '订婚吉日', desc: '查看未来三个月' },
+    tools: [
+      { 
+        icon: '历', 
+        label: '彝历查询', 
+        desc: '选择日期查询指定彝历信息',
+        url: '/pages/date-navigation/date-navigation'
+       },
+      { 
+        icon: '西', 
+        label: '西德计算', 
+        desc: '计算的永恒西德，今年西德',
+        url: '/pages/western/western'
+      },
       { icon: '合', label: '生肖合婚', desc: '文化参考与相处建议' },
       { icon: '德', label: '西德合婚', desc: '彝族传统文化参考' }
     ],
-    familyTools: [
-      { icon: '建', label: '建房' },
-      { icon: '迁', label: '乔迁' },
-      { icon: '婴', label: '新生儿' },
-      { icon: '礼', label: '传统礼俗' }
-    ]
   },
 
   /**

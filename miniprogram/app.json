@@ -1,9 +1,10 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/date-navigation/date-navigation",
     "pages/assistant/assistant",
-    "pages/mine/mine",
-    "pages/calendar/calendar"
+    "pages/calendar/calendar",
+    "pages/index/index",
+    "pages/mine/mine"
   ],
   "tabBar": {
     "backgroundColor": "#fffdf7",
