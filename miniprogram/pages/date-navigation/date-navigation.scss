@@ -115,8 +115,8 @@
 
   .compass {
     position: relative;
-    width: 600rpx;
-    height: 600rpx;
+    width: 634rpx;
+    height: 634rpx;
     margin: 6rpx auto 0;
 
     .ring {
@@ -127,16 +127,16 @@
       box-sizing: border-box;
 
       &.outer {
-        width: 560rpx;
-        height: 560rpx;
-        margin: -280rpx 0 0 -280rpx;
+        width: 634rpx;
+        height: 634rpx;
+        margin: -317rpx 0 0 -317rpx;
         border: 2rpx dashed var(--accent-border);
       }
 
       &.inner {
-        width: 360rpx;
-        height: 360rpx;
-        margin: -180rpx 0 0 -180rpx;
+        width: 450rpx;
+        height: 450rpx;
+        margin: -225rpx 0 0 -225rpx;
         border: 2rpx solid var(--line);
         background: var(--soft);
         box-shadow: inset 0 0 24rpx rgba(45, 28, 15, 0.06);
@@ -158,55 +158,80 @@
       position: absolute;
       left: 50%;
       top: 50%;
-      width: 320rpx;
+      width: 240rpx;
       transform: translate(-50%, -50%);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8rpx;
+      gap: 6rpx;
       text-align: center;
 
       .center-year {
-        font-size: 26rpx;
+        font-size: 24rpx;
         color: var(--gold);
         letter-spacing: 2rpx;
         font-weight: 700;
       }
 
       .center-day {
-        font-size: 40rpx;
+        font-size: 32rpx;
         font-weight: 800;
         color: var(--coal);
         letter-spacing: 2rpx;
       }
 
       .center-cn {
-        font-size: 20rpx;
+        font-size: 16rpx;
         color: var(--muted);
       }
     }
 
-    .compass-item {
+    .compass-name,
+    .compass-value {
       position: absolute;
       left: 50%;
       top: 50%;
-      width: 150rpx;
-      height: 100rpx;
-      margin: -50rpx 0 0 -75rpx;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4rpx;
+      gap: 2rpx;
+      text-align: center;
+      box-sizing: border-box;
+    }
 
-      .item-yi {
-        font-size: 36rpx;
+    /* 内层：名称（双语） */
+    .compass-name {
+      width: 120rpx;
+      height: 60rpx;
+      margin: -30rpx 0 0 -60rpx;
+
+      .name-yi {
+        font-size: 22rpx;
+        font-weight: 700;
+        color: var(--gold);
+      }
+
+      .name-cn {
+        font-size: 16rpx;
+        color: var(--muted);
+      }
+    }
+
+    /* 外层：值（双语） */
+    .compass-value {
+      width: 140rpx;
+      height: 72rpx;
+      margin: -36rpx 0 0 -70rpx;
+
+      .value-yi {
+        font-size: 30rpx;
         font-weight: 800;
         color: var(--fire);
       }
 
-      .item-label {
-        font-size: 20rpx;
+      .value-cn {
+        font-size: 16rpx;
         color: var(--muted);
       }
     }
@@ -227,17 +252,12 @@
       padding: 10rpx 18rpx;
       letter-spacing: 8rpx;
       border-radius: 24rpx;
+        color: var(--fire);
       background: #9c2d2518;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      .green{
-        color: var(--green);
-      }
-      .fire{
-        color: var(--fire);
-      }
     }
 
     .fortune-body {
