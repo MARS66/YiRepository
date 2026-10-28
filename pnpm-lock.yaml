@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@lspriv/wx-calendar':
-        specifier: 1.7.2
-        version: 1.7.2
+        specifier: ^1.7.2
+        version: 1.8.4
       chinese-workday:
         specifier: ^1.10.0
         version: 1.16.1
@@ -27,8 +27,8 @@ importers:
 
 packages:
 
-  '@lspriv/wx-calendar@1.7.2':
-    resolution: {integrity: sha512-6xYVJzF00wJXD47zNgH7YuyBCsrfoBGenuIgYfNdYMIos2P+fb47b0ZDs9Ghjwhqb2mPXP7CCjj4OmsBajyeoQ==}
+  '@lspriv/wx-calendar@1.8.4':
+    resolution: {integrity: sha512-TWDLGCpLfCrRtUiJJouU0ridF+coGgARbBvvdMjSryjVWW05vYmOHEj575I+xc6lk2yTDZ7ncbUSOUC8OijgOg==}
     engines: {node: '>=16.13.0'}
 
   chinese-workday@1.16.1:
@@ -45,7 +45,7 @@ packages:
 
 snapshots:
 
-  '@lspriv/wx-calendar@1.7.2': {}
+  '@lspriv/wx-calendar@1.8.4': {}
 
   chinese-workday@1.16.1: {}
 

@@ -5,10 +5,6 @@
     "pages/mine/mine",
     "pages/calendar/calendar"
   ],
-  "window": {
-    "navigationStyle": "custom",
-    "navigationBarTextStyle": "black"
-  },
   "tabBar": {
     "backgroundColor": "#fffdf7",
     "color": "#70695e",
@@ -40,8 +36,20 @@
       }
     ]
   },
+  "window": {
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black"
+  },
   "style": "v2",
   "rendererOptions": {
+    "skyline": {
+      "defaultDisplayBlock": true,
+      "defaultContentBox": true,
+      "tagNameStyleIsolation": "legacy",
+      "disableABTest": true,
+      "sdkVersionBegin": "3.0.0",
+      "sdkVersionEnd": "15.255.255"
+    }
   },
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",

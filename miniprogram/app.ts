@@ -7,7 +7,7 @@ App<IAppOption>({
     menuButton: {},
   },
   onLaunch() {
-    // 获取系统信息
+    // 获取窗口信息（getSystemInfoSync 已废弃，改用 getWindowInfo）
     const systemInfo = wx.getSystemInfoSync();
     // 获取胶囊按钮信息
     const menuButton = wx.getMenuButtonBoundingClientRect();
