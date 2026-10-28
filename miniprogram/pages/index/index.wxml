@@ -24,7 +24,7 @@
 
   <view class="card daily-word">
     <text class="section-label">今日宜忌</text>
-    <text class="daily-title">{{todayFortune.taboo[0]}} , {{todayFortune.taboo[1]}}</text>
+    <text class="daily-title"> <text>{{todayFortune.taboo[0]}}</text> , {{todayFortune.taboo[1]}}</text>
     <text class="daily-desc">{{todayFortune.tabooFull}}</text>
   </view>
 

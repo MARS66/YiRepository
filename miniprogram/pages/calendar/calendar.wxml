@@ -5,6 +5,9 @@
       id="calendar"
       areas="{{calendarAreas}}"
       marks="{{marks}}"
+      i-class="calendar"
+      weekstart="{{1}}"
+      alignDate=“baseline”
       darkmode="{{isDark}}"
       style="{{calendarStyle}}"
       bindload="onCalendarLoad"
