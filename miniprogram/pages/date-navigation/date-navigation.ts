@@ -70,7 +70,8 @@ Page({
     posFu: '',
     posCai: '',
     posYangGui: '',
-    posYinGui: ''
+    posYinGui: '',
+    baZi: ''
   },
 
   /**
@@ -138,7 +139,9 @@ Page({
       posFu: lunar.getDayPositionFu(),
       posCai: lunar.getDayPositionCai(),
       posYangGui: lunar.getDayPositionYangGui(),
-      posYinGui: lunar.getDayPositionYinGui()
+      posYinGui: lunar.getDayPositionYinGui(),
+      // 当日八字：年月以立春、节气为界（EightChar 内部使用交节精确算法）
+      baZi: `${lunar.getEightChar().getYear()}年 · ${lunar.getEightChar().getMonth()}月 · ${lunar.getEightChar().getDay()}日 · ${lunar.getEightChar().getTime()}时`
     })
   },
 

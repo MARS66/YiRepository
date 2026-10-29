@@ -141,6 +141,10 @@
     </view>
     <view class="lunar-rows">
       <view class="lunar-row">
+        <text class="row-label">当日八字</text>
+        <text class="row-val">{{baZi}}(当前时刻)</text>
+      </view>
+      <view class="lunar-row">
         <text class="row-label">彭祖百忌</text>
         <text class="row-val">{{pengZu}}</text>
       </view>
