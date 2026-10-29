@@ -1,5 +1,5 @@
 // pages/calendar/calendar.ts
-import { getYiTaBoo, getKujior,getLaSe,getZeTa } from '../../utils/yi-lunar/index'
+import { getYiTaBoo, getKujior,getLaSe,getZeTa,getTodayFortune } from '../../utils/yi-lunar/index'
 import { getFestival } from 'chinese-workday'
 import { Lunar } from '../../utils/lunar-typescript';
 
@@ -39,6 +39,7 @@ Page({
    */
   data: {
     yiDate:{} as any,
+    todayFortune: { taboo: [], tabooFull: '' } as any,
     calendarAreas: ['header', 'title', 'subinfo', 'viewbar','dragbar','today'],
     isDark: false,
     calendarStyle: 'width: 100%; --wc-primary: #9c2d25; --wc-bg-light: #fffdf7; --wc-title-color-light: #201d18; --wc-title-size: 40rpx; --wc-week-color-light: #70695e; --wc-week-size: 20rpx; --wc-date-color-light: #201d18; --wc-date-size: 32rpx; --wc-today-color-light: #9c2d25; --wc-solar-color-light: #aa7b2d; --wc-mark-color-light: #201d18ca; --wc-mark-size: 22rpx; --wc-corner-size: 12rpx; --wc-checked-bg-light: #9c2d25; --wc-checked-color-light: #ffffff; --wc-checked-mark-color-light: #ffffff; --wc-checked-today-bg-light: #9c2d25; --wc-checked-today-color-light: #ffffff; --wc-bg-dark: #2b2923; --wc-title-color-dark: #f6f0e4; --wc-week-color-dark: #bdb4a6; --wc-date-color-dark: #f6f0e4; --wc-today-color-dark: #de6659; --wc-solar-color-dark: #dab061; --wc-mark-color-dark: #f6f0e4; --wc-checked-bg-dark: #de6659; --wc-checked-color-dark: #ffffff; --wc-checked-mark-color-dark: #ffffff; --wc-checked-today-bg-dark: #de6659; --wc-checked-today-color-dark: #ffffff; --wc-annual-bottom-height: 0px;',
@@ -163,6 +164,7 @@ Page({
     const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
     this.setData({
       yiDate,
+      todayFortune: getTodayFortune(yiDate.dayZodiacIndex),
       kuJior:getKujior().kujior,
       laSe:getLaSe(fmt(d)),
       zeta:getZeTa(fmt(d)),
