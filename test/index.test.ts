@@ -1,10 +1,10 @@
 import { describe, it } from "vitest";
-import { getZeTa, getYiTaBoo, getKujior } from "../src/index";
+import { getYiAge } from "../src/index";
 
-describe("components/getDate", () => {
+describe("components/getXiDe", () => {
   it("彝族日历", () => {
-    console.log(getYiTaBoo("2027-02-06"));
-    console.log(getZeTa("2027-02-06"));
-    console.log(getKujior("2027-02-06"));
+    console.log(8888);
+    console.log(getYiAge("龙"));
+    console.log(getYiAge("马"));
   });
 });
