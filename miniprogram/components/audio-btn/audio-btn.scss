@@ -1,17 +1,27 @@
 /* components/audio-btn/audio-btn.wxss */
 
 .audio-btn {
+  /* 通过 --btn-* 变量控制颜色，.gold 变体切换为金色 */
+  --btn-bg: var(--fire);
+  --btn-shadow: rgba(156, 45, 37, 0.35);
+  --btn-glow: rgba(156, 45, 37, 0.8);
   position: relative;
   width: 70rpx;
   height: 70rpx;
   border-radius: 50%;
-  background: var(--fire);
+  background: var(--btn-bg);
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8rpx 24rpx rgba(156, 45, 37, 0.35);
+  box-shadow: 0 8rpx 24rpx var(--btn-shadow);
   transition: transform 0.2s ease;
+
+  &.gold {
+    --btn-bg: var(--gold);
+    --btn-shadow: rgba(170, 123, 45, 0.35);
+    --btn-glow: rgba(170, 123, 45, 0.8);
+  }
 
   /* 播放时的脉冲波纹 */
   &::before,
@@ -23,7 +33,7 @@
     right: 0;
     bottom: 0;
     border-radius: 50%;
-    border: 2rpx solid var(--fire);
+    border: 2rpx solid var(--btn-bg);
     opacity: 0;
     pointer-events: none;
   }
@@ -98,9 +108,9 @@
 @keyframes breathe {
   0%,
   100% {
-    box-shadow: 0 8rpx 24rpx rgba(156, 45, 37, 0.35);
+    box-shadow: 0 8rpx 24rpx var(--btn-shadow);
   }
   50% {
-    box-shadow: 0 8rpx 44rpx rgba(156, 45, 37, 0.8);
+    box-shadow: 0 8rpx 44rpx var(--btn-glow);
   }
 }

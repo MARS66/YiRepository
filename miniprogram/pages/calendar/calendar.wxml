@@ -15,7 +15,19 @@
       bindchange="onCalendarChange"
     />
   </view>
-
+  <view class="calendar-detail">
+    <view class="fortune-strip">
+      <view class="fortune-label">
+        <view>彝族</view>
+        <view>日历</view>
+      </view>
+      <view class="fortune-body">
+        <text class="fortune-main">{{yiDate.year[0]}}ꈎ·{{yiDate.month[0]}}ꆪ·{{yiDate.day[0]}}ꑍ·{{yiDate.dayMoon[0]}}ꑍ</text>
+        <text class="fortune-desc">{{yiDate.year[1]}}年·{{yiDate.month[1]}}月·{{yiDate.day[1]}}日·{{yiDate.dayMoon[1]}}日</text>
+      </view>
+      <audio-btn date="{{solarDate}}"  />
+    </view>
+  </view>
   <view class="card selected-date">
     <view class="section-head">
       <view class="selected-head">

@@ -9,6 +9,66 @@ overflow: hidden;
   box-shadow: 0 10rpx 30rpx rgba(45, 28, 15, 0.045);
 }
 
+/* 彝历日期渐变卡 */
+.calendar-detail {
+  margin-top: 24rpx;
+  padding: 30rpx;
+  border-radius: 36rpx;
+  border: 2rpx solid var(--accent-border);
+  background: linear-gradient(135deg, rgba(156, 45, 37, 0.18) 0%, rgba(170, 123, 45, 0.22) 100%);
+  box-shadow: 0 10rpx 30rpx rgba(45, 28, 15, 0.045);
+
+  .fortune-strip {
+    display: flex;
+    align-items: center;
+    gap: 20rpx;
+
+    .fortune-label {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10rpx 18rpx;
+      border-radius: 24rpx;
+      font-size: 30rpx;
+      font-weight: 500;
+      letter-spacing: 8rpx;
+      background: var(--paper);
+      color: var(--fire);
+
+      .green {
+        color: var(--green);
+      }
+
+      .fire {
+        color: var(--fire);
+      }
+    }
+
+    .fortune-body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6rpx;
+
+      .fortune-main {
+        font-size: 38rpx;
+        letter-spacing: 4rpx;
+        font-weight: 700;
+        color: var(--coal);
+      }
+
+      .fortune-desc {
+        font-size: 24rpx;
+        letter-spacing: 4rpx;
+        color: var(--muted);
+      }
+    }
+  }
+}
+
 .card {
   background: var(--paper);
   border: 2rpx solid var(--line);

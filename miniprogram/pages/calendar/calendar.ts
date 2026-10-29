@@ -47,7 +47,8 @@ Page({
     laSe:{},
     zeta:{},
     kuJior: {},
-    relativeDay: '今天'
+    relativeDay: '今天',
+    solarDate: ''
   },
 
   /**
@@ -166,7 +167,8 @@ Page({
       laSe:getLaSe(fmt(d)),
       zeta:getZeTa(fmt(d)),
       selectedLabel: `${checked.year}年${checked.month}月${checked.day}日 · 星期${weekdays[d.getDay()]}`,
-      relativeDay
+      relativeDay,
+      solarDate: fmt(d)
     });
   },
 

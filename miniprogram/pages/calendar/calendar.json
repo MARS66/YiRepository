@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "calendar": "@lspriv/wx-calendar"
+    "calendar": "@lspriv/wx-calendar",
+    "audio-btn": "/components/audio-btn/audio-btn"
   }
 }

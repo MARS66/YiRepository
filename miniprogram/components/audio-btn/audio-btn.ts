@@ -13,6 +13,11 @@ Component({
     date: {
       type: String,
       value: ''
+    },
+    /** 按钮颜色：fire（火色，默认）/ gold（金色） */
+    color: {
+      type: String,
+      value: 'fire'
     }
   },
 
