@@ -1,5 +1,5 @@
 <!--pages/index/index.wxml-->
-<layout>
+<layout needBack="{{false}}" >
   <view class="hero">
     <view class="hero-top">
       <text class="chip gold">今日彝历</text>

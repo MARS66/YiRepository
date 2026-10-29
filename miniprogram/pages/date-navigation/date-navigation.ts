@@ -4,7 +4,6 @@ import { getFestival } from 'chinese-workday'
 import { Lunar } from '../../utils/lunar-typescript'
 
 const WEEKDAYS = ['日', '一', '二', '三', '四', '五', '六']
-const CH_MONTHS = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二']
 
 /** 格式化 Date → YYYY-MM-DD */
 function fmt(d: Date): string {

@@ -1,6 +1,9 @@
 <!--components/navigation-bar/navigation-bar.wxml-->
 <view class="layout {{isDark ? 'theme-dark' : ''}}">
   <view class="navi-bar" style=" padding-top: {{statusBarHeight}}px;">
+    <view class="navi-left" wx:if="{{needBack}}" hover-class="navi-hover" bindtap="onBack">
+      <text class="iconfont icon-fanhui"></text>
+    </view>
     <view class="navi-title">
       <view class="eyebrow">{{eyebrow}}</view>
       <view class="pageTitle">{{title}}</view>

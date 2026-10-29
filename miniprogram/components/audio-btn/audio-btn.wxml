@@ -1,0 +1,8 @@
+<!--components/audio-btn/audio-btn.wxml-->
+<view class="audio-btn {{playing ? 'playing' : ''}}" hover-class="audio-btn-hover" bindtap="toggleAudio">
+  <text class="icon icon-play">♫</text>
+  <view class="icon icon-pause">
+    <view class="pause-bar"></view>
+    <view class="pause-bar"></view>
+  </view>
+</view>

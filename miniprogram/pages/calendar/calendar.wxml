@@ -1,5 +1,5 @@
 <!--pages/calendar/calendar.wxml-->
-<layout bind:themechange="onThemeChange">
+<layout needBack="{{false}}"  bind:themechange="onThemeChange">
   <view class="calendar-card">
     <calendar
       id="calendar"

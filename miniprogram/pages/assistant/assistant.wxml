@@ -1,7 +1,7 @@
 <!--pages/assistant/assistant.wxml-->
-<layout title="彝族生活助手" eyebrow="YI ALIVE ASSISTANT">
+<layout needBack="{{false}}" title="彝族生活助手" eyebrow="YI ALIVE ASSISTANT">
   <view class="search">
-    <text class="search-icon">⌕</text>
+    <text class=" search-icon iconfont icon-sousuo"></text>
     <input placeholder="搜索结婚、乔迁、翻译…" placeholder-class="search-placeholder" />
   </view>
 
@@ -10,7 +10,7 @@
       <text class="section-title">生活助手</text>
       <text class="chip gold">热门</text>
     </view>
-    <view class="tool-item" wx:for="{{tools}}" wx:key="label">
+    <view class="tool-item" hover-class="btn-hover" wx:for="{{tools}}" wx:key="label" bindtap="onToolTap" data-url="{{item.url}}">
       <text class="tool-icon">{{item.icon}}</text>
       <view class="tool-info">
         <text class="tool-name">{{item.label}}</text>

@@ -14,6 +14,10 @@ Component({
     eyebrow:{
       type: String,
       value: 'YI LIFE CALENDAR'
+    },
+    needBack:{
+      type: Boolean,
+      value: true
     }
   },
 
@@ -54,6 +58,15 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    onBack(){
+      const pages = getCurrentPages()
+      if (pages.length > 1) {
+        wx.navigateBack()
+      } else {
+        wx.switchTab({ url: '/pages/index/index' })
+      }
+      this.triggerEvent('back')
+    },
     onToggleTheme(){
       this.applyTheme(!this.data.isDark)
     },

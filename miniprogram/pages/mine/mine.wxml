@@ -1,5 +1,5 @@
 <!--pages/mine/mine.wxml-->
-<layout title="我的" eyebrow="YI LIFE">
+<layout needBack="{{false}}"  title="我的" eyebrow="YI LIFE">
   <view class="profile-card">
     <view class="avatar">月</view>
     <view class="profile-info">

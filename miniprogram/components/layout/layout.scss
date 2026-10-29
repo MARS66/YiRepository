@@ -1,4 +1,5 @@
 /* components/navigation-bar/navigation-bar.wxss */
+@import '../../static/icon/index.scss';
 .layout{
   height: 100%;
   overflow: hidden;
@@ -27,6 +28,17 @@
     overflow: hidden;
     display: flex;
     align-items: center;
+    .navi-left{
+      font-size: 70rpx;
+      color: var(--gold);
+      margin-left: 16rpx;
+      border-radius: 50%;
+      transition: transform .15s ease, opacity .15s ease;
+      &.navi-hover{
+        transform: scale(.95);
+        opacity: .6;
+      }
+    }
     .navi-title{
       padding: 16rpx 36rpx 24rpx;
       .eyebrow{

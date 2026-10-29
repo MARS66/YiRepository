@@ -1,0 +1,106 @@
+/* components/audio-btn/audio-btn.wxss */
+
+.audio-btn {
+  position: relative;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  background: var(--fire);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(156, 45, 37, 0.35);
+  transition: transform 0.2s ease;
+
+  /* 播放时的脉冲波纹 */
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    border: 2rpx solid var(--fire);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &.playing::before {
+    animation: ripple 2s ease-out infinite;
+  }
+
+  &.playing::after {
+    animation: ripple 2s ease-out 1s infinite;
+  }
+
+  /* 播放中的呼吸光晕 */
+  &.playing {
+    animation: breathe 2s ease-in-out infinite;
+  }
+
+  .icon {
+    transition: opacity 0.2s ease, transform 0.25s ease;
+  }
+
+  /* 音符（音频相关图标） */
+  .icon-play {
+    font-size: 34rpx;
+    line-height: 1;
+    color: #fffdf7;
+    transform: scale(1);
+  }
+
+  /* 暂停双杠 */
+  .icon-pause {
+    position: absolute;
+    display: flex;
+    gap: 6rpx;
+    opacity: 0;
+    transform: scale(0.6);
+
+    .pause-bar {
+      width: 5rpx;
+      height: 20rpx;
+      border-radius: 3rpx;
+      background: #fffdf7;
+    }
+  }
+
+  &.playing .icon-play {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  &.playing .icon-pause {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.audio-btn-hover {
+  transform: scale(0.92);
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    box-shadow: 0 8rpx 24rpx rgba(156, 45, 37, 0.35);
+  }
+  50% {
+    box-shadow: 0 8rpx 44rpx rgba(156, 45, 37, 0.8);
+  }
+}

@@ -15,12 +15,23 @@ Page({
       { 
         icon: '西', 
         label: '西德计算', 
-        desc: '计算的永恒西德，今年西德',
-        url: '/pages/western/western'
+        desc: '计算的永恒西德，今年西德'
       },
       { icon: '合', label: '生肖合婚', desc: '文化参考与相处建议' },
       { icon: '德', label: '西德合婚', desc: '彝族传统文化参考' }
     ],
+  },
+
+  /**
+   * 点击工具项：有 url 跳转对应页面，无 url 提示开发中
+   */
+  onToolTap(e: WechatMiniprogram.TouchEvent) {
+    const url = e.currentTarget.dataset.url as string | undefined
+    if (!url) {
+      wx.showToast({ title: '正在开发中，敬请期待', icon: 'none' })
+      return
+    }
+    wx.navigateTo({ url })
   },
 
   /**
