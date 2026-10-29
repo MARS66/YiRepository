@@ -33,40 +33,76 @@
       <text class="section-title">彝历详情</text>
       <text class="section-link">术语说明</text>
     </view>
-    <view class="yi-grid">
-      <view class="yi-item">
-        <text class="yi-label">库觉</text>
-        <text class="yi-val">{{kuJior}}</text>
+    <view class="term-grid">
+      <view class="term-item">
+        <view class="term-key">
+          <text class="key-yi">ꈐꐡ</text>
+          <text class="key-cn">库觉</text>
+        </view>
+        <view class="term-val">
+          <text class="val-yi">{{kuJior[0]}}</text>
+          <text class="val-cn">{{kuJior[1]}}</text>
+        </view>
       </view>
-      <view class="yi-item">
-        <text class="yi-label">狼色</text>
-        <text class="yi-val">{{laSe}}</text>
+      <view class="term-item">
+        <view class="term-key">
+          <text class="key-yi">ꆿꌋ</text>
+          <text class="key-cn">狼色</text>
+        </view>
+        <view class="term-val">
+          <text class="val-yi">{{laSe[0]}}</text>
+          <text class="val-cn">{{laSe[1]}}</text>
+        </view>
       </view>
-      <view class="yi-item">
-        <text class="yi-label">木色则尼</text>
-        <text class="yi-val">{{zeta}}</text>
+      <view class="term-item">
+        <view class="term-key">
+          <text class="key-yi">ꃅꌋꋠꑍ</text>
+          <text class="key-cn">木色则尼</text>
+        </view>
+        <view class="term-val">
+          <text class="val-yi">{{zeta[0]}}</text>
+          <text class="val-cn">{{zeta[1]}}</text>
+        </view>
       </view>
-      <view class="yi-item">
-        <text class="yi-label">塔博惹</text>
-        <text class="yi-val">{{yiDate.tabooSon}}</text>
+      <view class="term-item">
+        <view class="term-key">
+          <text class="key-yi">ꄤꁨꌺ</text>
+          <text class="key-cn">塔博惹</text>
+        </view>
+        <view class="term-val">
+          <text class="val-yi">{{yiDate.tabooSon[0]}}</text>
+          <text class="val-cn">{{yiDate.tabooSon[1]}}</text>
+        </view>
       </view>
-      <view class="yi-item">
-        <text class="yi-label">母塔博</text>
-        <text class="yi-val">{{yiDate.tabooMon}}</text>
+      <view class="term-item">
+        <view class="term-key">
+          <text class="key-yi">ꄤꁨꀋꃀ</text>
+          <text class="key-cn">母塔博</text>
+        </view>
+        <view class="term-val">
+          <text class="val-yi">{{yiDate.tabooMon[0]}}</text>
+          <text class="val-cn">{{yiDate.tabooMon[1]}}</text>
+        </view>
       </view>
-      <view class="yi-item">
-        <text class="yi-label">公塔博</text>
-        <text class="yi-val">{{yiDate.tabooFat}}</text>
+      <view class="term-item">
+        <view class="term-key">
+          <text class="key-yi">ꄤꁨꀋꀮ</text>
+          <text class="key-cn">公塔博</text>
+        </view>
+        <view class="term-val">
+          <text class="val-yi">{{yiDate.tabooFat[0]}}</text>
+          <text class="val-cn">{{yiDate.tabooFat[1]}}</text>
+        </view>
       </view>
     </view>
-    <view class="yi-rows">
-      <view class="yi-row">
-        <text class="row-label">忌讳</text>
-        <text class="row-val">{{todayFortune.taboo}}</text>
+    <view class="fortune-list">
+      <view class="fortune-line warn">
+        <text class="fl-badge">忌</text>
+        <text class="fl-text">{{todayFortune.taboo[1]}}</text>
       </view>
-      <view class="yi-row">
-        <text class="row-label">出行</text>
-        <text class="row-val">{{todayFortune.tabooFull}}</text>
+      <view class="fortune-line info">
+        <text class="fl-badge">行</text>
+        <text class="fl-text">{{todayFortune.tabooFull}}</text>
       </view>
     </view>
  </view>
