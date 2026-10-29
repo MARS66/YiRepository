@@ -1,5 +1,54 @@
 /* pages/index/index.wxss */
 
+/* 词云文字闪烁：三套不同节奏的关键帧 + 取模分组，接近随机星空闪烁 */
+@keyframes hero-cloud-twinkle-a {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  23% {
+    opacity: 0.22;
+  }
+  47% {
+    opacity: 0.85;
+  }
+  68% {
+    opacity: 0.12;
+  }
+}
+
+@keyframes hero-cloud-twinkle-b {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  31% {
+    opacity: 0.18;
+  }
+  56% {
+    opacity: 0.66;
+  }
+  82% {
+    opacity: 0.38;
+  }
+}
+
+@keyframes hero-cloud-twinkle-c {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  16% {
+    opacity: 0.55;
+  }
+  44% {
+    opacity: 0.08;
+  }
+  71% {
+    opacity: 0.92;
+  }
+}
+
 .hero {
   background: linear-gradient(135deg, #79211c, #b74d36);
   color: #fffdf7;
@@ -8,6 +57,74 @@
   position: relative;
   overflow: hidden;
   box-shadow: var(--shadow);
+
+  /* 彝文词云装饰背景 */
+  .hero-cloud {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left:0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+    color: #fffdf7;
+    opacity: 0.3;
+    font-size: 50rpx;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 20rpx;
+
+    /* 取模分组套用不同时长/幅度，再用质数取模二次错相，打散同步感 */
+    text:nth-child(3n + 1) {
+      animation: hero-cloud-twinkle-a 2.6s ease-in-out infinite;
+    }
+
+    text:nth-child(3n + 2) {
+      animation: hero-cloud-twinkle-b 3.7s ease-in-out infinite;
+      animation-delay: -1.4s;
+    }
+
+    text:nth-child(3n) {
+      animation: hero-cloud-twinkle-c 4.3s ease-in-out infinite;
+      animation-delay: -2.7s;
+    }
+
+    /* 二次错相：覆盖上面对应分组的延迟 */
+    text:nth-child(5n + 2) {
+      animation-delay: -0.9s;
+    }
+
+    text:nth-child(7n + 3) {
+      animation-delay: -3.1s;
+    }
+
+    text:nth-child(11n) {
+      animation-delay: -1.9s;
+    }
+  }
+
+  /* 金色柔光，增强层次 */
+  .hero-glow {
+    position: absolute;
+    top: -150rpx;
+    right: -120rpx;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(241, 216, 157, 0.22), rgba(241, 216, 157, 0) 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-top,
+  .date-line,
+  .yi-text,
+  .muted,
+  .solar {
+    position: relative;
+    z-index: 2;
+  }
 
   .hero-top {
     display: flex;
@@ -27,70 +144,73 @@
         border: 2rpx solid #aa7b2d88;
       }
     }
-
-    .audio {
-      font-size: 24rpx;
-      color: #f1d89d;
-    }
   }
 
   .date-line {
     display: flex;
     align-items: center;
-    gap: 24rpx;
-    margin-top: 30rpx;
+    gap: 26rpx;
+    margin-top: 28rpx;
 
     .date-strong {
       font-size: 160rpx;
       line-height: 0.9;
       color: #fffdf7;
       font-weight: bold;
+      letter-spacing: -2rpx;
+      text-shadow: 0 10rpx 28rpx rgba(53, 12, 10, 0.28);
     }
 
     .date-meta {
       display: flex;
       flex-direction: column;
-      gap: 4rpx;
+      gap: 6rpx;
+      padding-bottom: 6rpx;
 
       .date-month {
         font-size: 46rpx;
         font-weight: 800;
+        letter-spacing: 2rpx;
       }
 
       .date-weekday {
         color: #eadfd3;
         font-size: 24rpx;
+        letter-spacing: 2rpx;
       }
     }
   }
 
   .yi-text {
     font-size: 46rpx;
-    font-weight: 400;
-    margin: 24rpx 0 6rpx;
-    letter-spacing: 4rpx;
+    font-weight: 600;
+    margin: 28rpx 0 10rpx;
+    letter-spacing: 6rpx;
     display: block;
+    text-shadow: 0 6rpx 20rpx rgba(53, 12, 10, 0.22);
   }
 
   .muted {
     color: #eadfd3;
     font-size: 24rpx;
+    letter-spacing: 2rpx;
     margin: 8rpx 0;
     display: block;
+    opacity: 0.9;
   }
 
   .solar {
     display: flex;
     align-items: center;
     gap: 16rpx;
-    margin-top: 32rpx;
+    margin-top: 34rpx;
     font-size: 18rpx;
     letter-spacing: 3rpx;
     color: #ddcfc1;
 
     .solar-divider {
       height: 2rpx;
-      background: #ffffff38;
+      background: #ffffff30;
       flex: 1;
     }
   }

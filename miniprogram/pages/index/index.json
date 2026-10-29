@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "audio-btn": "/components/audio-btn/audio-btn"
+  },
   "navigationBarTitleText": "彝族生活日历"
 }

@@ -33,8 +33,10 @@ declare const getYiTaBoo: (date?: string) => {
     yearZodiacIndex: number;
 };
 
+declare const LASE: string[][];
 declare const getLaSe: (date?: string) => string[];
 
+declare const KU_JIOR: string[][];
 declare const getKujior: (date?: string) => {
     index: number;
     kujior: string[];
@@ -42,6 +44,7 @@ declare const getKujior: (date?: string) => {
     offset: number;
 };
 
+declare const ZENG_TA: string[][][];
 declare function getZeTa(date: string): string[] | undefined;
 
 declare function getTodayFortune(index: number): {
@@ -65,4 +68,4 @@ declare const DIRECTION_CN: string[];
 /** 库版本号 */
 declare const VERSION = "0.1.0";
 
-export { DIRECTION, DIRECTION_CN, MONTH_DARK, MONTH_DARK_CN, VERSION, ZODIAC, ZODIAC_CN, ZODIAC_TO_CN, ZODIAC_TO_YI, getKujior, getLaSe, getTodayFortune, getXiDe, getYiAge, getYiDate, getYiTaBoo, getZeTa };
+export { DIRECTION, DIRECTION_CN, KU_JIOR, LASE, MONTH_DARK, MONTH_DARK_CN, VERSION, ZENG_TA, ZODIAC, ZODIAC_CN, ZODIAC_TO_CN, ZODIAC_TO_YI, getKujior, getLaSe, getTodayFortune, getXiDe, getYiAge, getYiDate, getYiTaBoo, getZeTa };
