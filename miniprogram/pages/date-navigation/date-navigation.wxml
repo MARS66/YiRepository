@@ -89,12 +89,12 @@
     <!-- 彝历宜忌 -->
     <view class="fortune-strip">
       <view class="fortune-label">
-        <view>彝历</view>
-        <view><text class="green">宜</text><text class="fire">忌</text></view>
+        <view>彝族</view>
+        <view><text class="green">日</text><text class="fire">历</text></view>
       </view>
       <view class="fortune-body">
-        <text class="fortune-main">{{todayFortune.taboo[0]}}，{{todayFortune.taboo[1]}}</text>
-        <text class="fortune-desc">{{todayFortune.tabooFull}}</text>
+        <text class="fortune-main">{{yiDate.year[0]}}ꈎ·{{yiDate.month[0]}}ꆪ·{{yiDate.day[0]}}ꑍ·{{yiDate.dayMoon[0]}}ꑍ</text>
+        <text class="fortune-desc">{{yiDate.year[1]}}年·{{yiDate.month[1]}}月·{{yiDate.day[1]}}日·{{yiDate.dayMoon[1]}}日</text>
       </view>
     </view>
   </view>

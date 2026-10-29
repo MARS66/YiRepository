@@ -9,7 +9,7 @@ Page({
       { 
         icon: '历', 
         label: '彝历查询', 
-        desc: '选择日期查询指定彝历信息',
+        desc: '选择公历日期查询对应彝历',
         url: '/pages/date-navigation/date-navigation'
        },
       { 

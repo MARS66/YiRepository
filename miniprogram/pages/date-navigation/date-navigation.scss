@@ -267,13 +267,15 @@
       min-width: 0;
 
       .fortune-main {
-        font-size: 30rpx;
+        font-size: 40rpx;
+        letter-spacing: 4rpx;
         font-weight: 700;
         color: var(--coal);
       }
 
       .fortune-desc {
-        font-size: 22rpx;
+        font-size: 24rpx;
+        letter-spacing: 4rpx;
         color: var(--muted);
       }
     }
