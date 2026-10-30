@@ -1,0 +1,172 @@
+<!--pages/mine/members/members.wxml-->
+<layout title="常用信息管理" eyebrow="MINE · MEMBERS">
+
+  <view class="page-head">
+    <view class="page-head-text">
+      <view class="page-title">常用人员信息</view>
+      <view class="page-sub">便于助手快捷输入</view>
+    </view>
+    <view class="add-btn" hover-class="btn-hover" bindtap="openAdd">＋ 添加</view>
+  </view>
+
+  <view class="list-card" wx:if="{{members.length}}">
+    <view
+      class="member-row"
+      wx:for="{{members}}"
+      wx:key="id"
+      hover-class="btn-hover"
+      data-index="{{index}}"
+      bindtap="onMemberTap"
+    >
+      <text class="member-avatar">{{item.icon}}</text>
+      <view class="member-main">
+        <view class="member-name-line">
+          <text class="member-name">{{item.name}}</text>
+          <text class="member-zodiac">{{item.zodiacYi}} {{item.zodiacCn}}属</text>
+        </view>
+        <view class="member-meta">
+          <text class="meta-item">{{item.age}} 岁</text>
+          <text class="meta-dot">·</text>
+          <text class="meta-item">生于 {{item.birthYear}}</text>
+
+           <text class="meta-dot">·</text>
+          <text class="meta-item">{{item.directionYi}} {{item.directionCn}}</text>
+        </view>
+      </view>
+      <view class="member-actions">
+        <view
+          class="action-btn"
+          hover-class="btn-hover"
+          data-index="{{index}}"
+          catchtap="onMemberTap"
+        >
+          <text class="iconfont icon-bianji"></text>
+        </view>
+        <view
+          class="action-btn danger"
+          hover-class="btn-hover"
+          data-index="{{index}}"
+          catchtap="onDeleteTap"
+        >
+          <text class="iconfont icon-shanchu1"></text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else hover-class="btn-hover" bindtap="openAdd">
+    <text class="empty-icon">＋</text>
+    <text class="empty-title">还没有常用人员</text>
+    <text class="empty-desc">添加后可在彝历中快速查看属相、岁数与方位</text>
+  </view>
+
+  <text class="page-tip">岁数按当前农历年自动更新，记录的是出生年份</text>
+  <text class="page-foot">数据仅保存在本机 · YI LIFE</text>
+
+  <!-- 人员编辑弹层 -->
+  <view class="editor-mask" wx:if="{{showEditor}}" bindtap="closeEditor" catchtouchmove="noop">
+    <view class="editor-sheet" catchtap="noop">
+      <view class="editor-head">
+        <view class="editor-titles">
+          <text class="editor-eyebrow">{{editingIndex >= 0 ? 'EDIT MEMBER' : 'NEW MEMBER'}}</text>
+          <text class="editor-title">{{editingIndex >= 0 ? '编辑常用人员' : '添加常用人员'}}</text>
+        </view>
+        <text class="editor-close" hover-class="btn-hover" bindtap="closeEditor">✕</text>
+      </view>
+
+      <scroll-view class="editor-body" scroll-y>
+        <view class="field">
+          <view class="field-label"><text>称呼</text></view>
+          <input
+            class="field-input"
+            value="{{form.name}}"
+            placeholder="可手动输入，也可点选下方称谓"
+            placeholder-class="field-placeholder"
+            maxlength="12"
+            bindinput="onNameInput"
+          />
+          <view class="quick-tags">
+            <text
+              class="quick-tag {{form.name === item ? 'active' : ''}}"
+              wx:for="{{quickNames}}"
+              wx:key="*this"
+              hover-class="btn-hover"
+              data-name="{{item}}"
+              bindtap="onQuickName"
+            >{{item}}</text>
+          </view>
+        </view>
+
+        <view class="field">
+          <view class="field-label"><text>属相</text></view>
+          <view class="zodiac-grid">
+            <view
+              class="zodiac-chip {{form.zodiacIndex === index ? 'active' : ''}}"
+              wx:for="{{zodiacs}}"
+              wx:key="cn"
+              hover-class="btn-hover"
+              data-index="{{index}}"
+              bindtap="onZodiacSelect"
+            >
+              <text class="zc-yi">{{item.yi}}</text>
+              <text class="zc-cn">{{item.cn}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="field">
+          <view class="field-label"><text>岁数</text><text class="field-sub">彝族虚岁 · 按今年可选</text></view>
+          <view class="age-grid" wx:if="{{ageOptions.length}}">
+            <view
+              class="age-chip {{form.age === item.age ? 'active' : ''}}"
+              wx:for="{{ageOptions}}"
+              wx:key="age"
+              hover-class="btn-hover"
+              data-age="{{item.age}}"
+              bindtap="onAgeSelect"
+            >
+              <text class="age-num">{{item.age}}</text>
+              <text class="age-unit">岁</text>
+            </view>
+          </view>
+          <text class="field-hint" wx:else>请先选择属相，将按今年彝历推荐可选虚岁</text>
+          <view class="birth-preview" wx:if="{{form.birthYear}}">
+            <text class="birth-label">已记录出生年份</text>
+            <text class="birth-year">{{form.birthYear}} 年</text>
+          </view>
+          <text class="field-hint" wx:if="{{form.birthYear}}">记录年份后，明年岁数会自动增加，不会停在原岁数</text>
+        </view>
+
+        <view class="field">
+          <view class="field-label"><text>永恒西德</text><text class="field-sub">八个方位</text></view>
+          <view class="direction-grid">
+            <view
+              class="direction-chip {{form.directionIndex === index ? 'active' : ''}}"
+              wx:for="{{directions}}"
+              wx:key="cn"
+              hover-class="btn-hover"
+              data-index="{{index}}"
+              bindtap="onDirectionSelect"
+            >
+              <text class="dc-yi">{{item.yi}}</text>
+              <text class="dc-cn">{{item.cn}}</text>
+            </view>
+          </view>
+          <text class="field-hint">方位取自 yi-lunar 提供的永恒西德八方位</text>
+        </view>
+      </scroll-view>
+
+      <view class="editor-actions">
+        <button class="editor-btn ghost" hover-class="btn-hover" bindtap="closeEditor">取消</button>
+        <button
+          class="editor-btn danger"
+          wx:if="{{editingIndex >= 0}}"
+          hover-class="btn-hover"
+          bindtap="deleteMember"
+        >删除</button>
+        <button class="editor-btn primary {{canSave ? '' : 'disabled'}}" hover-class="btn-hover" bindtap="saveMember">保存</button>
+      </view>
+    </view>
+  </view>
+
+</layout>

@@ -17,7 +17,7 @@ declare const getYiDate: (date?: string, startIndex?: number) => {
     yearZodiacIndex: number;
 };
 
-declare const getYiTaBoo: (date?: string) => {
+declare const getYiTaBoo: (date?: string, startIndex?: number) => {
     tabooMon: string[];
     tabooFat: string[];
     tabooSon: string[];

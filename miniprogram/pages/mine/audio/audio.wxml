@@ -1,0 +1,27 @@
+<!--pages/mine/audio/audio.wxml-->
+<layout title="音频设置" eyebrow="MINE · AUDIO">
+
+  <view class="mode-card {{audioMode === 'auto' ? 'active' : ''}}" hover-class="btn-hover" data-mode="auto" bindtap="onAudioMode">
+    <view class="mode-main">
+      <view class="mode-title-wrap">
+        <view class="mode-title">自动播放</view>
+        <view class="mode-tag">推荐</view>
+      </view>
+      <view class="mode-desc">进入应用自动播报当日语音。</view>
+    </view>
+    <view class="radio {{audioMode === 'auto' ? 'checked' : ''}}"></view>
+  </view>
+
+  <view class="mode-card {{audioMode === 'manual' ? 'active' : ''}}" hover-class="btn-hover" data-mode="manual" bindtap="onAudioMode">
+    <view class="mode-main">
+      <view class="mode-title-wrap">
+        <view class="mode-title">手动播放</view>
+      </view>
+      <view class="mode-desc">页面不会自动发声，点击日播放图标播放语音。</view>
+    </view>
+    <view class="radio {{audioMode === 'manual' ? 'checked' : ''}}"></view>
+  </view>
+
+  <text class="page-foot">数据仅保存在本机 · YI LIFE</text>
+
+</layout>

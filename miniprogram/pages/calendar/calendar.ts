@@ -2,6 +2,7 @@
 import { getYiTaBoo, getKujior,getLaSe,getZeTa,getTodayFortune } from '../../utils/yi-lunar/index'
 import { getFestival } from 'chinese-workday'
 import { Lunar } from '../../utils/lunar-typescript';
+import { isAutoAudio, getMonthStartIndex } from '../../utils/settings'
 
 /** 火把节起始日：每年农历六月二十四对应的阳历日期 */
 function getTorchStart(year: number): Date {
@@ -49,7 +50,8 @@ Page({
     zeta:{},
     kuJior: {},
     relativeDay: '今天',
-    solarDate: ''
+    solarDate: '',
+    monthStart: 0
   },
 
   /**
@@ -65,6 +67,14 @@ Page({
    */
   onCalendarClick(e: WechatMiniprogram.CustomEvent) {
     this.updateSelected(e.detail.checked);
+    // 自动播放：点选日期后立即播报该日彝历语音
+    if (isAutoAudio()) {
+      // 等组件属性同步完成后再播放，避免 date observer 把新播放停掉
+      wx.nextTick(() => {
+        const audio = this.selectComponent('#page-audio');
+        if (audio && this.data.solarDate) audio.playDate(this.data.solarDate);
+      });
+    }
   },
 
   /**
@@ -102,7 +112,7 @@ Page({
       const month = cur.getMonth() + 1;
       const day = cur.getDate();
       const dateStr = fmt(cur);
-      const yi = getYiTaBoo(dateStr);
+      const yi = getYiTaBoo(dateStr, this.data.monthStart);
       const ts = torch.get(year)!;
       const te = new Date(ts);
       te.setDate(ts.getDate() + 6);
@@ -155,7 +165,7 @@ Page({
 
     const d = new Date(checked.year, checked.month - 1, checked.day);
     const today = new Date();
-    const yiDate = getYiTaBoo(fmt(d));
+    const yiDate = getYiTaBoo(fmt(d), this.data.monthStart);
     // 按自然日计算与今天的差值（忽略时分秒），得出「今天 / N天前 / N天后」
     const d0 = new Date(d.getFullYear(), d.getMonth(), d.getDate());
     const today0 = new Date(today.getFullYear(), today.getMonth(), today.getDate());
@@ -187,7 +197,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    this.setData({ isDark: wx.getStorageSync('yi-theme') === 'dark' });
+    this.setData({
+      isDark: wx.getStorageSync('yi-theme') === 'dark',
+      monthStart: getMonthStartIndex()
+    });
   },
 
   /**
@@ -201,14 +214,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    // 「我的」页面修改起始月份后，返回日历时同步重建选中日期与标记
+    const monthStart = getMonthStartIndex();
+    if (monthStart !== this.data.monthStart) {
+      this.setData({ monthStart });
+      if (checkedDate) this.updateSelected(checkedDate);
+      if (lastRange.length) this.buildMarks(lastRange);
+    }
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
+    const audio = this.selectComponent('#page-audio');
+    if (audio) audio.stopAudio();
   },
 
   /**

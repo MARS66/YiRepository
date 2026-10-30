@@ -1,50 +1,86 @@
 <!--pages/mine/mine.wxml-->
-<layout needBack="{{false}}"  title="我的" eyebrow="YI LIFE">
-  <view class="profile-card">
-    <view class="avatar">月</view>
-    <view class="profile-info">
-      <text class="profile-title">欢迎使用彝族生活日历</text>
-      <text class="profile-desc">登录后同步收藏、提醒与家庭资料</text>
-    </view>
-    <button class="profile-btn">微信登录</button>
-  </view>
+<layout needBack="{{false}}">
 
-  <view class="card">
-    <view class="section-head">
-      <text class="section-title">家庭成员</text>
-      <text class="section-link">管理 →</text>
+  <!-- 概览 -->
+  <view class="summary">
+    <view class="summary-glow"></view>
+    <view class="summary-head">
+      <view class="summary-title">让彝历贴近你的生活</view>
+      <text class="summary-chip">本地存储</text>
     </view>
-    <view class="family">
-      <view class="family-item" wx:for="{{familyMembers}}" wx:key="label">
-        <text class="family-icon">{{item.icon}}</text>
-        <text class="family-label">{{item.label}}</text>
-      </view>
-      <view class="family-item">
-        <text class="family-icon">＋</text>
-        <text class="family-label">添加</text>
+    <view class="summary-desc">所有设置仅保存在本机，保证隐私安全</view>
+    <view class="current-card"  hover-class="btn-hover" bindtap="goMonth">
+      <view class="current-yi">{{monthYi}}</view>
+      <view class="current-info">
+        <view class="current-label">{{monthLabel}}</view>
+        <view class="current-value">可更具实际情况自定义设定</view>
       </view>
     </view>
   </view>
 
-  <view class="stats">
-    <view class="stat-item" wx:for="{{stats}}" wx:key="label">
-      <text class="stat-num">{{item.num}}</text>
-      <text class="stat-label">{{item.label}}</text>
+  <!-- 常用信息 -->
+  <view class="member-card">
+    <view class="member-head">
+      <view class="member-head-text">
+        <view class="member-title">常用信息</view>
+      </view>
+      <view class="member-manage" hover-class="btn-hover" bindtap="goMembers">
+        <text>去管理</text>
+        <text class="member-manage-arrow iconfont icon-you2"></text>
+      </view>
+    </view>
+    <view class="member-grid">
+      <view
+        class="member-cell"
+        wx:for="{{members}}"
+        wx:key="id"
+        hover-class="btn-hover"
+        bindtap="goMembers"
+      >
+        <view class="member-avatar">{{item.icon}}</view>
+      </view>
+      <view class="member-cell" hover-class="btn-hover" bindtap="goMembers">
+        <view class="member-avatar member-avatar-add">＋</view>
+      </view>
     </view>
   </view>
 
-  <view class="card menu">
-    <view class="menu-item" wx:for="{{menuItems}}" wx:key="label">
-      <text class="menu-icon">{{item.icon}}</text>
-      <text class="menu-label">{{item.label}}</text>
-      <text class="menu-arrow">›</text>
+  <!-- 设置菜单 -->
+  <view class="menu-card">
+    <view class="menu-row" hover-class="btn-hover" bindtap="goAudio">
+      <view class="menu-icon iconfont icon-shengyinkai"></view>
+      <view class="menu-text">
+        <view class="menu-title">音频设置</view>
+        <view class="menu-desc">自动播放或手动播放</view>
+      </view>
+      <view class="menu-side">
+        <text class="menu-arrow iconfont icon-you2"></text>
+      </view>
     </view>
+
+    <view class="menu-row" hover-class="btn-hover" bindtap="goMonth">
+      <view class="menu-icon iconfont icon-yejing"></view>
+      <view class="menu-text">
+        <view class="menu-title">月份设置</view>
+        <view class="menu-desc">自定义彝族年历起始月</view>
+      </view>
+      <view class="menu-side">
+        <text class="menu-arrow iconfont icon-you2"></text>
+      </view>
+    </view>
+
+    <button class="menu-row menu-row-btn" open-type="contact" hover-class="btn-hover">
+      <view class="menu-icon iconfont icon-minzu-nv-fill"></view>
+      <view class="menu-text">
+        <view class="menu-title">联系客服</view>
+        <view class="menu-desc">合作、问题反馈，联系微信客服</view>
+      </view>
+      <view class="menu-side">
+        <text class="menu-arrow iconfont icon-you2"></text>
+      </view>
+    </button>
   </view>
 
-  <view class="member">
-    <text class="member-label">文化助手会员</text>
-    <text class="member-title">专注内容，告别打扰</text>
-    <text class="member-desc">无广告 · 家庭档案 · 无限详细结果</text>
-    <button class="member-btn">查看会员权益</button>
-  </view>
+  <text class="page-foot">数据仅保存在本机 · YI LIFE</text>
+
 </layout>

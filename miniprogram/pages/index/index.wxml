@@ -3,13 +3,13 @@
   <view class="hero">
     <!-- 彝文词云装饰背景 -->
     <view class="hero-cloud">
-      <text wx:for="{{cloudWords}}">{{item}}</text>
+      <text wx:for="{{cloudWords}}" wx:key="item">{{item}}</text>
     </view>
     <view class="hero-glow"></view>
 
     <view class="hero-top">
       <text class="chip gold">今日彝历</text>
-      <audio-btn date="{{solarDate}}" color="gold" />
+      <audio-btn id="page-audio" date="{{solarDate}}" color="gold" />
     </view>
     <view class="date-line">
       <text class="date-strong">{{date}}</text>

@@ -135,8 +135,8 @@
       display: inline-flex;
       padding: 10rpx 18rpx;
       border-radius: 198rpx;
-      font-size: 22rpx;
-      font-weight: 700;
+      font-size: 28rpx;
+      font-weight: 400;
 
       &.gold {
         background: #aa7b2d2b;
@@ -153,7 +153,7 @@
     margin-top: 28rpx;
 
     .date-strong {
-      font-size: 160rpx;
+      font-size: 220rpx;
       line-height: 0.9;
       color: #fffdf7;
       font-weight: bold;
@@ -171,12 +171,14 @@
         font-size: 46rpx;
         font-weight: 800;
         letter-spacing: 2rpx;
+        text-shadow: 0 0 20rpx rgba(53, 12, 10, 0.5);
       }
 
       .date-weekday {
         color: #eadfd3;
-        font-size: 24rpx;
+        font-size: 28rpx;
         letter-spacing: 2rpx;
+        text-shadow: 0 0 20rpx rgba(53, 12, 10, 0.5);
       }
     }
   }
@@ -187,16 +189,17 @@
     margin: 28rpx 0 10rpx;
     letter-spacing: 6rpx;
     display: block;
-    text-shadow: 0 6rpx 20rpx rgba(53, 12, 10, 0.22);
+    text-shadow: 0 0 20rpx rgba(53, 12, 10, 0.5);
   }
 
   .muted {
     color: #eadfd3;
-    font-size: 24rpx;
+    font-size: 30rpx;
     letter-spacing: 2rpx;
     margin: 8rpx 0;
     display: block;
     opacity: 0.9;
+    text-shadow: 0 0 20rpx rgba(53, 12, 10, 0.5);
   }
 
   .solar {

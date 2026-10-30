@@ -2,6 +2,7 @@
 import { getYiTaBoo, getTodayFortune, getKujior, getLaSe, getZeTa } from '../../utils/yi-lunar/index'
 import { getFestival } from 'chinese-workday'
 import { Lunar } from '../../utils/lunar-typescript'
+import { getMonthStartIndex } from '../../utils/settings'
 
 const WEEKDAYS = ['日', '一', '二', '三', '四', '五', '六']
 
@@ -70,7 +71,8 @@ Page({
     posCai: '',
     posYangGui: '',
     posYinGui: '',
-    baZi: ''
+    baZi: '',
+    monthStart: 0
   },
 
   /**
@@ -79,7 +81,7 @@ Page({
   selectDate(dateStr: string) {
     this.currentDate = dateStr
     const d = parse(dateStr)
-    const yiDate = getYiTaBoo(dateStr)
+    const yiDate = getYiTaBoo(dateStr, this.data.monthStart)
 
     // 相对今天
     const d0 = new Date(d.getFullYear(), d.getMonth(), d.getDate())
@@ -173,6 +175,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+    this.setData({ monthStart: getMonthStartIndex() })
     this.selectDate(fmt(new Date()))
   },
 

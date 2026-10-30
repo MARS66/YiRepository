@@ -1,0 +1,47 @@
+<!--pages/mine/month/month.wxml-->
+<layout title="月份设置" eyebrow="MINE · MONTH">
+
+  <view class="page-head">
+    <view class="page-title">彝族年历起始月</view>
+    <view class="page-sub">因区域差异月份各不相同，请选择适合习惯的月份</view>
+  </view>
+
+  <view class="current-card">
+    <view class="current-yi">{{monthYi}}</view>
+    <view class="current-info">
+      <view class="current-label">{{monthLabel}}</view>
+      <view class="current-value">首页、日历与语音会同步生效</view>
+    </view>
+  </view>
+
+  <view class="select-card">
+    <view class="card-title">选择正月对应属相</view>
+    <view class="zodiac-grid">
+      <view
+        class="zodiac-chip {{monthStart === index ? 'active' : ''}}"
+        wx:for="{{zodiacs}}"
+        wx:key="cn"
+        hover-class="btn-hover"
+        data-index="{{index}}"
+        bindtap="onMonthSelect"
+      >
+        <text class="zc-yi">{{item.yi}} · </text>
+        <text class="zc-cn">{{item.cn}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="order-card">
+    <view class="card-title">顺序预览</view>
+    <view class="order-grid">
+      <view class="order-item" wx:for="{{order}}" wx:key="term">
+        <text class="order-term">{{item.term}}</text>
+        <text class="order-zodiac">{{item.yi}} {{item.cn}}</text>
+      </view>
+    </view>
+  </view>
+
+  <text class="page-tip">设置仅保存在本机，调整后返回首页或日历即生效</text>
+  <text class="page-foot">数据仅保存在本机 · YI LIFE</text>
+
+</layout>
