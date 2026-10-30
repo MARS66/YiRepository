@@ -185,6 +185,7 @@
   .result-head {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 4rpx;
     margin-bottom: 16rpx;
 
@@ -261,7 +262,7 @@
 
 .page-foot {
   display: block;
-  padding: 14rpx 0 40rpx;
+  padding: 14rpx 0;
   text-align: center;
   font-size: 18rpx;
   letter-spacing: 3rpx;

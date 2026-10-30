@@ -1,12 +1,12 @@
 <!--pages/suigong/suigong.wxml-->
-<layout title="喜得测算" eyebrow="SUIGONG · XIDE">
+<layout title="喜得推算" eyebrow="SUIGONG · XIDE">
 
   <!-- 功能说明 -->
   <view class="intro">
     <view class="intro-glow"></view>
     <text class="intro-eyebrow">永恒命宫 · 今年命宫</text>
     <view class="intro-title">依母亲与本人岁数推算命宫方位</view>
-    <view class="intro-desc">点击下方人员信息填写属相与岁数，完成后即可测算。</view>
+    <view class="intro-desc">点击填写母亲与测算人的属相、岁数及性别即可推算命宫方位</view>
   </view>
 
   <!-- 人员信息 -->
@@ -29,16 +29,16 @@
       <text class="person-action">编辑</text>
     </view>
   </view>
-
+  <text class="page-tip">岁数按当前年彝族虚岁算法自动换算 · 结果仅供文化参考</text>
+  <text class="page-foot">YI LIFE · 喜得推算</text>
   <!-- 测算入口 -->
-  <button class="calc-btn {{canCalc ? '' : 'disabled'}}" hover-class="btn-hover" bindtap="calculate">开始测算</button>
-  <text class="calc-hint" wx:if="{{!canCalc}}">需先填写母亲与测算人的属相、岁数及性别</text>
+  <view class="calc-btn {{canCalc ? '' : 'disabled'}}" hover-class="btn-hover" bindtap="calculate">开始推算</view>
 
   <!-- 测算结果 -->
   <view class="result" wx:if="{{hasResult}}">
     <view class="result-head">
-      <text class="result-eyebrow">RESULT</text>
-      <text class="result-title">命宫方位</text>
+      <text class="result-eyebrow">LIFE PALACE RESULT</text>
+      <text class="result-title">命宫推算结果</text>
     </view>
 
     <view class="result-board">
@@ -54,9 +54,6 @@
       </view>
     </view>
   </view>
-
-  <text class="page-tip">岁数按当前农历年自动换算 · 结果仅供文化参考</text>
-  <text class="page-foot">YI LIFE · 喜得测算</text>
 
   <!-- 人员信息弹层 -->
   <view class="editor-mask" wx:if="{{editingType}}" bindtap="closeEditor" catchtouchmove="noop">
