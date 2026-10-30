@@ -1,12 +1,13 @@
 {
   "pages": [
+    "pages/suigong/suigong",
+    "pages/assistant/assistant",
     "pages/mine/audio/audio",
     "pages/mine/month/month",
     "pages/mine/mine",
     "pages/mine/members/members",
     "pages/index/index",
     "pages/calendar/calendar",
-    "pages/assistant/assistant",
     "pages/date-navigation/date-navigation"
   ],
   "tabBar": {

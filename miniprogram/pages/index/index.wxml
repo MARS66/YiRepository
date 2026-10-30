@@ -35,7 +35,7 @@
   </view>
   <view class="section-block">
     <view class="section-head">
-      <text class="section-title">常用助手</text>
+      <text class="section-title">推荐助手</text>
       <text class="section-link">全部助手</text>
     </view>
     <view class="quick-grid">

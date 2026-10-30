@@ -1,37 +1,52 @@
 // pages/assistant/assistant.ts
+import {
+  ASSISTANT_TOOLS,
+  AssistantTool,
+  getRecentAssistants,
+  recordAssistant,
+} from '../../utils/assistants'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    tools: [
-      { 
-        icon: '历', 
-        label: '彝历查询', 
-        desc: '选择公历日期查询彝历、生辰八字',
-        url: '/pages/date-navigation/date-navigation'
-       },
-      { 
-        icon: '西', 
-        label: '西德计算', 
-        desc: '计算的永恒西德，今年西德'
-      },
-      { icon: '合', label: '生肖合婚', desc: '文化参考与相处建议' },
-      { icon: '德', label: '西德合婚', desc: '彝族传统文化参考' }
-    ],
+    tools: ASSISTANT_TOOLS,
+    recentAssistants: [] as AssistantTool[],
   },
 
   /**
-   * 点击工具项：有 url 跳转对应页面，无 url 提示开发中
+   * 点击助手：记录一次使用，有 url 跳转对应页面，无 url 提示开发中
    */
   onToolTap(e: WechatMiniprogram.TouchEvent) {
-    const url = e.currentTarget.dataset.url as string | undefined
-    if (!url) {
+    const index = Number(e.currentTarget.dataset.index)
+    const tool = this.data.tools[index]
+    if (!tool) return
+    this.useTool(tool)
+  },
+
+  /**
+   * 点击「最近使用」项
+   */
+  onRecentTap(e: WechatMiniprogram.TouchEvent) {
+    const index = Number(e.currentTarget.dataset.index)
+    const tool = this.data.recentAssistants[index]
+    if (!tool) return
+    this.useTool(tool)
+  },
+
+  /**
+   * 记录最近使用并处理跳转
+   */
+  useTool(tool: AssistantTool) {
+    recordAssistant(tool)
+    this.setData({ recentAssistants: getRecentAssistants() })
+    if (!tool.url) {
       wx.showToast({ title: '正在开发中，敬请期待', icon: 'none' })
       return
     }
-    wx.navigateTo({ url })
+    wx.navigateTo({ url: tool.url })
   },
 
   /**
@@ -52,7 +67,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.setData({ recentAssistants: getRecentAssistants() })
   },
 
   /**

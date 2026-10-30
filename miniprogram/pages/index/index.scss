@@ -69,7 +69,7 @@
     pointer-events: none;
     z-index: 0;
     color: #fffdf7;
-    opacity: 0.3;
+    opacity: 0.2;
     font-size: 50rpx;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
@@ -413,10 +413,10 @@
   }
 
   .quick-grid {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 16rpx;
     margin-top: 20rpx;
-
     .quick-item {
       flex: 1;
       display: flex;

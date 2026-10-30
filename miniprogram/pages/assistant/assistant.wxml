@@ -5,12 +5,24 @@
     <input placeholder="搜索结婚、乔迁、翻译…" placeholder-class="search-placeholder" />
   </view>
 
+  <view class="section-block" wx:if="{{recentAssistants.length}}">
+    <view class="section-head">
+      <text class="section-title">最近使用</text>
+    </view>
+    <view class="quick-grid">
+      <view class="quick-item" hover-class="btn-hover" wx:for="{{recentAssistants}}" wx:key="label" bindtap="onRecentTap" data-index="{{index}}">
+        <text class="quick-icon">{{item.icon}}</text>
+        <text class="quick-label">{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
   <view class="card tool-list">
     <view class="section-head">
       <text class="section-title">生活助手</text>
       <text class="chip gold">热门</text>
     </view>
-    <view class="tool-item" hover-class="btn-hover" wx:for="{{tools}}" wx:key="label" bindtap="onToolTap" data-url="{{item.url}}">
+    <view class="tool-item" hover-class="btn-hover" wx:for="{{tools}}" wx:key="label" bindtap="onToolTap" data-index="{{index}}">
       <text class="tool-icon">{{item.icon}}</text>
       <view class="tool-info">
         <text class="tool-name">{{item.label}}</text>

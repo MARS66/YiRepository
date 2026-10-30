@@ -29,7 +29,7 @@ Page({
     monthEn: 'SEPTEMBER',
     goodFortune: { main: '会友 · 出行', sub: '整理家宅 · 祈福' },
     badFortune: { main: '争执 · 仓促', sub: '重大动土 · 远行' },
-    cloudWords: WORDS.slice(0, 80).split(' ') as string[],
+    cloudWords: WORDS.slice(0, 90).split(' ') as string[],
     monthStart: 0
   },
 
