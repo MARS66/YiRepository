@@ -121,6 +121,15 @@
         background: #aa7b2d1f;
         border: 2rpx solid #aa7b2d55;
       }
+
+      .member-gender {
+        padding: 4rpx 14rpx;
+        border-radius: 198rpx;
+        font-size: 20rpx;
+        color: var(--fire);
+        background: var(--soft);
+        border: 2rpx solid var(--line);
+      }
     }
 
     .member-meta {
@@ -303,13 +312,13 @@
 .editor-body {
   flex: 1;
   min-height: 0;
-  max-height: 62vh;
+  max-height: 58vh;
   padding: 8rpx 32rpx 0;
   box-sizing: border-box;
 }
 
 .field {
-  padding: 24rpx 0 28rpx;
+  padding: 24rpx 0 26rpx;
   border-bottom: 2rpx solid var(--line);
 
   &:last-child {
@@ -320,7 +329,7 @@
     display: flex;
     align-items: baseline;
     gap: 12rpx;
-    font-size: 27rpx;
+    font-size: 26rpx;
     font-weight: bold;
     color: var(--coal);
 
@@ -332,7 +341,7 @@
   }
 
   .field-input {
-    height: 82rpx;
+    height: 80rpx;
     margin-top: 16rpx;
     padding: 0 24rpx;
     border-radius: 22rpx;
@@ -381,17 +390,17 @@
 
 .zodiac-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14rpx;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12rpx;
   margin-top: 18rpx;
 
   .zodiac-chip {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 4rpx;
-    padding: 16rpx 0;
-    border-radius: 22rpx;
+    padding: 16rpx 10rpx;
+    border-radius: 10rpx;
     border: 2rpx solid var(--line);
     background: var(--soft);
     transition: all 0.2s ease;
@@ -425,7 +434,7 @@
 
 .age-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 12rpx;
   margin-top: 18rpx;
 
@@ -434,8 +443,8 @@
     align-items: baseline;
     justify-content: center;
     gap: 2rpx;
-    padding: 16rpx 0;
-    border-radius: 20rpx;
+    padding: 16rpx 10rpx;
+    border-radius: 10rpx;
     border: 2rpx solid var(--line);
     background: var(--soft);
 
@@ -458,6 +467,36 @@
       .age-unit {
         color: #fffdf7;
       }
+    }
+  }
+}
+
+/* 性别 */
+.gender-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16rpx;
+  margin-top: 18rpx;
+
+  .gender-chip {
+    padding: 16rpx 10rpx;
+    border-radius: 12rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28rpx;
+    font-weight: bold;
+    color: var(--coal);
+    background: var(--soft);
+    border: 2rpx solid var(--line);
+    transition: all 0.2s ease;
+
+    &.active {
+      color: var(--fire);
+      font-weight: bold;
+      background: var(--paper);
+      border-color: var(--fire);
+      box-shadow: 0 6rpx 18rpx rgba(156, 45, 37, 0.16);
     }
   }
 }
@@ -485,7 +524,7 @@
 
 .direction-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 12rpx;
   margin-top: 18rpx;
 
@@ -493,8 +532,8 @@
     display: flex;
     align-items: center;
     gap: 10rpx;
-    padding: 16rpx 18rpx;
-    border-radius: 22rpx;
+    padding: 16rpx 16rpx;
+    border-radius: 10rpx;
     border: 2rpx solid var(--line);
     background: var(--soft);
     min-width: 0;
@@ -538,12 +577,12 @@
   background: var(--paper);
 
   .editor-btn {
-    height: 86rpx;
-    border-radius: 24rpx;
+    height: 80rpx;
+    border-radius: 12rpx;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 27rpx;
+    font-size: 28rpx;
     font-weight: bold;
     line-height: 1;
     margin: 0;

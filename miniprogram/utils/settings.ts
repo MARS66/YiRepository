@@ -2,10 +2,13 @@
 // 「我的」页面设置项统一存取：常用人员、音频播放模式、彝历起始月份。
 // 全部写入本地 Storage，保证离线可用，且各页面读取同一份配置。
 
+/** 性别：'' 表示未记录 */
+export type Gender = 'male' | 'female' | ''
+
 export interface MemberRecord {
   /** 唯一标识 */
   id: string
-  /** 称呼 */
+  /** 备注 */
   name: string
   /** 属相在 ZODIAC_CN 中的下标 0-11 */
   zodiacIndex: number
@@ -13,6 +16,8 @@ export interface MemberRecord {
   birthYear: number
   /** 永恒西德方位在 DIRECTION 中的下标 0-7，-1 表示未设置 */
   directionIndex: number
+  /** 性别，'' 表示未记录 */
+  gender?: Gender
 }
 
 export type AudioMode = 'auto' | 'manual'

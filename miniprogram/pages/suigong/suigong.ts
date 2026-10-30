@@ -1,5 +1,7 @@
 // pages/suigong/suigong.ts
 import { ZODIAC, ZODIAC_CN, getXiDe, getYiAge } from '../../utils/yi-lunar/index'
+import { Lunar } from '../../utils/lunar-typescript'
+import { Gender, getMembers } from '../../utils/settings'
 
 interface ZodiacOption {
   cn: string
@@ -9,6 +11,17 @@ interface ZodiacOption {
 interface GenderOption {
   key: 'male' | 'female'
   label: string
+}
+
+/** 常用人员快捷选项 */
+interface QuickMember {
+  id: string
+  name: string
+  zodiacIndex: number
+  zodiacCn: string
+  age: number
+  gender: Gender
+  genderLabel: string
 }
 
 const GENDERS: GenderOption[] = [
@@ -27,6 +40,7 @@ Page({
   data: {
     zodiacs: [] as ZodiacOption[],
     genders: GENDERS,
+    quickMembers: [] as QuickMember[],
     motherZodiacIndex: -1,
     motherAge: 0,
     personZodiacIndex: -1,
@@ -45,6 +59,7 @@ Page({
     draftAge: 0,
     draftAges: [] as number[],
     draftGender: '',
+    draftQuickId: '',
     draftCanSave: false
   },
 
@@ -53,8 +68,23 @@ Page({
    */
   onLoad() {
     this.setData({
-      zodiacs: ZODIAC_CN.map((cn, index) => ({ cn, yi: ZODIAC[index] }))
+      zodiacs: ZODIAC_CN.map((cn, index) => ({ cn, yi: ZODIAC[index] })),
+      quickMembers: this.buildQuickMembers()
     })
+  },
+
+  /** 读取常用人员，按当前农历年换算虚岁 */
+  buildQuickMembers(): QuickMember[] {
+    const year = Lunar.fromDate(new Date()).getYear()
+    return getMembers().map((record) => ({
+      id: record.id,
+      name: record.name,
+      zodiacIndex: record.zodiacIndex,
+      zodiacCn: ZODIAC_CN[record.zodiacIndex] || '',
+      age: year - record.birthYear + 1,
+      gender: record.gender || '',
+      genderLabel: record.gender === 'female' ? '女' : record.gender === 'male' ? '男' : ''
+    }))
   },
 
   /** 按属相列出今年可选虚岁 */
@@ -93,7 +123,9 @@ Page({
       draftAge: motherAge,
       draftAges: this.agesOf(motherZodiacIndex),
       draftGender: '',
-      draftCanSave: motherZodiacIndex >= 0 && motherAge > 0
+      draftQuickId: '',
+      draftCanSave: motherZodiacIndex >= 0 && motherAge > 0,
+      quickMembers: this.buildQuickMembers()
     })
   },
 
@@ -106,7 +138,9 @@ Page({
       draftAge: personAge,
       draftAges: this.agesOf(personZodiacIndex),
       draftGender: personGender,
-      draftCanSave: personZodiacIndex >= 0 && personAge > 0 && personGender.length > 0
+      draftQuickId: '',
+      draftCanSave: personZodiacIndex >= 0 && personAge > 0 && personGender.length > 0,
+      quickMembers: this.buildQuickMembers()
     })
   },
 
@@ -118,6 +152,23 @@ Page({
   /** 阻止弹层内的滑动穿透 */
   noop() {},
 
+  /** 点选常用人员：自动填入属相、岁数（测算人含性别） */
+  onDraftQuickPick(e: WechatMiniprogram.TouchEvent) {
+    const index = Number(e.currentTarget.dataset.index)
+    const member = this.data.quickMembers[index]
+    if (!member || member.zodiacIndex < 0 || member.age <= 0) return
+    const isPerson = this.data.editingType === 'person'
+    const draftGender = isPerson ? member.gender : ''
+    this.setData({
+      draftQuickId: member.id,
+      draftZodiacIndex: member.zodiacIndex,
+      draftAges: this.agesOf(member.zodiacIndex),
+      draftAge: member.age,
+      draftGender,
+      draftCanSave: this.draftReady(member.zodiacIndex, member.age, draftGender)
+    })
+  },
+
   /** 弹层内选择属相：刷新可选岁数 */
   onDraftZodiacSelect(e: WechatMiniprogram.TouchEvent) {
     const draftZodiacIndex = Number(e.currentTarget.dataset.index)
@@ -126,6 +177,7 @@ Page({
       draftZodiacIndex,
       draftAges,
       draftAge: 0,
+      draftQuickId: '',
       draftCanSave: false
     })
   },
@@ -135,6 +187,7 @@ Page({
     const draftAge = Number(e.currentTarget.dataset.age)
     this.setData({
       draftAge,
+      draftQuickId: '',
       draftCanSave: this.draftReady(this.data.draftZodiacIndex, draftAge, this.data.draftGender)
     })
   },
@@ -144,6 +197,7 @@ Page({
     const draftGender = String(e.currentTarget.dataset.key || '')
     this.setData({
       draftGender,
+      draftQuickId: '',
       draftCanSave: this.draftReady(this.data.draftZodiacIndex, this.data.draftAge, draftGender)
     })
   },
@@ -197,7 +251,7 @@ Page({
     }
   },
 
-  /** 开始测算：永恒喜得取母亲与本人岁数差，今年喜得取本人岁数 */
+  /** 开始测算：永恒西德取母亲与本人岁数差，今年西德取本人岁数 */
   calculate() {
     const { motherZodiacIndex, motherAge, personZodiacIndex, personAge, personGender } = this.data
     if (!this.readyToCalc(motherZodiacIndex, motherAge, personZodiacIndex, personAge, personGender)) {
@@ -220,7 +274,7 @@ Page({
    */
   onShareAppMessage() {
     return {
-      title: '彝族生活日历 · 喜得测算',
+      title: '彝族生活日历 · 西德测算',
       path: '/pages/index/index'
     }
   }

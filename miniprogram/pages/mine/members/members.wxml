@@ -23,6 +23,7 @@
         <view class="member-name-line">
           <text class="member-name">{{item.name}}</text>
           <text class="member-zodiac">{{item.zodiacYi}} {{item.zodiacCn}}属</text>
+          <text class="member-gender" wx:if="{{item.genderLabel}}">{{item.genderLabel}}</text>
         </view>
         <view class="member-meta">
           <text class="meta-item">{{item.age}} 岁</text>
@@ -76,7 +77,7 @@
 
       <scroll-view class="editor-body" scroll-y>
         <view class="field">
-          <view class="field-label"><text>称呼</text></view>
+          <view class="field-label"><text>备注</text></view>
           <input
             class="field-input"
             value="{{form.name}}"
@@ -98,7 +99,7 @@
         </view>
 
         <view class="field">
-          <view class="field-label"><text>属相</text></view>
+          <view class="field-label"><text>属相</text><text class="field-sub"></text></view>
           <view class="zodiac-grid">
             <view
               class="zodiac-chip {{form.zodiacIndex === index ? 'active' : ''}}"
@@ -115,7 +116,7 @@
         </view>
 
         <view class="field">
-          <view class="field-label"><text>岁数</text><text class="field-sub">彝族虚岁 · 按今年可选</text></view>
+          <view class="field-label"><text>岁数</text><text class="field-sub">彝族虚岁</text></view>
           <view class="age-grid" wx:if="{{ageOptions.length}}">
             <view
               class="age-chip {{form.age === item.age ? 'active' : ''}}"
@@ -129,16 +130,29 @@
               <text class="age-unit">岁</text>
             </view>
           </view>
-          <text class="field-hint" wx:else>请先选择属相，将按今年彝历推荐可选虚岁</text>
+          <text class="field-hint" wx:else>请先选择真实属相</text>
           <view class="birth-preview" wx:if="{{form.birthYear}}">
             <text class="birth-label">已记录出生年份</text>
             <text class="birth-year">{{form.birthYear}} 年</text>
           </view>
-          <text class="field-hint" wx:if="{{form.birthYear}}">记录年份后，明年岁数会自动增加，不会停在原岁数</text>
         </view>
 
         <view class="field">
-          <view class="field-label"><text>永恒西德</text><text class="field-sub">八个方位</text></view>
+          <view class="field-label"><text>性别</text></view>
+          <view class="gender-grid">
+            <view
+              class="gender-chip {{form.gender === item.key ? 'active' : ''}}"
+              wx:for="{{genders}}"
+              wx:key="key"
+              hover-class="btn-hover"
+              data-key="{{item.key}}"
+              bindtap="onGenderSelect"
+            >{{item.label}}</view>
+          </view>
+        </view>
+
+        <view class="field">
+          <view class="field-label"><text>西德</text><text class="field-sub">对应诺苏西德</text></view>
           <view class="direction-grid">
             <view
               class="direction-chip {{form.directionIndex === index ? 'active' : ''}}"
@@ -152,7 +166,6 @@
               <text class="dc-cn">{{item.cn}}</text>
             </view>
           </view>
-          <text class="field-hint">方位取自 yi-lunar 提供的永恒西德八方位</text>
         </view>
       </scroll-view>
 

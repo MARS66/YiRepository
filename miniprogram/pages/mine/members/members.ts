@@ -7,7 +7,13 @@ import {
   getYiAge
 } from '../../../utils/yi-lunar/index'
 import { Lunar } from '../../../utils/lunar-typescript'
-import { MemberRecord, getMembers, saveMembers } from '../../../utils/settings'
+import { MemberRecord, Gender, getMembers, saveMembers } from '../../../utils/settings'
+
+/** 性别选项 */
+const GENDERS: Array<{ key: 'male' | 'female'; label: string }> = [
+  { key: 'male', label: '男' },
+  { key: 'female', label: '女' }
+]
 
 /** 常见直系称谓快捷选项 */
 const QUICK_NAMES = [
@@ -49,6 +55,7 @@ interface MemberView extends MemberRecord {
   age: number
   directionCn: string
   directionYi: string
+  genderLabel: string
 }
 
 interface MemberForm {
@@ -57,10 +64,11 @@ interface MemberForm {
   age: number
   birthYear: number
   directionIndex: number
+  gender: Gender
 }
 
 function emptyForm(): MemberForm {
-  return { name: '', zodiacIndex: -1, age: 0, birthYear: 0, directionIndex: -1 }
+  return { name: '', zodiacIndex: -1, age: 0, birthYear: 0, directionIndex: -1, gender: '' }
 }
 
 /** 当前农历年（跨农历新年时才递增，避免年龄一年不变） */
@@ -87,6 +95,7 @@ Page({
     zodiacs: [] as ZodiacOption[],
     directions: [] as DirectionOption[],
     quickNames: QUICK_NAMES,
+    genders: GENDERS,
     members: [] as MemberView[],
     showEditor: false,
     editingIndex: -1,
@@ -118,7 +127,8 @@ Page({
       zodiacYi: ZODIAC[record.zodiacIndex] || '',
       age: year - record.birthYear + 1,
       directionCn: DIRECTION_CN[record.directionIndex] || '未设置',
-      directionYi: DIRECTION[record.directionIndex] || ''
+      directionYi: DIRECTION[record.directionIndex] || '',
+      genderLabel: record.gender === 'female' ? '女' : record.gender === 'male' ? '男' : ''
     }))
     this.setData({ members })
   },
@@ -156,7 +166,8 @@ Page({
       zodiacIndex: record.zodiacIndex,
       age: year - record.birthYear + 1,
       birthYear: record.birthYear,
-      directionIndex: record.directionIndex
+      directionIndex: record.directionIndex,
+      gender: record.gender || ''
     }
     this.setData({
       showEditor: true,
@@ -195,7 +206,7 @@ Page({
   /** 阻止弹层内的滑动穿透 */
   noop() {},
 
-  /** 输入称呼 */
+  /** 输入备注 */
   onNameInput(e: WechatMiniprogram.CustomEvent) {
     const form = { ...this.data.form, name: (e.detail.value as string) || '' }
     this.setData({ form, canSave: this.isFormValid(form) })
@@ -224,7 +235,14 @@ Page({
     const age = Number(e.currentTarget.dataset.age)
     const option = this.data.ageOptions.find((item) => item.age === age)
     if (!option) return
-    const form = { ...this.data.form, age, birthYear: option.birthYear }
+    const form: MemberForm = { ...this.data.form, age, birthYear: option.birthYear }
+    this.setData({ form, canSave: this.isFormValid(form) })
+  },
+
+  /** 选择性别 */
+  onGenderSelect(e: WechatMiniprogram.TouchEvent) {
+    const key = e.currentTarget.dataset.key as Gender
+    const form: MemberForm = { ...this.data.form, gender: key || '' }
     this.setData({ form, canSave: this.isFormValid(form) })
   },
 
@@ -239,7 +257,7 @@ Page({
   saveMember() {
     const form = this.data.form
     if (!this.isFormValid(form)) {
-      wx.showToast({ title: '请完整填写称呼、属相、岁数和西德', icon: 'none' })
+      wx.showToast({ title: '请完整填写备注、属相、岁数和西德', icon: 'none' })
       return
     }
     const records = getMembers()
@@ -249,7 +267,8 @@ Page({
       name: form.name.trim(),
       zodiacIndex: form.zodiacIndex,
       birthYear: currentLunarYear() - form.age + 1,
-      directionIndex: form.directionIndex
+      directionIndex: form.directionIndex,
+      gender: form.gender
     }
     if (editingIndex >= 0) {
       records[editingIndex] = record

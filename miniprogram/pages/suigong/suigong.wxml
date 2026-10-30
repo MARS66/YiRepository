@@ -1,12 +1,12 @@
 <!--pages/suigong/suigong.wxml-->
-<layout title="喜得推算" eyebrow="SUIGONG · XIDE">
+<layout title="西德推算" eyebrow="SUIGONG · XIDE">
 
   <!-- 功能说明 -->
   <view class="intro">
     <view class="intro-glow"></view>
-    <text class="intro-eyebrow">永恒命宫 · 今年命宫</text>
-    <view class="intro-title">依母亲与本人岁数推算命宫方位</view>
-    <view class="intro-desc">点击填写母亲与测算人的属相、岁数及性别即可推算命宫方位</view>
+    <text class="intro-eyebrow">永恒西德 · 今年西德</text>
+    <view class="intro-title">依母亲与本人岁数推算西德方位</view>
+    <view class="intro-desc">点击填写母亲与测算人的属相、岁数及性别即可推算西德方位</view>
   </view>
 
   <!-- 人员信息 -->
@@ -29,8 +29,8 @@
       <text class="person-action">编辑</text>
     </view>
   </view>
-  <text class="page-tip">岁数按当前年彝族虚岁算法自动换算 · 结果仅供文化参考</text>
-  <text class="page-foot">YI LIFE · 喜得推算</text>
+  <text class="page-tip">按彝族毕摩方法推算 · 结果仅供文化参考</text>
+  <text class="page-foot">YI LIFE · 西德推算</text>
   <!-- 测算入口 -->
   <view class="calc-btn {{canCalc ? '' : 'disabled'}}" hover-class="btn-hover" bindtap="calculate">开始推算</view>
 
@@ -38,17 +38,17 @@
   <view class="result" wx:if="{{hasResult}}">
     <view class="result-head">
       <text class="result-eyebrow">LIFE PALACE RESULT</text>
-      <text class="result-title">命宫推算结果</text>
+      <text class="result-title">西德推算结果</text>
     </view>
 
     <view class="result-board">
       <view class="result-cell">
-        <text class="rc-label">今年命宫</text>
+        <text class="rc-label">今年西德</text>
         <text class="rc-yi">{{yearYi}}</text>
         <text class="rc-cn">{{yearCn}}</text>
       </view>
       <view class="result-cell">
-        <text class="rc-label">永恒命宫</text>
+        <text class="rc-label">永恒西德</text>
         <text class="rc-yi">{{eternalYi}}</text>
         <text class="rc-cn">{{eternalCn}}</text>
       </view>
@@ -67,6 +67,22 @@
       </view>
 
       <scroll-view class="editor-body" scroll-y>
+        <view class="field" wx:if="{{quickMembers.length}}">
+          <view class="field-label"><text>快捷输入</text><text class="field-sub">可手动选择，也可点选下方常用人员</text></view>
+          <view class="quick-grid">
+            <view
+              class="quick-chip {{draftQuickId === item.id ? 'active' : ''}}"
+              wx:for="{{quickMembers}}"
+              wx:key="id"
+              hover-class="btn-hover"
+              data-index="{{index}}"
+              bindtap="onDraftQuickPick"
+            >
+                <text class="quick-name">{{item.name}}</text>
+            </view>
+          </view>
+        </view>
+
         <view class="field">
           <view class="field-label"><text>属相</text></view>
           <view class="zodiac-grid">
@@ -85,7 +101,7 @@
         </view>
 
         <view class="field">
-          <view class="field-label"><text>岁数</text><text class="field-sub">彝族虚岁 · 按今年可选</text></view>
+          <view class="field-label"><text>岁数</text><text class="field-sub">彝族虚岁</text></view>
           <view class="age-grid" wx:if="{{draftAges.length}}">
             <view
               class="age-chip {{draftAge === item ? 'active' : ''}}"
@@ -99,11 +115,11 @@
               <text class="age-unit">岁</text>
             </view>
           </view>
-          <text class="field-hint" wx:else>请先选择属相，将按今年彝历列出可选岁数</text>
+          <text class="field-hint" wx:else>请先选择真实属相</text>
         </view>
 
         <view class="field" wx:if="{{editingType === 'person'}}">
-          <view class="field-label"><text>性别</text><text class="field-sub">影响今年命宫推算</text></view>
+          <view class="field-label"><text>性别</text></view>
           <view class="gender-grid">
             <view
               class="gender-chip {{draftGender === item.key ? 'active' : ''}}"
