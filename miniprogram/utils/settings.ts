@@ -55,7 +55,7 @@ export function isAutoAudio(): boolean {
 /** 彝历正月对应的属相下标，默认 0（鼠月为正月） */
 export function getMonthStartIndex(): number {
   const value = wx.getStorageSync(MONTH_KEY)
-  if (typeof value !== 'number' || value < 0 || value > 11) return 0
+  if (typeof value !== 'number' || value < 0 || value > 11) return 6
   return value
 }
 
