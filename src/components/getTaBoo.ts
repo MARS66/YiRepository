@@ -37,10 +37,13 @@ export const TABOO_FAT_CN = [
   "尔底伙(东南)",
 ];
 
-export const getYiTaBoo = (date?: string) => {
-  const yiDate = getYiDate(date);
+export const getYiTaBoo = (date?: string, startIndex?: number) => {
+  const yiDate = getYiDate(date, startIndex);
   const { year, month, dayIndex } = yiDate;
-  const newZodiac = [...ZODIAC.slice(7), ...ZODIAC.slice(0, 7)];
+  const newZodiac = [
+    ...ZODIAC.slice(startIndex),
+    ...ZODIAC.slice(0, startIndex),
+  ];
   const monZodiacIndex = newZodiac.indexOf(month[0] as string);
   const yearZodiacIndex = ZODIAC.indexOf(year[0] as string);
   const monIndex = Math.floor(yearZodiacIndex / 3);

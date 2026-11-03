@@ -9,7 +9,7 @@ import {
 } from "../CONSTANT";
 import dayjs from "dayjs";
 // 获取年份生肖，返回 [彝族生肖, 中文生肖]
-export const getYiDate = (date?: string, startIndex: number = 7) => {
+export const getYiDate = (date?: string, startIndex: number = 6) => {
   const d = dayjs(date);
   if (!d.isValid()) throw new Error(`Invalid date: ${date} `);
   const solar = Solar.fromYmd(d.year(), d.month() + 1, d.date());

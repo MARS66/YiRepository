@@ -11,4 +11,13 @@ export { getLaSe, LASE } from "./components/getLaSe";
 export { getKujior, KU_JIOR } from "./components/getKujior";
 export { getZeTa, ZENG_TA } from "./components/getZeTa";
 export { getTodayFortune } from "./components/getTodayFortune";
+export { getHouseBuild } from "./components/getHouseBuild";
+export type { WuXing, HouseBuildLevel } from "./components/getHouseBuild";
+export { getMoonAlcyoneConjunction } from "./components/getMoonAlcyoneConjunction";
+export type {
+  MoonAlcyoneConjunctionOptions,
+  MoonAlcyoneConjunctionResult,
+} from "./components/getMoonAlcyoneConjunction";
+export { getXingxiu, XINGXIUM_MAP } from "./components/get28xingxiu";
+export type { XingxiuResult } from "./components/get28xingxiu";
 export * from "./CONSTANT";
