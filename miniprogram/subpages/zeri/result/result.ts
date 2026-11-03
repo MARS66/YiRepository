@@ -226,7 +226,7 @@ Page({
   onShareAppMessage() {
     return {
       title: '彝族生活日历 · 择日测算',
-      path: `/pages/zeri/zeri?event=${this.data.eventKey}`
+      path: `/subpages/zeri/zeri?event=${this.data.eventKey}`
     }
   }
 })

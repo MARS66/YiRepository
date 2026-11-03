@@ -1,6 +1,6 @@
 // pages/suigong/suigong.ts
 import { ZODIAC, ZODIAC_CN, getXiDe, getYiAge } from '../../utils/yi-lunar/index'
-import { Lunar } from '../../utils/lunar-typescript'
+import { Lunar } from '../libs/lunar-typescript'
 import { Gender, getMembers } from '../../utils/settings'
 
 interface ZodiacOption {

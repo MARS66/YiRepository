@@ -43,7 +43,7 @@ Page({
    */
   data: {
     zodiacs: [] as ZodiacOption[],
-    monthStart: 0,
+    monthStart: 6,
     monthLabel: '',
     monthYi: '',
     order: [] as MonthOrderItem[]

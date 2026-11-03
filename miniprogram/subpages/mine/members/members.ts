@@ -6,7 +6,7 @@ import {
   DIRECTION_CN,
   getYiAge
 } from '../../../utils/yi-lunar/index'
-import { Lunar } from '../../../utils/lunar-typescript'
+import { Lunar } from '../../libs/lunar-typescript'
 import { MemberRecord, Gender, getMembers, saveMembers } from '../../../utils/settings'
 
 /** 性别选项 */

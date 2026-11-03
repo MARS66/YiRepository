@@ -48,17 +48,17 @@ Page({
 
   /** 常用人员管理 */
   goMembers() {
-    wx.navigateTo({ url: '/pages/mine/members/members' })
+    wx.navigateTo({ url: '/subpages/mine/members/members' })
   },
 
   /** 音频设置 */
   goAudio() {
-    wx.navigateTo({ url: '/pages/mine/audio/audio' })
+    wx.navigateTo({ url: '/subpages/mine/audio/audio' })
   },
 
   /** 月份设置 */
   goMonth() {
-    wx.navigateTo({ url: '/pages/mine/month/month' })
+    wx.navigateTo({ url: '/subpages/mine/month/month' })
   },
 
   /**

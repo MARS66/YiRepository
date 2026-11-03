@@ -2,7 +2,7 @@
 // 择日测算：所有吉事（结婚、订婚、房屋修建等）共用同一个输入表单。
 // 测算事项由助手页通过 URL 参数带入，本页只展示，不再选择。
 import { ZODIAC, ZODIAC_CN, getYiAge } from '../../utils/yi-lunar/index'
-import { Lunar } from '../../utils/lunar-typescript'
+import { Lunar } from '../libs/lunar-typescript'
 import { Gender, getMembers } from '../../utils/settings'
 import { ZERI_EVENTS, ZeriEventKey, findEvent } from '../../utils/zeri'
 
@@ -201,7 +201,7 @@ Page({
       return
     }
     wx.navigateTo({
-      url: `/pages/zeri/result/result?event=${eventKey}&zodiac=${personZodiacIndex}&age=${personAge}&gender=${personGender}`
+      url: `/subpages/zeri/result/result?event=${eventKey}&zodiac=${personZodiacIndex}&age=${personAge}&gender=${personGender}`
     })
   },
 
@@ -211,7 +211,7 @@ Page({
   onShareAppMessage() {
     return {
       title: '彝族生活日历 · 择日测算',
-      path: `/pages/zeri/zeri?event=${this.data.eventKey}`
+      path: `/subpages/zeri/zeri?event=${this.data.eventKey}`
     }
   }
 })

@@ -1,17 +1,35 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/suigong/suigong",
-    "pages/mine/mine",
-    "pages/assistant/assistant",
-    "pages/mine/audio/audio",
-    "pages/mine/month/month",
-    "pages/mine/members/members",
     "pages/calendar/calendar",
-    "pages/date-navigation/date-navigation",
-    "pages/zeri/zeri",
-    "pages/zeri/result/result"
+    "pages/assistant/assistant",
+    "pages/mine/mine"
   ],
+  "subPackages": [
+    {
+      "root": "subpages",
+      "name": "subpages",
+      "pages": [
+        "suigong/suigong",
+        "date-navigation/date-navigation",
+        "zeri/zeri",
+        "zeri/result/result",
+        "mine/audio/audio",
+        "mine/month/month",
+        "mine/members/members"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/index/index": {
+      "network": "all",
+      "packages": ["subpages"]
+    },
+    "pages/mine/mine": {
+      "network": "all",
+      "packages": ["subpages"]
+    }
+  },
   "tabBar": {
     "backgroundColor": "#fffdf7",
     "color": "#70695e",
@@ -61,7 +79,7 @@
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents",
-  "usingComponents":{
-    "layout":"/components/layout/layout"
+  "usingComponents": {
+    "layout": "/components/layout/layout"
   }
 }

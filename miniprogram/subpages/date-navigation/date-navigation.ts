@@ -1,7 +1,7 @@
 // pages/date-navigation/date-navigation.ts
 import { getYiTaBoo, getTodayFortune, getKujior, getLaSe, getZeTa } from '../../utils/yi-lunar/index'
 import { getFestival } from 'chinese-workday'
-import { Lunar } from '../../utils/lunar-typescript'
+import { Lunar } from '../libs/lunar-typescript'
 import { getMonthStartIndex } from '../../utils/settings'
 
 const WEEKDAYS = ['日', '一', '二', '三', '四', '五', '六']
