@@ -98,6 +98,17 @@
           <view class="detail-label">{{laSe[1]}}</view>
         </view>
       </view>
+
+      <view class="detail-item">
+        <view class="detail-left">
+          <text class="detail-yi">ꍀꌋ</text>
+          <text class="detail-label">日色</text>
+        </view>
+        <view class="detail-val">
+          <view class="detail-yi">{{xingxiu.yi}}</view>
+          <view class="detail-label">{{xingxiu.cn}}</view>
+        </view>
+      </view>
       <view class="detail-item">
         <view class="detail-left">
           <text class="detail-yi">ꃅꌋꋠꑍ</text>

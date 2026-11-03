@@ -5,6 +5,7 @@ import {
   getKujior,
   getLaSe, 
   getZeTa,
+  getXingxiu,
 } from '../../utils/yi-lunar/index'
 import {WORDS} from '../../utils/word'
 import { isAutoAudio, getMonthStartIndex } from '../../utils/settings'
@@ -21,6 +22,10 @@ Page({
   data: {
     yiDate:{} as any,
     todayFortune:{},
+    kuJior:[] as string[],
+    xingxiu:{} as any,
+    laSe:[] as string[],
+    zeta:[] as string[],
     solarDate: '',
     date: '01',
     month: '九月',
@@ -51,9 +56,10 @@ Page({
       date: dayjs(dataStr).date().toString(),
       year: dayjs(dataStr).year().toString(),
       monthEn: dayjs(dataStr).format('MMMM').toUpperCase(),
-      kuJior:getKujior().kujior,
+      kuJior:getKujior().kujior as string[],
       laSe:getLaSe(dataStr),
       zeta:getZeTa(dataStr),
+      xingxiu:getXingxiu(dataStr),
       todayFortune: getTodayFortune(yiDate.dayZodiacIndex)
     })
   },

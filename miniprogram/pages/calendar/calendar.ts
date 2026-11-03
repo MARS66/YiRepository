@@ -1,5 +1,6 @@
 // pages/calendar/calendar.ts
-import { getYiTaBoo, getKujior,getLaSe,getZeTa,getTodayFortune } from '../../utils/yi-lunar/index'
+import { getYiTaBoo, getKujior,getLaSe,getZeTa,
+  getXingxiu,getTodayFortune } from '../../utils/yi-lunar/index'
 import { getFestival } from 'chinese-workday'
 import { Lunar } from '../../utils/lunar-typescript';
 import { isAutoAudio, getMonthStartIndex } from '../../utils/settings'
@@ -48,6 +49,7 @@ Page({
     selectedLabel: '9月1日 · 星期二',
     laSe:{},
     zeta:{},
+    xingxiu:{},
     kuJior: {},
     relativeDay: '今天',
     solarDate: '',
@@ -178,6 +180,7 @@ Page({
       kuJior:getKujior().kujior,
       laSe:getLaSe(fmt(d)),
       zeta:getZeTa(fmt(d)),
+      xingxiu:getXingxiu(fmt(d)),
       selectedLabel: `${checked.year}年${checked.month}月${checked.day}日 · 星期${weekdays[d.getDay()]}`,
       relativeDay,
       solarDate: fmt(d)

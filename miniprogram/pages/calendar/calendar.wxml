@@ -46,6 +46,16 @@
       </view>
       <view class="term-item">
         <view class="term-key">
+          <text class="key-yi">ꍀꌋ</text>
+          <text class="key-cn">日色</text>
+        </view>
+        <view class="term-val">
+          <text class="val-yi">{{xingxiu.yi}}</text>
+          <text class="val-cn">{{xingxiu.cn}}</text>
+        </view>
+      </view>
+      <view class="term-item">
+        <view class="term-key">
           <text class="key-yi">ꆿꌋ</text>
           <text class="key-cn">狼色</text>
         </view>
@@ -77,7 +87,7 @@
       <view class="term-item">
         <view class="term-key">
           <text class="key-yi">ꄤꁨꀋꃀ</text>
-          <text class="key-cn">母塔博</text>
+          <text class="key-cn">塔博阿莫</text>
         </view>
         <view class="term-val">
           <text class="val-yi">{{yiDate.tabooMon[0]}}</text>
@@ -87,18 +97,28 @@
       <view class="term-item">
         <view class="term-key">
           <text class="key-yi">ꄤꁨꀋꀮ</text>
-          <text class="key-cn">公塔博</text>
+          <text class="key-cn">塔博阿补</text>
         </view>
         <view class="term-val">
           <text class="val-yi">{{yiDate.tabooFat[0]}}</text>
           <text class="val-cn">{{yiDate.tabooFat[1]}}</text>
         </view>
       </view>
+      <view class="term-item">
+        <view class="term-key">
+          <text class="key-yi"></text>
+          <text class="key-cn"></text>
+        </view>
+        <view class="term-val">
+          <text class="val-yi"></text>
+          <text class="val-cn"></text>
+        </view>
+      </view>
     </view>
     <view class="fortune-list">
       <view class="fortune-line warn">
         <text class="fl-badge">忌</text>
-        <text class="fl-text">{{todayFortune.taboo[1]}}</text>
+        <view class="fl-text"><text>{{todayFortune.taboo[0]}}</text> ，{{todayFortune.taboo[1]}}</view>
       </view>
       <view class="fortune-line info">
         <text class="fl-badge">行</text>

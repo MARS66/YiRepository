@@ -21,13 +21,23 @@ export const ASSISTANT_TOOLS: AssistantTool[] = [
     desc: '选择公历日期查询彝历、生辰八字',
     url: '/pages/date-navigation/date-navigation',
   },
-  { icon: '命',  
+  { icon: '德',  
     label: '西德推算',
-    desc: '依母亲与本人岁数推算西德方位', 
+    desc: '根据母亲与本人信息推算诺苏西德', 
     url: '/pages/suigong/suigong', 
   },
-  { icon: '合', label: '生肖合婚', desc: '文化参考与相处建议' },
-  { icon: '德', label: '西德合婚', desc: '彝族传统文化参考' },
+  {
+    icon: '房',
+    label: '房屋修建',
+    desc: '修房造屋择吉日',
+    url: '/pages/zeri/zeri?event=house',
+  },
+  {
+    icon: '迁',
+    label: '乔迁吉日',
+    desc: '乔迁入宅择吉日',
+    url: '/pages/zeri/zeri?event=move',
+  },
 ]
 
 const RECENT_KEY = 'yi-recent-assistants'

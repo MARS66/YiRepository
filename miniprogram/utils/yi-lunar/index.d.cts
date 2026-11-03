@@ -52,6 +52,101 @@ declare function getTodayFortune(index: number): {
     tabooFull: string;
 };
 
+/** 生辰五行（按出生年天干推算，含阴阳） */
+type WuXing = "阳木" | "阴木" | "阳火" | "阴火" | "阳土" | "阴土" | "阳金" | "阴金" | "阳水" | "阴水";
+/** 吉凶等级：吉 > 平 > 凶 > 忌（忌为绝对禁忌） */
+type HouseBuildLevel = "吉" | "平" | "凶" | "忌";
+/**
+ * 彝族修房造屋择吉。
+ *
+ * 综合两层规则：
+ * 1. 年份择吉：由女主人目标年的岁位方位，判断该年能否修房造屋，
+ *    并给出忌月、忌日与大门朝向禁忌。
+ * 2. 日子择吉：按所选日期的库纠（觉莫、觉惹、能阿低、库、库诺、史觉、史诺）
+ *    判断吉凶；马日为建房绝对忌讳日，无论库纠如何都不能建房。
+ *
+ * @param age 女主人今年（当前农历年）的彝族虚岁年龄
+ * @param zodiac 女主人属相（中文生肖，如“鼠”）
+ * @param date 目标建房的具体日期（如 "2027-03-08"）
+ * @param today 参考日期，用于确定“今年”，默认当前时间
+ */
+declare const getHouseBuild: (age: number, zodiac: string, date: string | Date, today?: string | Date) => {
+    level: HouseBuildLevel;
+    reasons: string[];
+};
+
+interface MoonAlcyoneConjunctionOptions {
+    /** 搜索窗口的半宽（天），默认 7 */
+    windowDays?: number;
+    /** 粗扫步长（小时），默认 1 */
+    stepHours?: number;
+    /** 自动扩展窗口的最大半宽（天），默认 30 */
+    maxWindowDays?: number;
+}
+interface MoonAlcyoneConjunctionResult {
+    /** 输入年份 */
+    year: number;
+    /** 相合时刻的阳历日期（北京时间 YYYY-MM-DD） */
+    date: string;
+    /** 相合时刻（北京时间 HH:mm） */
+    beijingTime: string;
+    /** 相合时刻（世界时） */
+    utc: {
+        year: number;
+        month: number;
+        day: number;
+        hour: number;
+        minute: number;
+        second: number;
+    };
+    /** 相合时刻的儒略日（UT） */
+    julianDay: number;
+    /** 相合时月亮与昴宿六的黄经差（度）；精确穿越时为 0 */
+    longitudeDiff: number;
+    /** 该年农历七月初七对应的阳历日期 */
+    qixiDate: string;
+    /** 最终使用的搜索半窗口天数（可能因自动扩展而大于 windowDays） */
+    windowDays: number;
+}
+/**
+ * 计算指定年份七夕前后月亮与昴宿六相合的阳历日期。
+ * @param year 年份，默认今年
+ */
+declare function getMoonAlcyoneConjunction(year?: number, options?: MoonAlcyoneConjunctionOptions): MoonAlcyoneConjunctionResult;
+
+declare const XINGXIUM_MAP: string[][];
+interface XingxiuResult {
+    /** 输入日期 */
+    date: string;
+    /** 星宿索引（0-27，对应 XINGXIUM_MAP） */
+    index: number;
+    /** 彝文星宿名 */
+    yi: string;
+    /** 中文星宿名 */
+    cn: string;
+    /** 距锚定点（坦博日）的天数，负值表示锚点之前 */
+    dayIndex: number;
+    /** 第几个星宿月（锚点所在月为 0，锚点之前为负） */
+    monthIndex: number;
+    /** 星宿月内第几天 */
+    dayInMonth: number;
+    /** 当月天数（27 或 28） */
+    monthDays: number;
+    /** 坦博日（当年月亮与昴宿相合锚定点）详情 */
+    anchor: MoonAlcyoneConjunctionResult;
+}
+/**
+ * 获取输入日期对应的二十八星宿。
+ *
+ * 规则：以当年月亮与昴宿六相合的锚定点（阳历日期）为坦博日（索引 0），
+ * 之后按 27、27、28 天的星宿月循环推进；27 天月跳过索引 11 的折曲，
+ * 28 天月正常包含全部 28 宿。锚点之前的日期从锚点反推（负向计数），
+ * 星宿月序列向锚点之前延伸为 …28、27、27、锚点月 27、28、27、27…。
+ *
+ * @param date 阳历日期（YYYY-MM-DD），默认今天
+ */
+declare function getXingxiu(date?: string): XingxiuResult;
+
 declare const ZODIAC: string[];
 declare const ZODIAC_CN: string[];
 declare const ZODIAC_TO_YI: Map<string, string>;
@@ -68,4 +163,4 @@ declare const DIRECTION_CN: string[];
 /** 库版本号 */
 declare const VERSION = "0.1.0";
 
-export { DIRECTION, DIRECTION_CN, KU_JIOR, LASE, MONTH_DARK, MONTH_DARK_CN, VERSION, ZENG_TA, ZODIAC, ZODIAC_CN, ZODIAC_TO_CN, ZODIAC_TO_YI, getKujior, getLaSe, getTodayFortune, getXiDe, getYiAge, getYiDate, getYiTaBoo, getZeTa };
+export { DIRECTION, DIRECTION_CN, type HouseBuildLevel, KU_JIOR, LASE, MONTH_DARK, MONTH_DARK_CN, type MoonAlcyoneConjunctionOptions, type MoonAlcyoneConjunctionResult, VERSION, type WuXing, XINGXIUM_MAP, type XingxiuResult, ZENG_TA, ZODIAC, ZODIAC_CN, ZODIAC_TO_CN, ZODIAC_TO_YI, getHouseBuild, getKujior, getLaSe, getMoonAlcyoneConjunction, getTodayFortune, getXiDe, getXingxiu, getYiAge, getYiDate, getYiTaBoo, getZeTa };
