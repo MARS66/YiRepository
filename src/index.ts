@@ -12,6 +12,8 @@ export { getKujior, KU_JIOR } from "./components/getKujior";
 export { getZeTa, ZENG_TA } from "./components/getZeTa";
 export { getTodayFortune } from "./components/getTodayFortune";
 export { getHouseBuild } from "./components/getHouseBuild";
+export * from "./components/getYearInfo";
+export { getGanZhiIndex, GAN, ZHI, JIA_ZI_60 } from "./components/getYearInfo";
 export type { WuXing, HouseBuildLevel } from "./components/getHouseBuild";
 export { getMoonAlcyoneConjunction } from "./components/getMoonAlcyoneConjunction";
 export type {
