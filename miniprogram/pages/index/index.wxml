@@ -139,6 +139,16 @@
           <view class="detail-label">{{yiDate.tabooFat[1]}}</view>
         </view>
       </view>
+      <view class="detail-item">
+        <view class="detail-left">
+          <text class="detail-yi">ꆏꄡꏤꃅ</text>
+          <text class="detail-label">值星</text>
+        </view>
+        <view class="detail-val">
+          <view class="detail-yi">{{yearInfo.suizhiXing[0]}}</view>
+          <view class="detail-label">{{yearInfo.suizhiXing[1]}}</view>
+        </view>
+      </view>
     </view>
   </view>
 </layout>

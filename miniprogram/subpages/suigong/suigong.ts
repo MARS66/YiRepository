@@ -1,5 +1,5 @@
 // pages/suigong/suigong.ts
-import { ZODIAC, ZODIAC_CN, getXiDe, getYiAge } from '../../utils/yi-lunar/index'
+import { ZODIAC, ZODIAC_CN, getXiDe, getYiAge } from '../../pages/yi-lunar/index'
 import { Lunar } from '../libs/lunar-typescript'
 import { Gender, getMembers } from '../../utils/settings'
 
@@ -258,7 +258,7 @@ Page({
       wx.showToast({ title: '请先填写母亲与测算人信息', icon: 'none' })
       return
     }
-    const eternal = getXiDe(motherAge - personAge, true)
+    const eternal = getXiDe(motherAge - personAge + 1, true)
     const current = getXiDe(personAge, personGender === 'female')
     this.setData({
       hasResult: true,

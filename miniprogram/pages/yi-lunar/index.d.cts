@@ -75,6 +75,48 @@ declare const getHouseBuild: (age: number, zodiac: string, date: string | Date, 
     reasons: string[];
 };
 
+/** 十天干 */
+declare const GAN: string[];
+/** 十二地支 */
+declare const ZHI: string[];
+declare const YIN_YANG: string[][];
+declare const WU_XING: string[][];
+declare const JI_SHENG: string[][];
+/** 六十甲子序列，索引 0 即甲子（序号 1） */
+declare const JIA_ZI_60: string[];
+/**
+ * 获取纪年干支在六十甲子中的序号（甲子为 0，乙丑为 1，…，癸亥为 59）。
+ *
+ * @example
+ * getGanZhiIndex("1984-05-01"); // 1984 年为甲子年，返回 0
+ * getGanZhiIndex("2043-05-01"); // 2043 年为癸亥年，返回 59
+ *
+ * @param date 阳历日期字符串
+ * @returns 0 ~ 59 的序号
+ */
+declare const getGanZhiIndex: (date: string) => number;
+type Result = string[];
+/** 值年星宿（岁值星宿）结果 */
+declare const getSuizhiXing: (date: string) => Result;
+/** 阴阳结果 */
+declare const getYinYang: (date: string) => Result;
+/** 五行结果 */
+declare const getWuXing: (date: string) => Result;
+/** 五行结果 */
+declare const getJiSheng: (date: string) => Result;
+type YearInfo = {
+    /** 值年星宿（岁值星宿） */
+    suizhiXing: Result;
+    /** 阴阳 */
+    yinYang: Result;
+    /** 五行 */
+    wuXing: Result;
+    /** 五行 */
+    jiSheng: Result;
+};
+/** 年信息 */
+declare const getYearInfo: (date: string) => YearInfo;
+
 interface MoonAlcyoneConjunctionOptions {
     /** 搜索窗口的半宽（天），默认 7 */
     windowDays?: number;
@@ -163,4 +205,4 @@ declare const DIRECTION_CN: string[];
 /** 库版本号 */
 declare const VERSION = "0.1.0";
 
-export { DIRECTION, DIRECTION_CN, type HouseBuildLevel, KU_JIOR, LASE, MONTH_DARK, MONTH_DARK_CN, type MoonAlcyoneConjunctionOptions, type MoonAlcyoneConjunctionResult, VERSION, type WuXing, XINGXIUM_MAP, type XingxiuResult, ZENG_TA, ZODIAC, ZODIAC_CN, ZODIAC_TO_CN, ZODIAC_TO_YI, getHouseBuild, getKujior, getLaSe, getMoonAlcyoneConjunction, getTodayFortune, getXiDe, getXingxiu, getYiAge, getYiDate, getYiTaBoo, getZeTa };
+export { DIRECTION, DIRECTION_CN, GAN, type HouseBuildLevel, JIA_ZI_60, JI_SHENG, KU_JIOR, LASE, MONTH_DARK, MONTH_DARK_CN, type MoonAlcyoneConjunctionOptions, type MoonAlcyoneConjunctionResult, type Result, VERSION, WU_XING, type WuXing, XINGXIUM_MAP, type XingxiuResult, YIN_YANG, type YearInfo, ZENG_TA, ZHI, ZODIAC, ZODIAC_CN, ZODIAC_TO_CN, ZODIAC_TO_YI, getGanZhiIndex, getHouseBuild, getJiSheng, getKujior, getLaSe, getMoonAlcyoneConjunction, getSuizhiXing, getTodayFortune, getWuXing, getXiDe, getXingxiu, getYearInfo, getYiAge, getYiDate, getYiTaBoo, getYinYang, getZeTa };

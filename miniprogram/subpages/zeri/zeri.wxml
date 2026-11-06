@@ -6,16 +6,16 @@
     <view class="intro-glow"></view>
     <text class="intro-eyebrow">{{eventLabel}}吉日</text>
     <view class="intro-title">{{eventDesc}}</view>
-    <view class="intro-desc">填写测算人的属相、岁数与性别，查看近期日子的综合吉凶</view>
+    <view class="intro-desc">填写{{personLabel}}的属相{{showGender ? '、岁数与性别' : '与岁数'}}，查看近期日子的综合吉凶</view>
   </view>
 
   <!-- 测算信息 -->
   <view class="person-card">
     <view class="person-row" hover-class="btn-hover" bindtap="openPerson">
-      <view class="person-avatar">我</view>
+      <view class="person-avatar">{{personLabel[0]}}</view>
       <view class="person-main">
-        <view class="person-name">测算人</view>
-        <view class="person-meta {{personMeta ? '' : 'pending'}}">{{personMeta || '点击填写属相、岁数与性别'}}</view>
+        <view class="person-name">{{personLabel}}</view>
+        <view class="person-meta {{personMeta ? '' : 'pending'}}">{{personMeta || (showGender ? '点击填写属相、岁数与性别' : '点击填写属相与岁数')}}</view>
       </view>
       <text class="person-action">编辑</text>
     </view>
@@ -31,7 +31,7 @@
       <view class="editor-head">
         <view class="editor-titles">
           <text class="editor-eyebrow">PERSON</text>
-          <text class="editor-title">测算人信息</text>
+          <text class="editor-title">{{personLabel}}信息</text>
         </view>
         <text class="editor-close" hover-class="btn-hover" bindtap="closeEditor">✕</text>
       </view>
@@ -88,7 +88,7 @@
           <text class="field-hint" wx:else>请先选择真实属相</text>
         </view>
 
-        <view class="field">
+        <view class="field" wx:if="{{showGender}}">
           <view class="field-label"><text>性别</text></view>
           <view class="gender-grid">
             <view

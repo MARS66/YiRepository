@@ -1,12 +1,13 @@
 // pages/zeri/result/result.ts
 // 择日结果：日历中标出每日吉凶，点击日期查看当日彝历与综合吉凶原因。
 import {
+  getHouseBuild,
   getKujior,
   getLaSe,
   getYiTaBoo,
   getZeTa,
   ZODIAC_CN
-} from '../../../utils/yi-lunar/index'
+} from '../../../pages/yi-lunar/index'
 import { getMonthStartIndex } from '../../../utils/settings'
 import {
   evaluateDay,
@@ -41,9 +42,6 @@ const LEVEL_TONE: Record<ZeriLevel, { light: string; dark: string }> = {
   凶: { light: '#b74d36', dark: '#e08a6e' },
   忌: { light: '#9c2d25', dark: '#e05a50' }
 }
-
-/** 单次渲染最多处理的日期数（日历视图最多 6 周 × 7 天） */
-const MAX_MARKS_DAYS = 42
 
 /** 吉凶等级缓存：避免切换主题或重复切月时重复计算同一天 */
 const levelCache = new Map<string, ZeriLevel>()
@@ -172,11 +170,13 @@ Page({
     const cur = new Date(start.year, start.month - 1, start.day)
     const last = new Date(end.year, end.month - 1, end.day)
 
-    while (cur.getTime() <= last.getTime() && marks.length < MAX_MARKS_DAYS) {
+    while (cur.getTime() <= last.getTime()) {
       const year = cur.getFullYear()
       const month = cur.getMonth() + 1
       const day = cur.getDate()
-      const level = levelOf(fmt(cur), person, this.eventKey, this.monthStart)
+      const level = this.eventKey === 'house'
+        ? getHouseBuild(person.age, ZODIAC_CN[person.zodiacIndex], fmt(cur)).level
+        : levelOf(fmt(cur), person, this.eventKey, this.monthStart)
       const tone = LEVEL_TONE[level]
       marks.push({
         year,
@@ -199,7 +199,12 @@ Page({
     const d = new Date(checked.year, checked.month - 1, checked.day)
     const dateStr = fmt(d)
     const yiDate = getYiTaBoo(dateStr, this.monthStart)
-    const result = evaluateDay(dateStr, this.person, this.eventKey, this.monthStart)
+    const houseBuild = this.eventKey === 'house'
+      ? getHouseBuild(this.person.age, ZODIAC_CN[this.person.zodiacIndex], dateStr)
+      : null
+    const result = houseBuild
+      ? { level: houseBuild.level, reasons: houseBuild.reasons, xiDeYi: '', xiDeCn: '' }
+      : evaluateDay(dateStr, this.person, this.eventKey, this.monthStart)
     const ku = getKujior(dateStr).kujior
     const laSe = getLaSe(dateStr)
     const zeta = getZeTa(dateStr) || ['', '']

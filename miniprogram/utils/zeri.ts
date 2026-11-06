@@ -11,7 +11,7 @@ import {
   getXiDe,
   getYiTaBoo,
   getZeTa
-} from './yi-lunar/index'
+} from '../pages/yi-lunar/index'
 
 /** 综合吉凶等级 */
 export type ZeriLevel = '吉' | '平' | '凶' | '忌'

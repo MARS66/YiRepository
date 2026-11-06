@@ -1,7 +1,7 @@
 // pages/zeri/zeri.ts
 // 择日测算：所有吉事（结婚、订婚、房屋修建等）共用同一个输入表单。
 // 测算事项由助手页通过 URL 参数带入，本页只展示，不再选择。
-import { ZODIAC, ZODIAC_CN, getYiAge } from '../../utils/yi-lunar/index'
+import { ZODIAC, ZODIAC_CN, getYiAge } from '../../pages/yi-lunar/index'
 import { Lunar } from '../libs/lunar-typescript'
 import { Gender, getMembers } from '../../utils/settings'
 import { ZERI_EVENTS, ZeriEventKey, findEvent } from '../../utils/zeri'
@@ -41,6 +41,10 @@ Page({
     eventIcon: ZERI_EVENTS[0].icon,
     eventLabel: ZERI_EVENTS[0].label,
     eventDesc: '依属相、岁数推算吉日',
+    /** 输入对象称谓：房屋修建填女主人，其余为测算人 */
+    personLabel: '测算人',
+    /** 是否需要选择性别：房屋修建的女主人固定为女，无需选择 */
+    showGender: true,
     zodiacs: [] as ZodiacOption[],
     genders: GENDERS,
     quickMembers: [] as QuickMember[],
@@ -72,7 +76,9 @@ Page({
         eventKey: event.key,
         eventIcon: event.icon,
         eventLabel: event.label,
-        eventDesc: `${event.action}择日`
+        eventDesc: `${event.action}择日`,
+        personLabel: event.key === 'house' ? '女主人' : '测算人',
+        showGender: event.key !== 'house'
       })
     }
   },
@@ -107,15 +113,16 @@ Page({
 
   /** 打开「测算人信息」弹层 */
   openPerson() {
-    const { personZodiacIndex, personAge, personGender } = this.data
+    const { personZodiacIndex, personAge, personGender, eventKey } = this.data
+    const draftGender = eventKey === 'house' ? 'female' : personGender
     this.setData({
       showEditor: true,
       draftZodiacIndex: personZodiacIndex,
       draftAge: personAge,
       draftAges: this.agesOf(personZodiacIndex),
-      draftGender: personGender,
+      draftGender,
       draftQuickId: '',
-      draftCanSave: this.draftReady(personZodiacIndex, personAge, personGender),
+      draftCanSave: this.draftReady(personZodiacIndex, personAge, draftGender),
       quickMembers: this.buildQuickMembers()
     })
   },
@@ -133,13 +140,14 @@ Page({
     const index = Number(e.currentTarget.dataset.index)
     const member = this.data.quickMembers[index]
     if (!member || member.zodiacIndex < 0 || member.age <= 0) return
+    const draftGender = this.data.eventKey === 'house' ? 'female' : member.gender
     this.setData({
       draftQuickId: member.id,
       draftZodiacIndex: member.zodiacIndex,
       draftAges: this.agesOf(member.zodiacIndex),
       draftAge: member.age,
-      draftGender: member.gender,
-      draftCanSave: this.draftReady(member.zodiacIndex, member.age, member.gender)
+      draftGender,
+      draftCanSave: this.draftReady(member.zodiacIndex, member.age, draftGender)
     })
   },
 
@@ -177,9 +185,9 @@ Page({
 
   /** 确认弹层内容 */
   confirmEditor() {
-    const { draftZodiacIndex, draftAge, draftGender } = this.data
+    const { draftZodiacIndex, draftAge, draftGender, eventKey } = this.data
     if (!this.draftReady(draftZodiacIndex, draftAge, draftGender)) {
-      wx.showToast({ title: '请选择属相、岁数与性别', icon: 'none' })
+      wx.showToast({ title: eventKey === 'house' ? '请选择属相与岁数' : '请选择属相、岁数与性别', icon: 'none' })
       return
     }
     const genderLabel = draftGender === 'female' ? '女' : '男'
@@ -197,7 +205,7 @@ Page({
   startCalc() {
     const { eventKey, personZodiacIndex, personAge, personGender, canCalc } = this.data
     if (!canCalc) {
-      wx.showToast({ title: '请先填写测算人信息', icon: 'none' })
+      wx.showToast({ title: `请先填写${this.data.personLabel}信息`, icon: 'none' })
       return
     }
     wx.navigateTo({

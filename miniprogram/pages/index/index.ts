@@ -6,7 +6,8 @@ import {
   getLaSe, 
   getZeTa,
   getXingxiu,
-} from '../../utils/yi-lunar/index'
+  getYearInfo
+} from '../yi-lunar/index'
 import {WORDS} from '../../utils/word'
 import { isAutoAudio, getMonthStartIndex } from '../../utils/settings'
 import dayjs from "dayjs";
@@ -24,6 +25,7 @@ Page({
     todayFortune:{},
     kuJior:[] as string[],
     xingxiu:{} as any,
+    yearInfo:{} as any,
     laSe:[] as string[],
     zeta:[] as string[],
     solarDate: '',
@@ -59,6 +61,7 @@ Page({
       kuJior:getKujior().kujior as string[],
       laSe:getLaSe(dataStr),
       zeta:getZeTa(dataStr),
+      yearInfo:getYearInfo(dataStr),
       xingxiu:getXingxiu(dataStr),
       todayFortune: getTodayFortune(yiDate.dayZodiacIndex)
     })

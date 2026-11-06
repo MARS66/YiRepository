@@ -5,7 +5,7 @@ import {
   DIRECTION,
   DIRECTION_CN,
   getYiAge
-} from '../../../utils/yi-lunar/index'
+} from '../../../pages/yi-lunar/index'
 import { Lunar } from '../../libs/lunar-typescript'
 import { MemberRecord, Gender, getMembers, saveMembers } from '../../../utils/settings'
 
