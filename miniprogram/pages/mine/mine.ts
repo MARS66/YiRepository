@@ -1,5 +1,5 @@
 // pages/mine/mine.ts
-import { ZODIAC, ZODIAC_CN } from '../yi-lunar/index'
+import { ZODIAC, ZODIAC_CN } from '../../plugin/yi-lunar/index'
 import { getMembers, getMonthStartIndex } from '../../utils/settings'
 
 Page({

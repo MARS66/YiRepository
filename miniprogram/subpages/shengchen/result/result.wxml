@@ -1,0 +1,82 @@
+<!--subpages/shengchen/result/result.wxml-->
+<layout title="生辰查询" eyebrow="YI LIFE · SHENGCHEN">
+
+  <!-- 彝历生辰 -->
+  <view class="card">
+    <view class="sec-head">
+      <text class="section-title">彝历 · 生辰</text>
+      <text class="section-link">YI CALENDAR</text>
+    </view>
+    <view class="yi-hero">
+      <text class="yi-line">{{yiYear.yi}}ꈎ · {{yiMonth.yi}}ꆪ · {{yiDay.yi}}ꑍ · {{yiMoon.yi}}ꑍ · {{shichen.yi}}</text>
+      <text class="cn-line">{{yiYear.cn}}年 · {{yiMonth.cn}}月 · {{yiDay.cn}}日 · {{yiMoon.cn}}日 · {{shichen.cn}}</text>
+    </view>
+    <view class="term-grid">
+      <view class="term-item">
+        <view class="term-key"><text class="key-yi">ꑞꅉ</text><text class="key-cn">方位</text></view>
+        <view class="term-val"><text class="val-yi">{{xiDe[0]}}</text><text class="val-cn">{{xiDe[1]}}</text></view>
+      </view>
+      <view class="term-item">
+        <view class="term-key"><text class="key-yi">ꇗꊖ</text><text class="key-cn">五行</text></view>
+        <view class="term-val"><text class="val-yi">{{yearInfo.wuXing[0]}}</text><text class="val-cn">{{yearInfo.wuXing[1]}}</text></view>
+      </view>
+      <view class="term-item">
+        <view class="term-key"><text class="key-yi">ꈋꈌ</text><text class="key-cn">阴阳</text></view>
+        <view class="term-val"><text class="val-yi">{{yearInfo.yinYang[0]}}</text><text class="val-cn">{{yearInfo.yinYang[1]}}</text></view>
+      </view>
+      <view class="term-item">
+        <view class="term-key"><text class="key-yi">ꐰꇑ</text><text class="key-cn">吉神</text></view>
+        <view class="term-val"><text class="val-yi">{{yearInfo.jiSheng[0]}}</text><text class="val-cn">{{yearInfo.jiSheng[1]}}</text></view>
+      </view>
+      <view class="term-item">
+        <view class="term-key"><text class="key-yi">ꈎꏸ</text><text class="key-cn">岁星</text></view>
+        <view class="term-val"><text class="val-yi">{{yearInfo.suizhiXing[0]}}</text><text class="val-cn">{{yearInfo.suizhiXing[0]}}</text></view>
+      </view>
+      <view class="term-item">
+        <view class="term-key"><text class="key-yi">ꄤꁨꌺ</text><text class="key-cn">塔博惹</text></view>
+        <view class="term-val"><text class="val-yi">{{tabooSon.yi}}</text><text class="val-cn">{{tabooSon.cn}}</text></view>
+      </view>
+      <view class="term-item">
+        <view class="term-key"><text class="key-yi">ꄤꁨꀋꃀ</text><text class="key-cn">母塔博</text></view>
+        <view class="term-val"><text class="val-yi">{{tabooMon.yi}}</text><text class="val-cn">{{tabooMon.cn}}</text></view>
+      </view>
+      <view class="term-item">
+        <view class="term-key"><text class="key-yi">ꄤꁨꀋꀮ</text><text class="key-cn">公塔博</text></view>
+        <view class="term-val"><text class="val-yi">{{tabooFat.yi}}</text><text class="val-cn">{{tabooFat.cn}}</text></view>
+      </view>
+      <view class="term-item">
+        <view class="term-key"><text class="key-yi">ꈐꐡ</text><text class="key-cn">库觉</text></view>
+        <view class="term-val"><text class="val-yi">{{kuJior.yi}}</text><text class="val-cn">{{kuJior.cn}}</text></view>
+      </view>
+      <view class="term-item">
+        <view class="term-key"><text class="key-yi">ꆿꌋ</text><text class="key-cn">狼色</text></view>
+        <view class="term-val"><text class="val-yi">{{laSe.yi}}</text><text class="val-cn">{{laSe.cn}}</text></view>
+      </view>
+      <view class="term-item">
+        <view class="term-key"><text class="key-yi">ꃅꌋꋠꑍ</text><text class="key-cn">木色则尼</text></view>
+        <view class="term-val"><text class="val-yi">{{zeta.yi}}</text><text class="val-cn">{{zeta.cn}}</text></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 生辰八字 -->
+  <view class="card">
+    <view class="sec-head">
+      <text class="section-title">农历 · 生辰八字</text>
+      <text class="section-link">BAZI</text>
+    </view>
+    <view class="pillar-grid">
+      <view class="pillar-item" wx:for="{{pillars}}" wx:key="label">
+        <text class="pillar-label">{{item.label}}</text>
+        <text class="pillar-gz">{{item.ganZhi}}</text>
+        <text class="pillar-sub">{{item.wuXing}} · {{item.naYin}}</text>
+      </view>
+    </view>
+    <view class="bazi-line">
+      <view>{{lunarText}}</view>
+      <view>{{baziText}}</view>
+      </view>
+  </view>
+
+  <text class="page-foot">结果仅供文化参考 · YI LIFE</text>
+</layout>

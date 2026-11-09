@@ -1,0 +1,182 @@
+<!--subpages/shengchen/shengchen.wxml-->
+<layout title="生辰查询" eyebrow="YI LIFE · SHENGCHEN">
+
+  <!-- 功能说明 -->
+  <view class="intro">
+    <view class="intro-glow"></view>
+    <text class="intro-eyebrow">彝历生辰 · 农历生辰 · 八字</text>
+    <view class="intro-title">依出生日期时刻查询彝历生辰</view>
+    <view class="intro-desc">填写母亲属相与岁数、查询人出生年月日与出生时辰，查看出生时的彝历信息、农历信息与生辰八字</view>
+  </view>
+
+  <!-- 生辰信息 -->
+  <view class="person-card">
+    <view class="person-row" hover-class="btn-hover" bindtap="openMother">
+      <view class="person-avatar">母</view>
+      <view class="person-main">
+        <view class="person-name">查询人母亲属相年纪</view>
+        <view class="person-meta {{motherMeta ? '' : 'pending'}}">{{motherMeta || '点击填写属相与岁数'}}</view>
+      </view>
+      <text class="person-action">编辑</text>
+    </view>
+
+    <view class="person-row" hover-class="btn-hover" bindtap="openDateSheet">
+      <view class="person-avatar">生</view>
+      <view class="person-main">
+        <view class="person-name">查询人出生日期</view>
+        <view class="person-meta {{birthDate ? '' : 'pending'}}">{{birthDateText || '点击选择出生日期'}}<text class="pick-hint"> 点选 ▾</text></view>
+      </view>
+      <text class="person-action">选择</text>
+    </view>
+
+    <view class="person-row" hover-class="btn-hover" bindtap="openTimeSheet">
+      <view class="person-avatar">时</view>
+      <view class="person-main">
+        <view class="person-name">查询人出生时间</view>
+        <view class="person-meta {{birthTime ? '' : 'pending'}}">{{birthTimeMeta || '点击选择出生时辰'}}<text class="pick-hint"> 点选 ▾</text></view>
+      </view>
+      <text class="person-action">选择</text>
+    </view>
+  </view>
+
+  <text class="page-tip">YI LIFE · 结果仅供文化参考</text>
+  <view class="calc-btn " hover-class="btn-hover" bindtap="startQuery">查询生辰</view>
+
+  <!-- 母亲信息弹层 -->
+  <view class="editor-mask" wx:if="{{showEditor}}" bindtap="closeEditor" catchtouchmove="noop">
+    <view class="editor-sheet" catchtap="noop">
+      <view class="editor-head">
+        <view class="editor-titles">
+          <text class="editor-eyebrow">MOTHER</text>
+          <text class="editor-title">母亲信息</text>
+        </view>
+        <text class="editor-close" hover-class="btn-hover" bindtap="closeEditor">✕</text>
+      </view>
+
+      <scroll-view class="editor-body" scroll-y>
+        <view class="field">
+          <view class="field-label"><text>属相</text></view>
+          <view class="zodiac-grid">
+            <view
+              class="zodiac-chip {{draftZodiacIndex === index ? 'active' : ''}}"
+              wx:for="{{zodiacs}}"
+              wx:key="cn"
+              hover-class="btn-hover"
+              data-index="{{index}}"
+              bindtap="onDraftZodiacSelect"
+            >
+              <text class="zc-yi">{{item.yi}}</text>
+              <text class="zc-cn">{{item.cn}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="field">
+          <view class="field-label"><text>岁数</text><text class="field-sub">彝族虚岁</text></view>
+          <view class="age-grid" wx:if="{{draftAges.length}}">
+            <view
+              class="age-chip {{draftAge === item ? 'active' : ''}}"
+              wx:for="{{draftAges}}"
+              wx:key="*this"
+              hover-class="btn-hover"
+              data-age="{{item}}"
+              bindtap="onDraftAgeSelect"
+            >
+              <text class="age-num">{{item}}</text>
+              <text class="age-unit">岁</text>
+            </view>
+          </view>
+          <text class="field-hint" wx:else>请先选择真实属相</text>
+        </view>
+      </scroll-view>
+
+      <view class="editor-actions">
+        <button class="editor-btn ghost" hover-class="btn-hover" bindtap="closeEditor">取消</button>
+        <button
+          class="editor-btn primary {{draftCanSave ? '' : 'disabled'}}"
+          hover-class="btn-hover"
+          bindtap="confirmMother"
+        >确定</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 出生日期弹层 -->
+  <view class="editor-mask" wx:if="{{showDateSheet}}" bindtap="closeDateSheet" catchtouchmove="noop">
+    <view class="editor-sheet" catchtap="noop">
+      <view class="editor-head">
+        <view class="editor-titles">
+          <text class="editor-eyebrow">BIRTH</text>
+          <text class="editor-title">出生日期</text>
+        </view>
+        <text class="editor-close" hover-class="btn-hover" bindtap="closeDateSheet">✕</text>
+      </view>
+
+      <view class="date-picker-wrap">
+        <picker-view
+          class="date-picker-view"
+          value="{{draftDateValue}}"
+          indicator-style="height: 88rpx;"
+          bindchange="onDraftDateChange"
+        >
+          <picker-view-column>
+            <view class="date-col-item" wx:for="{{years}}" wx:key="*this">{{item}}年</view>
+          </picker-view-column>
+          <picker-view-column>
+            <view class="date-col-item" wx:for="{{months}}" wx:key="*this">{{item}}月</view>
+          </picker-view-column>
+          <picker-view-column>
+            <view class="date-col-item" wx:for="{{days}}" wx:key="*this">{{item}}日</view>
+          </picker-view-column>
+        </picker-view>
+      </view>
+
+      <view class="editor-actions">
+        <button class="editor-btn ghost" hover-class="btn-hover" bindtap="closeDateSheet">取消</button>
+        <button class="editor-btn primary" hover-class="btn-hover" bindtap="confirmDate">确定</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 出生时辰弹层 -->
+  <view class="editor-mask" wx:if="{{showTimeSheet}}" bindtap="closeTimeSheet" catchtouchmove="noop">
+    <view class="editor-sheet" catchtap="noop">
+      <view class="editor-head">
+        <view class="editor-titles">
+          <text class="editor-eyebrow">SHICHEN</text>
+          <text class="editor-title">出生时辰</text>
+        </view>
+        <text class="editor-close" hover-class="btn-hover" bindtap="closeTimeSheet">✕</text>
+      </view>
+
+      <scroll-view class="editor-body" scroll-y>
+        <view class="field">
+          <view class="field-label"><text>时辰</text><text class="field-sub">按出生所属时段选择</text></view>
+          <view class="shichen-grid">
+            <view
+              class="shichen-chip {{draftShichenIndex === index ? 'active' : ''}}"
+              wx:for="{{shichens}}"
+              wx:key="name"
+              hover-class="btn-hover"
+              data-index="{{index}}"
+              bindtap="onDraftShichenSelect"
+            >
+              <text class="sc-name">{{item.name}}</text>
+              <text class="sc-range">{{item.range}}</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+
+      <view class="editor-actions">
+        <button class="editor-btn ghost" hover-class="btn-hover" bindtap="closeTimeSheet">取消</button>
+        <button
+          class="editor-btn primary {{draftShichenIndex >= 0 ? '' : 'disabled'}}"
+          hover-class="btn-hover"
+          bindtap="confirmShichen"
+        >确定</button>
+      </view>
+    </view>
+  </view>
+
+</layout>

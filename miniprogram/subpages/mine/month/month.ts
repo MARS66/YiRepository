@@ -1,5 +1,5 @@
 // pages/mine/month/month.ts
-import { ZODIAC, ZODIAC_CN } from '../../../pages/yi-lunar/index'
+import { ZODIAC, ZODIAC_CN } from '../../../plugin/yi-lunar/index'
 import { getMonthStartIndex, setMonthStartIndex } from '../../../utils/settings'
 
 const MONTH_TERMS = [

@@ -1,5 +1,5 @@
 // pages/suigong/suigong.ts
-import { ZODIAC, ZODIAC_CN, getXiDe, getYiAge } from '../../pages/yi-lunar/index'
+import { ZODIAC, ZODIAC_CN, getXiDe, getYiAge } from '../../plugin/yi-lunar/index'
 import { Lunar } from '../libs/lunar-typescript'
 import { Gender, getMembers } from '../../utils/settings'
 

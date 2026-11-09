@@ -1,7 +1,7 @@
 // pages/zeri/zeri.ts
 // 择日测算：所有吉事（结婚、订婚、房屋修建等）共用同一个输入表单。
 // 测算事项由助手页通过 URL 参数带入，本页只展示，不再选择。
-import { ZODIAC, ZODIAC_CN, getYiAge } from '../../pages/yi-lunar/index'
+import { ZODIAC, ZODIAC_CN, getYiAge } from '../../plugin/yi-lunar/index'
 import { Lunar } from '../libs/lunar-typescript'
 import { Gender, getMembers } from '../../utils/settings'
 import { ZERI_EVENTS, ZeriEventKey, findEvent } from '../../utils/zeri'

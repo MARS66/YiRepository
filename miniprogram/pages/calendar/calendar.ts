@@ -1,6 +1,6 @@
 // pages/calendar/calendar.ts
 import { getYiTaBoo, getKujior,getLaSe,getZeTa,
-  getXingxiu,getTodayFortune } from '../yi-lunar/index'
+  getXingxiu,getTodayFortune } from '../../plugin/yi-lunar/index'
 import { getFestival } from 'chinese-workday'
 import { isAutoAudio, getMonthStartIndex } from '../../utils/settings'
 

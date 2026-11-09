@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/assistant/assistant",
     "pages/index/index",
     "pages/calendar/calendar",
-    "pages/assistant/assistant",
     "pages/mine/mine"
   ],
   "subPackages": [
@@ -12,6 +12,8 @@
       "pages": [
         "suigong/suigong",
         "date-navigation/date-navigation",
+        "shengchen/shengchen",
+        "shengchen/result/result",
         "zeri/zeri",
         "zeri/result/result",
         "mine/audio/audio",

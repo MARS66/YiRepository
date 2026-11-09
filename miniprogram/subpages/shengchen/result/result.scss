@@ -1,0 +1,272 @@
+/* subpages/shengchen/result/result.scss */
+
+/* 通用卡片 */
+.card {
+  margin-top: 20rpx;
+  padding: 28rpx 30rpx;
+  border-radius: 36rpx;
+  background: var(--paper);
+  border: 2rpx solid var(--line);
+  box-shadow: var(--shadow);
+
+  .sec-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .section-title {
+      font-size: 32rpx;
+      font-weight: bold;
+      color: var(--coal);
+    }
+
+    .section-link {
+      font-size: 18rpx;
+      letter-spacing: 3rpx;
+      color: var(--gold);
+    }
+  }
+}
+
+/* 彝历生辰主区 */
+.yi-hero {
+  margin-top: 22rpx;
+  padding: 26rpx 24rpx;
+  border-radius: 26rpx;
+  background: linear-gradient(135deg, rgba(156, 45, 37, 0.12) 0%, rgba(170, 123, 45, 0.16) 100%);
+  border: 2rpx solid var(--accent-border);
+
+  .yi-line {
+    display: block;
+    font-size: 36rpx;
+    font-weight: bold;
+    letter-spacing: 3rpx;
+    color: var(--coal);
+    text-align: center;
+  }
+
+  .cn-line {
+    display: block;
+    margin-top: 10rpx;
+    font-size: 23rpx;
+    letter-spacing: 3rpx;
+    color: var(--muted);
+    text-align: center;
+  }
+}
+
+/* 彝历罗盘项 */
+.term-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16rpx;
+  margin-top: 22rpx;
+
+  .term-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8rpx;
+    padding: 20rpx 18rpx;
+    border-radius: 22rpx;
+    box-sizing: border-box;
+    background: var(--soft);
+    border: 2rpx solid var(--line);
+
+    .term-key {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 6rpx;
+
+      .key-yi {
+        font-size: 22rpx;
+        color: var(--gold);
+      }
+
+      .key-cn {
+        font-size: 20rpx;
+        color: var(--muted);
+      }
+    }
+
+    .term-val {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6rpx;
+
+      .val-yi {
+        font-size: 28rpx;
+        color: var(--coal);
+      }
+
+      .val-cn {
+        font-size: 22rpx;
+        color: var(--coal);
+      }
+    }
+  }
+}
+
+/* 农历生辰主区 */
+.lunar-hero {
+  margin-top: 22rpx;
+  font-size: 34rpx;
+  font-weight: bold;
+  letter-spacing: 2rpx;
+  color: var(--coal);
+}
+
+.lunar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14rpx;
+  margin-top: 22rpx;
+
+  .lunar-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6rpx;
+    padding: 18rpx 20rpx;
+    border-radius: 20rpx;
+    box-sizing: border-box;
+    background: var(--soft);
+    border: 2rpx solid var(--line);
+
+    .lunar-label {
+      font-size: 20rpx;
+      color: var(--muted);
+    }
+
+    .lunar-val {
+      font-size: 26rpx;
+      font-weight: bold;
+      color: var(--coal);
+      word-break: break-all;
+    }
+  }
+}
+
+.lunar-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16rpx;
+  margin-top: 18rpx;
+
+  .row-label {
+    flex-shrink: 0;
+    font-size: 22rpx;
+    color: var(--muted);
+  }
+
+  .row-val {
+    flex: 1;
+    font-size: 24rpx;
+    color: var(--coal);
+  }
+}
+
+/* 宜忌 */
+.yi-ji {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 20rpx;
+
+  .yi-ji-block {
+    flex: 1;
+    padding: 18rpx 20rpx;
+    border-radius: 20rpx;
+
+    .yi-ji-title {
+      font-size: 26rpx;
+      font-weight: bold;
+    }
+
+    .yi-ji-content {
+      display: block;
+      margin-top: 8rpx;
+      font-size: 21rpx;
+      line-height: 1.6;
+    }
+
+    &.good {
+      background: var(--good-bg);
+      border: 2rpx solid #42755366;
+
+      .yi-ji-title {
+        color: var(--green);
+      }
+    }
+
+    &.bad {
+      background: var(--bad-bg);
+      border: 2rpx solid #b74d3666;
+
+      .yi-ji-title {
+        color: #b74d36;
+      }
+    }
+  }
+}
+
+/* 生辰八字 */
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16rpx;
+  margin-top: 22rpx;
+
+  .pillar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8rpx;
+    padding: 22rpx 20rpx;
+    border-radius: 24rpx;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, rgba(156, 45, 37, 0.10) 0%, rgba(170, 123, 45, 0.14) 100%);
+    border: 2rpx solid var(--accent-border);
+
+    .pillar-label {
+      font-size: 20rpx;
+      letter-spacing: 2rpx;
+      color: var(--gold);
+    }
+
+    .pillar-gz {
+      font-size: 38rpx;
+      font-weight: bold;
+      letter-spacing: 3rpx;
+      color: var(--coal);
+    }
+
+    .pillar-sub {
+      font-size: 20rpx;
+      color: var(--muted);
+    }
+  }
+}
+
+.bazi-line {
+  margin-top: 22rpx;
+  padding: 22rpx 24rpx;
+  border-radius: 22rpx;
+  background: var(--soft);
+  border: 2rpx solid var(--line);
+  font-size: 30rpx;
+  font-weight: bold;
+  letter-spacing: 3rpx;
+  color: var(--coal);
+  text-align: center;
+}
+
+.page-foot {
+  display: block;
+  padding: 26rpx 0 40rpx;
+  text-align: center;
+  font-size: 18rpx;
+  letter-spacing: 3rpx;
+  color: var(--muted);
+  opacity: 0.7;
+}

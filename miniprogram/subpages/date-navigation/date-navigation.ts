@@ -1,5 +1,5 @@
 // pages/date-navigation/date-navigation.ts
-import { getYiTaBoo, getTodayFortune, getKujior, getLaSe, getZeTa } from '../../pages/yi-lunar/index'
+import { getYiTaBoo, getTodayFortune, getKujior, getLaSe, getZeTa } from '../../plugin/yi-lunar/index'
 import { getFestival } from 'chinese-workday'
 import { Lunar } from '../libs/lunar-typescript'
 import { getMonthStartIndex } from '../../utils/settings'

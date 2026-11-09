@@ -7,7 +7,7 @@ import {
   getYiTaBoo,
   getZeTa,
   ZODIAC_CN
-} from '../../../pages/yi-lunar/index'
+} from '../../../plugin/yi-lunar/index'
 import { getMonthStartIndex } from '../../../utils/settings'
 import {
   evaluateDay,

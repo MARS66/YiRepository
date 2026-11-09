@@ -7,7 +7,7 @@ import {
   getZeTa,
   getXingxiu,
   getYearInfo
-} from '../yi-lunar/index'
+} from '../../plugin/yi-lunar/index'
 import {WORDS} from '../../utils/word'
 import { isAutoAudio, getMonthStartIndex } from '../../utils/settings'
 import dayjs from "dayjs";

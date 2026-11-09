@@ -156,6 +156,24 @@ interface MoonAlcyoneConjunctionResult {
  */
 declare function getMoonAlcyoneConjunction(year?: number, options?: MoonAlcyoneConjunctionOptions): MoonAlcyoneConjunctionResult;
 
+/** 十二时辰对应时间段（每 2 小时一个时辰，子时从 23:00 开始） */
+declare const SHI_CHEN_TIME: string[][];
+type ShiChenInfo = {
+    yi: string[];
+    cn: string;
+};
+/**
+ * 获取具体时间对应的农历时辰（十二时辰）。
+ *
+ * @example
+ * getShiChen("2026-11-09 12:00"); // 午时
+ * getShiChen("2026-11-09 23:30"); // 子时（23:00 起算）
+ *
+ * @param date 具体日期时间字符串
+ * @returns 时辰信息
+ */
+declare const getShiChen: (date?: string) => ShiChenInfo;
+
 declare const XINGXIUM_MAP: string[][];
 interface XingxiuResult {
     /** 输入日期 */
@@ -205,4 +223,4 @@ declare const DIRECTION_CN: string[];
 /** 库版本号 */
 declare const VERSION = "0.1.0";
 
-export { DIRECTION, DIRECTION_CN, GAN, type HouseBuildLevel, JIA_ZI_60, JI_SHENG, KU_JIOR, LASE, MONTH_DARK, MONTH_DARK_CN, type MoonAlcyoneConjunctionOptions, type MoonAlcyoneConjunctionResult, type Result, VERSION, WU_XING, type WuXing, XINGXIUM_MAP, type XingxiuResult, YIN_YANG, type YearInfo, ZENG_TA, ZHI, ZODIAC, ZODIAC_CN, ZODIAC_TO_CN, ZODIAC_TO_YI, getGanZhiIndex, getHouseBuild, getJiSheng, getKujior, getLaSe, getMoonAlcyoneConjunction, getSuizhiXing, getTodayFortune, getWuXing, getXiDe, getXingxiu, getYearInfo, getYiAge, getYiDate, getYiTaBoo, getYinYang, getZeTa };
+export { DIRECTION, DIRECTION_CN, GAN, type HouseBuildLevel, JIA_ZI_60, JI_SHENG, KU_JIOR, LASE, MONTH_DARK, MONTH_DARK_CN, type MoonAlcyoneConjunctionOptions, type MoonAlcyoneConjunctionResult, type Result, SHI_CHEN_TIME, type ShiChenInfo, VERSION, WU_XING, type WuXing, XINGXIUM_MAP, type XingxiuResult, YIN_YANG, type YearInfo, ZENG_TA, ZHI, ZODIAC, ZODIAC_CN, ZODIAC_TO_CN, ZODIAC_TO_YI, getGanZhiIndex, getHouseBuild, getJiSheng, getKujior, getLaSe, getMoonAlcyoneConjunction, getShiChen, getSuizhiXing, getTodayFortune, getWuXing, getXiDe, getXingxiu, getYearInfo, getYiAge, getYiDate, getYiTaBoo, getYinYang, getZeTa };
