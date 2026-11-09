@@ -28,12 +28,8 @@
     </view>
   </view>
 
-  <view class="card daily-word">
-    <text class="section-label">今日宜忌</text>
-    <text class="daily-title"> <text>{{todayFortune.taboo[0]}}</text> , {{todayFortune.taboo[1]}}</text>
-    <text class="daily-desc">{{todayFortune.tabooFull}}</text>
-  </view>
-  <view class="section-block">
+
+  <!-- <view class="section-block">
     <view class="section-head">
       <text class="section-title">推荐助手</text>
       <text class="section-link">全部助手</text>
@@ -60,95 +56,7 @@
         <text class="quick-label">收藏今日</text>
       </view>
     </view>
-  </view>
-
-  <view class="card detail-card">
-    <view class="section-head">
-      <text class="section-title">今日彝历详情</text>
-      <text class="section-link">术语说明</text>
-    </view>
-    <view class="detail-grid">
-      <view class="detail-item">
-        <view class="detail-left">
-          <text class="detail-yi">ꄤꁨꌺ</text>
-          <text class="detail-label">塔博惹</text>
-        </view>
-        <view class="detail-val">
-          <view class="detail-yi">{{yiDate.tabooSon[0]}}</view>
-          <view class="detail-label">{{yiDate.tabooSon[1]}}</view>
-        </view>
-      </view>
-      <view class="detail-item">
-        <view class="detail-left">
-          <text class="detail-yi">ꈐꐡ</text>
-          <text class="detail-label">库觉</text>
-        </view>
-        <view class="detail-val">
-          <view class="detail-yi">{{kuJior[0]}}</view>
-          <view class="detail-label">{{kuJior[1]}}</view>
-        </view>
-      </view>
-      <view class="detail-item">
-        <view class="detail-left">
-          <text class="detail-yi">ꆿꌋ</text>
-          <text class="detail-label">狼色</text>
-        </view>
-        <view class="detail-val">
-          <view class="detail-yi">{{laSe[0]}}</view>
-          <view class="detail-label">{{laSe[1]}}</view>
-        </view>
-      </view>
-
-      <view class="detail-item">
-        <view class="detail-left">
-          <text class="detail-yi">ꍀꌋ</text>
-          <text class="detail-label">日色</text>
-        </view>
-        <view class="detail-val">
-          <view class="detail-yi">{{xingxiu.yi}}</view>
-          <view class="detail-label">{{xingxiu.cn}}</view>
-        </view>
-      </view>
-      <view class="detail-item">
-        <view class="detail-left">
-          <text class="detail-yi">ꃅꌋꋠꑍ</text>
-          <text class="detail-label">木色则尼</text>
-        </view>
-        <view class="detail-val">
-          <view class="detail-yi">{{zeta[0]}}</view>
-          <view class="detail-label">{{zeta[1]}}</view>
-        </view>
-      </view>
-      <view class="detail-item">
-        <view class="detail-left">
-          <text class="detail-yi">ꄤꁨꀋꃀ</text>
-          <text class="detail-label">母塔博</text>
-        </view>
-        <view class="detail-val">
-          <view class="detail-yi">{{yiDate.tabooMon[0]}}</view>
-          <view class="detail-label">{{yiDate.tabooMon[1]}}</view>
-        </view>
-      </view>
-      <view class="detail-item">
-        <view class="detail-left">
-          <text class="detail-yi">ꄤꁨꀋꀮ</text>
-          <text class="detail-label">公塔博</text>
-        </view>
-        <view class="detail-val">
-          <view class="detail-yi">{{yiDate.tabooFat[0]}}</view>
-          <view class="detail-label">{{yiDate.tabooFat[1]}}</view>
-        </view>
-      </view>
-      <view class="detail-item">
-        <view class="detail-left">
-          <text class="detail-yi">ꈎꏸ</text>
-          <text class="detail-label">值星</text>
-        </view>
-        <view class="detail-val">
-          <view class="detail-yi">{{yearInfo.suizhiXing[0]}}</view>
-          <view class="detail-label">{{yearInfo.suizhiXing[1]}}</view>
-        </view>
-      </view>
-    </view>
-  </view>
+  </view> -->
+  <daily-fortune fortune="{{todayFortune}}" />
+  <yi-detail title="今日彝历详情" items="{{detailItems}}" />
 </layout>

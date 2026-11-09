@@ -1,0 +1,84 @@
+/* components/yi-detail/yi-detail.wxss */
+
+.yd-card {
+  background: var(--paper);
+  border: 2rpx solid var(--line);
+  border-radius: 36rpx;
+  padding: 30rpx;
+  box-shadow: 0 10rpx 30rpx rgba(45, 28, 15, 0.045);
+  margin-top: 24rpx;
+  padding-bottom: 0;
+  margin-bottom: 40rpx;
+
+  .yd-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .yd-title {
+      font-size: 32rpx;
+      font-weight: bold;
+    }
+
+    .yd-link {
+      color: var(--fire);
+      font-size: 22rpx;
+    }
+  }
+
+  .yd-grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 24rpx -30rpx 0;
+    border-top: 2rpx solid var(--line);
+
+    .yd-item {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24rpx;
+      box-sizing: border-box;
+      border-bottom: 2rpx solid var(--line);
+
+      &:nth-child(odd) {
+        border-right: 2rpx solid var(--line);
+      }
+
+      .yd-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6rpx;
+
+        .yd-yi {
+          font-weight: 800;
+          font-size: 38rpx;
+        }
+
+        .yd-label {
+          color: var(--muted);
+          font-size: 22rpx;
+          font-weight: normal;
+        }
+      }
+
+      .yd-val {
+        color: var(--fire);
+        font-weight: bold;
+        text-align: center;
+        font-size: 28rpx;
+
+        .yd-yi {
+          font-weight: 800;
+          font-size: 38rpx;
+        }
+
+        .yd-label {
+          font-size: 22rpx;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+}

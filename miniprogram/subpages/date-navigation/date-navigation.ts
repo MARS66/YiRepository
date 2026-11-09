@@ -37,6 +37,7 @@ Page({
    */
   data: {
     solarDate: '',
+    showDateSheet: false,
     dateText: '',
     yearText: '',
     monthText: '',
@@ -147,10 +148,25 @@ Page({
   },
 
   /**
-   * picker 选择任意日期
+   * 打开日期选择弹层
    */
-  onDateChange(e: WechatMiniprogram.CustomEvent) {
-    this.selectDate(e.detail.value)
+  openDateSheet() {
+    this.setData({ showDateSheet: true })
+  },
+
+  /**
+   * 关闭日期选择弹层
+   */
+  closeDateSheet() {
+    this.setData({ showDateSheet: false })
+  },
+
+  /**
+   * 日期选择弹层确认：展示选中日期的彝历信息
+   */
+  onDateConfirm(e: WechatMiniprogram.CustomEvent<{ date: string }>) {
+    this.setData({ showDateSheet: false })
+    this.selectDate(e.detail.date)
   },
 
   /**

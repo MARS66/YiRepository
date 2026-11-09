@@ -1,0 +1,6 @@
+<!--components/daily-fortune/daily-fortune.wxml-->
+<view class="df-card" wx:if="{{fortune.taboo && fortune.taboo.length}}" bindtap="onTap">
+  <text class="df-label">{{title}}</text>
+  <text class="df-title"> <text>{{fortune.taboo[0]}}</text> , {{fortune.taboo[1]}}</text>
+  <text class="df-desc">{{fortune.tabooFull}}</text>
+</view>

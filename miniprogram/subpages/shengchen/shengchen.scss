@@ -137,25 +137,6 @@
   }
 }
 
-/* 出生日期滚轮 */
-.date-picker-wrap {
-  padding: 12rpx 0 0;
-
-  .date-picker-view {
-    width: 100%;
-    height: 440rpx;
-
-    .date-col-item {
-      height: 88rpx;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30rpx;
-      color: var(--coal);
-    }
-  }
-}
-
 /* 查询按钮 */
 .calc-btn {
   height: 92rpx;

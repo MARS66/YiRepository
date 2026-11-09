@@ -31,11 +31,6 @@ const SHICHENS: ShichenOption[] = [
   { name: '亥时', range: '21:00-23:00', time: '22:00' }
 ]
 
-/** 数字补零 */
-function pad2(n: number): string {
-  return String(n).padStart(2, '0')
-}
-
 /** 当前农历年 */
 function currentLunarYear(): number {
   return Lunar.fromDate(new Date()).getYear()
@@ -58,9 +53,7 @@ Page({
     motherAge: 0,
     motherBirthYear: 0,
     motherMeta: '',
-    years: [] as number[],
-    months: [] as number[],
-    days: [] as number[],
+    minBirthYear: 1900,
     birthDate: '',
     birthDateText: '',
     birthShichenIndex: -1,
@@ -73,7 +66,6 @@ Page({
     draftAges: [] as number[],
     draftCanSave: false,
     showDateSheet: false,
-    draftDateValue: [0, 0, 0] as number[],
     showTimeSheet: false,
     draftShichenIndex: -1
   },
@@ -82,12 +74,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    const months: number[] = []
-    for (let m = 1; m <= 12; m++) months.push(m)
     this.setData({
-      zodiacs: ZODIAC_CN.map((cn, index) => ({ cn, yi: ZODIAC[index] })),
-      years: this.buildYears(),
-      months
+      zodiacs: ZODIAC_CN.map((cn, index) => ({ cn, yi: ZODIAC[index] }))
     })
   },
 
@@ -95,18 +83,6 @@ Page({
   agesOf(zodiacIndex: number): number[] {
     if (zodiacIndex < 0) return []
     return getYiAge(ZODIAC_CN[zodiacIndex])
-  },
-
-  /** 某年某月的天数（month 为 1-12） */
-  daysInMonth(year: number, month: number): number {
-    return new Date(year, month, 0).getDate()
-  },
-
-  /** 构建某年某月的日数组 */
-  buildDays(year: number, month: number): number[] {
-    const days: number[] = []
-    for (let d = 1; d <= this.daysInMonth(year, month); d++) days.push(d)
-    return days
   },
 
   /** 四项条件是否齐备（含出生日期晚于母亲出生年份 10 年的约束） */
@@ -127,16 +103,6 @@ Page({
     }
     const birthYear = Number(birthDate.split('-')[0])
     return motherBirthYear <= 0 || birthYear >= motherBirthYear + 10
-  },
-
-  /** 出生日期可选年份：从母亲出生年份后 10 年起，到今年 */
-  buildYears(): number[] {
-    const { motherBirthYear } = this.data
-    const minYear = motherBirthYear > 0 ? Math.max(1900, motherBirthYear + 10) : 1900
-    const currentYear = new Date().getFullYear()
-    const years: number[] = []
-    for (let y = minYear; y <= currentYear; y++) years.push(y)
-    return years
   },
 
   /** 打开母亲信息弹层 */
@@ -192,33 +158,15 @@ Page({
       motherZodiacIndex: draftZodiacIndex,
       motherAge: draftAge,
       motherBirthYear,
+      minBirthYear: motherBirthYear > 0 ? Math.max(1900, motherBirthYear + 10) : 1900,
       motherMeta: `${ZODIAC[draftZodiacIndex]} ${ZODIAC_CN[draftZodiacIndex]}属 · ${draftAge}岁 · ${motherBirthYear}年生`,
       canQuery: this.readyToQuery(draftZodiacIndex, draftAge, motherBirthYear, birthDate, birthTime)
     })
   },
 
-  /** 打开出生日期弹层：限定可选年份（晚于母亲出生年份 10 年），未选则今天 */
+  /** 打开出生日期弹层：可选年份由 date-picker 组件按 minBirthYear 限制 */
   openDateSheet() {
-    const { birthDate } = this.data
-    const years = this.buildYears()
-    const now = new Date()
-    let y = now.getFullYear()
-    let m = now.getMonth() + 1
-    let d = now.getDate()
-    if (birthDate) {
-      const parts = birthDate.split('-').map(Number)
-      y = parts[0]
-      m = parts[1]
-      d = parts[2]
-    }
-    if (y < years[0]) y = years[0]
-    if (y > years[years.length - 1]) y = years[years.length - 1]
-    this.setData({
-      showDateSheet: true,
-      years,
-      draftDateValue: [years.indexOf(y), m - 1, Math.min(d, this.daysInMonth(y, m)) - 1],
-      days: this.buildDays(y, m)
-    })
+    this.setData({ showDateSheet: true })
   },
 
   /** 关闭出生日期弹层 */
@@ -226,32 +174,15 @@ Page({
     this.setData({ showDateSheet: false })
   },
 
-  /** 弹层内滚动年/月/日：年或月变化时按实际天数刷新日列 */
-  onDraftDateChange(e: WechatMiniprogram.CustomEvent<{ value: number[] }>) {
-    const value = (e.detail.value || []).map(Number)
-    const prev = this.data.draftDateValue
-    const changed = value[0] !== prev[0] || value[1] !== prev[1]
-    const days = changed
-      ? this.buildDays(this.data.years[value[0]], value[1] + 1)
-      : this.data.days
-    this.setData({
-      draftDateValue: [value[0], value[1], Math.min(value[2], days.length - 1)],
-      days
-    })
-  },
-
   /** 确认出生日期 */
-  confirmDate() {
-    const { draftDateValue, years, motherZodiacIndex, motherAge, motherBirthYear, birthTime } = this.data
-    const [yi, mi, di] = draftDateValue
-    const y = years[yi]
-    const m = mi + 1
-    const d = di + 1
-    const birthDate = `${y}-${pad2(m)}-${pad2(d)}`
+  onDateConfirm(e: WechatMiniprogram.CustomEvent<{ date: string }>) {
+    const birthDate = e.detail.date
+    const parts = birthDate.split('-').map(Number)
+    const { motherZodiacIndex, motherAge, motherBirthYear, birthTime } = this.data
     this.setData({
       showDateSheet: false,
       birthDate,
-      birthDateText: `${y}年${m}月${d}日`,
+      birthDateText: `${parts[0]}年${parts[1]}月${parts[2]}日`,
       canQuery: this.readyToQuery(motherZodiacIndex, motherAge, motherBirthYear, birthDate, birthTime)
     })
   },

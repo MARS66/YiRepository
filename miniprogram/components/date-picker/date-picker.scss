@@ -1,0 +1,142 @@
+/* components/date-picker/date-picker.wxss */
+
+@keyframes dp-sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes dp-mask-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.dp-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(20, 16, 12, 0.5);
+  animation: dp-mask-in 0.2s ease both;
+}
+
+.dp-sheet {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border-radius: 40rpx 40rpx 0 0;
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -12rpx 40rpx rgba(0, 0, 0, 0.18);
+  animation: dp-sheet-up 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.dp-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 32rpx 32rpx 20rpx;
+  border-bottom: 2rpx solid var(--line);
+
+  .dp-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 6rpx;
+
+    .dp-eyebrow {
+      font-size: 18rpx;
+      letter-spacing: 4rpx;
+      color: var(--gold);
+    }
+
+    .dp-title {
+      font-size: 34rpx;
+      font-weight: bold;
+      color: var(--coal);
+    }
+  }
+
+  .dp-close {
+    width: 56rpx;
+    height: 56rpx;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30rpx;
+    color: var(--muted);
+    background: var(--soft);
+  }
+}
+
+.dp-body {
+  padding: 12rpx 32rpx 0;
+
+  .dp-picker-view {
+    width: 100%;
+    height: 440rpx;
+
+    .dp-col-item {
+      height: 88rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30rpx;
+      color: var(--coal);
+    }
+  }
+}
+
+.dp-actions {
+  display: flex;
+  gap: 16rpx;
+  padding: 20rpx 32rpx 24rpx;
+  border-top: 2rpx solid var(--line);
+  background: var(--paper);
+
+  .dp-btn {
+    height: 80rpx;
+    border-radius: 12rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28rpx;
+    font-weight: bold;
+    line-height: 1;
+    margin: 0;
+
+    &::after {
+      border: none;
+    }
+
+    &.ghost {
+      width: 170rpx;
+      flex-shrink: 0;
+      background: var(--soft);
+      color: var(--coal);
+      border: 2rpx solid var(--line);
+    }
+
+    &.primary {
+      flex: 1;
+      background: linear-gradient(135deg, #79211c, #b74d36);
+      color: #fffdf7;
+      box-shadow: 0 8rpx 20rpx rgba(156, 45, 37, 0.24);
+    }
+  }
+}
+
+.dp-btn-hover {
+  opacity: 0.85;
+}

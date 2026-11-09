@@ -15,6 +15,14 @@ const CH_MONTHS = [ '一' , '二' , '三' , '四' , '五' , '六' , '七' , '八
 /** 首页是否已完成首次渲染（用于区分首次自动播放与切回tab） */
 let pageReady = false
 
+/** 彝历详情术语项：{ yi: 彝文, cn: 中文, valueYi: 值彝文, valueCn: 值中文 } */
+interface DetailItem {
+  yi: string
+  cn: string
+  valueYi: string
+  valueCn: string
+}
+
 Page({
 
   /**
@@ -23,11 +31,7 @@ Page({
   data: {
     yiDate:{} as any,
     todayFortune:{},
-    kuJior:[] as string[],
-    xingxiu:{} as any,
-    yearInfo:{} as any,
-    laSe:[] as string[],
-    zeta:[] as string[],
+    detailItems: [] as DetailItem[],
     solarDate: '',
     date: '01',
     month: '九月',
@@ -50,6 +54,11 @@ Page({
   },
   initPage(dataStr:string){
     const yiDate=getYiTaBoo(dataStr, this.data.monthStart)
+    const kuJior = getKujior().kujior as string[]
+    const laSe = getLaSe(dataStr)
+    const zeta = getZeTa(dataStr)
+    const yearInfo = getYearInfo(dataStr)
+    const xingxiu = getXingxiu(dataStr)
      this.setData({
       yiDate,
       solarDate: dataStr,
@@ -58,12 +67,17 @@ Page({
       date: dayjs(dataStr).date().toString(),
       year: dayjs(dataStr).year().toString(),
       monthEn: dayjs(dataStr).format('MMMM').toUpperCase(),
-      kuJior:getKujior().kujior as string[],
-      laSe:getLaSe(dataStr),
-      zeta:getZeTa(dataStr),
-      yearInfo:getYearInfo(dataStr),
-      xingxiu:getXingxiu(dataStr),
-      todayFortune: getTodayFortune(yiDate.dayZodiacIndex)
+      todayFortune: getTodayFortune(yiDate.dayZodiacIndex),
+      detailItems: [
+        { yi: 'ꄤꁨꌺ', cn: '塔博惹', valueYi: yiDate.tabooSon[0], valueCn: yiDate.tabooSon[1] },
+        { yi: 'ꈐꐡ', cn: '库觉', valueYi: kuJior[0], valueCn: kuJior[1] },
+        { yi: 'ꆿꌋ', cn: '狼色', valueYi: laSe[0], valueCn: laSe[1] },
+        { yi: 'ꍀꌋ', cn: '日色', valueYi: xingxiu.yi, valueCn: xingxiu.cn },
+        { yi: 'ꃅꌋꋠꑍ', cn: '木色则尼', valueYi: zeta[0], valueCn: zeta[1] },
+        { yi: 'ꄤꁨꀋꃀ', cn: '母塔博', valueYi: yiDate.tabooMon[0], valueCn: yiDate.tabooMon[1] },
+        { yi: 'ꄤꁨꀋꀮ', cn: '公塔博', valueYi: yiDate.tabooFat[0], valueCn: yiDate.tabooFat[1] },
+        { yi: 'ꈎꏸ', cn: '值星', valueYi: yearInfo.suizhiXing[0], valueCn: yearInfo.suizhiXing[1] }
+      ]
     })
   },
   /**

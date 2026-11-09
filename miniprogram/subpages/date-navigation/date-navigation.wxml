@@ -5,12 +5,12 @@
   <view class="card toolbar">
     <view class="toolbar-main">
       <view class="nav-btn" hover-class="nav-btn-hover" bindtap="prevDay">‹</view>
-      <picker class="date-picker" mode="date" value="{{solarDate}}" start="1900-01-01" end="2100-12-31" bindchange="onDateChange">
+      <view class="date-picker" hover-class="nav-btn-hover" bindtap="openDateSheet">
         <view class="date-block">
           <view class="date-main">{{yearText}}年{{monthText}}月{{dateText}}日</view>
           <view class="date-sub">{{lunarText}} · 星期{{weekday}}<text class="pick-hint"> 点选 ▾</text></view>
         </view>
-      </picker>
+      </view>
       <view class="nav-btn" hover-class="nav-btn-hover" bindtap="nextDay">›</view>
     </view>
   </view>
@@ -195,4 +195,16 @@
       </view>
     </view>
   </view>
+
+  <!-- 日期选择弹层（通用日期选择组件） -->
+  <date-picker
+    visible="{{showDateSheet}}"
+    value="{{solarDate}}"
+    min-year="1900"
+    max-year="2100"
+    title="选择日期"
+    eyebrow="DATE"
+    bindconfirm="onDateConfirm"
+    bindcancel="closeDateSheet"
+  />
 </layout>

@@ -7,6 +7,7 @@ import {
   getZeTa,
   getShiChen,
   getYearInfo,
+  getXingxiu,
   getXiDe
 } from '../../../plugin/yi-lunar/index'
 import { Solar } from '../../libs/lunar-typescript'
@@ -48,18 +49,16 @@ Page({
     kuJior: {} as YiPair,
     laSe: {} as YiPair,
     zeta: {} as YiPair,
+    shichen: {} as YiPair,
+    shichenName: '',
+    xiDe: [] as string[],
+    yearInfo: {} as {
+      suizhiXing: string[]
+      yinYang: string[]
+      wuXing: string[]
+      jiSheng: string[]
+    },
     lunarText: '',
-    yearGanZhi: '',
-    shengXiao: '',
-    dayGanZhi: '',
-    dayNaYin: '',
-    timeGanZhi: '',
-    jieQi: '',
-    yueXiang: '',
-    xiu: '',
-    chongSha: '',
-    lunarYi: '',
-    lunarJi: '',
     pillars: [] as Pillar[],
     baziText: ''
   },
@@ -90,11 +89,8 @@ Page({
     // 农历与八字：按出生日期时刻换算，年月以立春、节气为界（EightChar 内部使用交节精确算法）
     const lunar = Solar.fromYmdHms(y, m, d, hh, mm, 0).getLunar()
     const ec = lunar.getEightChar()
-    const chongDesc = lunar.getDayChongDesc()
-    const shichen = getShiChen(date+' '+time)
-    console.log(shichen)
+    const shichen = getShiChen(`${date} ${time}`)
     const yearInfo = getYearInfo(date)
-    const chongSha = chongDesc ? `${chongDesc} 煞${lunar.getDaySha()}` : `煞${lunar.getDaySha()}`
 
     this.setData({
       yiYear: pair(yi.year),
@@ -104,24 +100,15 @@ Page({
       tabooSon: pair(yi.tabooSon),
       tabooMon: pair(yi.tabooMon),
       tabooFat: pair(yi.tabooFat),
-      shichen:pair(shichen.yi),
-      xiDe:getXiDe(y  - this.data.motherBirthYear,true),
-      yearInfo:yearInfo,
+      shichen: pair(shichen.yi),
+      shichenName: shichen.cn,
+      xingxiu:getXingxiu(date),
+      xiDe: getXiDe(y - this.data.motherBirthYear + 1, true),
+      yearInfo,
       kuJior: { yi: ku[0], cn: ku[1] },
       laSe: { yi: laSe[0], cn: laSe[1] },
       zeta: { yi: zeta[0], cn: zeta[1] },
       lunarText: `农历${lunar.getYearInChinese()}年${lunar.getMonthInChinese()}月${lunar.getDayInChinese()}`,
-      yearGanZhi: lunar.getYearInGanZhi(),
-      shengXiao: lunar.getYearShengXiao(),
-      dayGanZhi: lunar.getDayInGanZhi(),
-      dayNaYin: lunar.getDayNaYin(),
-      timeGanZhi: lunar.getTimeInGanZhi(),
-      jieQi: lunar.getJieQi() || '无',
-      yueXiang: lunar.getYueXiang(),
-      xiu: `${lunar.getXiu()}宿`,
-      chongSha,
-      lunarYi: lunar.getDayYi().slice(0, 4).join(' · '),
-      lunarJi: lunar.getDayJi().slice(0, 4).join(' · '),
       pillars: [
         { label: '年柱', ganZhi: ec.getYear(), wuXing: ec.getYearWuXing(), naYin: ec.getYearNaYin() },
         { label: '月柱', ganZhi: ec.getMonth(), wuXing: ec.getMonthWuXing(), naYin: ec.getMonthNaYin() },

@@ -1,5 +1,5 @@
 // pages/calendar/calendar.ts
-import { getYiTaBoo, getKujior,getLaSe,getZeTa,
+import { getYiTaBoo, getKujior,getLaSe,getZeTa,getYearInfo,
   getXingxiu,getTodayFortune } from '../../plugin/yi-lunar/index'
 import { getFestival } from 'chinese-workday'
 import { isAutoAudio, getMonthStartIndex } from '../../utils/settings'
@@ -82,6 +82,15 @@ type CalendarMark = {
 let lastRange: Array<{ year: number; month: number; day: number }> = [];
 /** 当前选中日期：周末红色标记需避开选中日期，以保留选中态白字 */
 let checkedDate: { year: number; month: number; day: number } | null = null;
+
+/** 彝历详情术语项：{ yi: 彝文, cn: 中文, valueYi: 值彝文, valueCn: 值中文 } */
+interface DetailItem {
+  yi: string;
+  cn: string;
+  valueYi: string;
+  valueCn: string;
+}
+
 Page({
 
   /**
@@ -95,10 +104,7 @@ Page({
     calendarStyle: 'width: 100%; --wc-primary: #9c2d25; --wc-bg-light: #fffdf7; --wc-title-color-light: #201d18; --wc-title-size: 40rpx; --wc-week-color-light: #70695e; --wc-week-size: 20rpx; --wc-date-color-light: #201d18; --wc-date-size: 32rpx; --wc-today-color-light: #9c2d25; --wc-solar-color-light: #aa7b2d; --wc-mark-color-light: #201d18ca; --wc-mark-size: 22rpx; --wc-corner-size: 12rpx; --wc-checked-bg-light: #9c2d25; --wc-checked-color-light: #ffffff; --wc-checked-mark-color-light: #ffffff; --wc-checked-today-bg-light: #9c2d25; --wc-checked-today-color-light: #ffffff; --wc-bg-dark: #2b2923; --wc-title-color-dark: #f6f0e4; --wc-week-color-dark: #bdb4a6; --wc-date-color-dark: #f6f0e4; --wc-today-color-dark: #de6659; --wc-solar-color-dark: #dab061; --wc-mark-color-dark: #f6f0e4; --wc-checked-bg-dark: #de6659; --wc-checked-color-dark: #ffffff; --wc-checked-mark-color-dark: #ffffff; --wc-checked-today-bg-dark: #de6659; --wc-checked-today-color-dark: #ffffff; --wc-annual-bottom-height: 0px;',
     marks: [] as Array<CalendarMark>,
     selectedLabel: '9月1日 · 星期二',
-    laSe:{},
-    zeta:{},
-    xingxiu:{},
-    kuJior: {},
+    detailItems: [] as DetailItem[],
     relativeDay: '今天',
     solarDate: '',
     monthStart: 0
@@ -216,22 +222,34 @@ Page({
     const d = new Date(checked.year, checked.month - 1, checked.day);
     const today = new Date();
     const yiDate = getYiTaBoo(fmt(d), this.data.monthStart);
+    const kuJior = getKujior().kujior as string[];
+    const laSe = getLaSe(fmt(d)) as string[];
+    const zeta = getZeTa(fmt(d)) as string[];
+    const xingxiu = getXingxiu(fmt(d)) as any;
     // 按自然日计算与今天的差值（忽略时分秒），得出「今天 / N天前 / N天后」
     const d0 = new Date(d.getFullYear(), d.getMonth(), d.getDate());
     const today0 = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     const diff = Math.round((d0.getTime() - today0.getTime()) / 86400000);
     const relativeDay = diff === 0 ? '今天' : diff < 0 ? `${-diff}天前` : `${diff}天后`;
     const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
+    const yearInfo = getYearInfo(fmt(d));
     this.setData({
       yiDate,
       todayFortune: getTodayFortune(yiDate.dayZodiacIndex),
-      kuJior:getKujior().kujior,
-      laSe:getLaSe(fmt(d)),
-      zeta:getZeTa(fmt(d)),
-      xingxiu:getXingxiu(fmt(d)),
       selectedLabel: `${checked.year}年${checked.month}月${checked.day}日 · 星期${weekdays[d.getDay()]}`,
       relativeDay,
-      solarDate: fmt(d)
+      solarDate: fmt(d),
+      detailItems: [
+        { yi: 'ꈐꐡ', cn: '库觉', valueYi: kuJior[0], valueCn: kuJior[1] },
+        { yi: 'ꍀꌋ', cn: '日色', valueYi: xingxiu.yi, valueCn: xingxiu.cn },
+        { yi: 'ꆿꌋ', cn: '狼色', valueYi: laSe[0], valueCn: laSe[1] },
+        { yi: 'ꃅꌋꋠꑍ', cn: '木色则尼', valueYi: zeta[0], valueCn: zeta[1] },
+        { yi: 'ꄤꁨꌺ', cn: '塔博惹', valueYi: yiDate.tabooSon[0], valueCn: yiDate.tabooSon[1] },
+        { yi: 'ꄤꁨꀋꃀ', cn: '塔博阿莫', valueYi: yiDate.tabooMon[0], valueCn: yiDate.tabooMon[1] },
+        { yi: 'ꄤꁨꀋꀮ', cn: '塔博阿补', valueYi: yiDate.tabooFat[0], valueCn: yiDate.tabooFat[1] },
+
+        { yi: 'ꈎꏸ', cn: '值星', valueYi: yearInfo.suizhiXing[0], valueCn: yearInfo.suizhiXing[1] }
+      ]
     });
   },
 

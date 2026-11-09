@@ -1,6 +1,8 @@
 {
   "usingComponents": {
     "calendar": "@lspriv/wx-calendar",
-    "audio-btn": "/components/audio-btn/audio-btn"
+    "audio-btn": "/components/audio-btn/audio-btn",
+    "daily-fortune": "/components/daily-fortune/daily-fortune",
+    "yi-detail": "/components/yi-detail/yi-detail"
   }
 }

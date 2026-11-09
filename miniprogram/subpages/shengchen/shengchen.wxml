@@ -101,42 +101,16 @@
     </view>
   </view>
 
-  <!-- 出生日期弹层 -->
-  <view class="editor-mask" wx:if="{{showDateSheet}}" bindtap="closeDateSheet" catchtouchmove="noop">
-    <view class="editor-sheet" catchtap="noop">
-      <view class="editor-head">
-        <view class="editor-titles">
-          <text class="editor-eyebrow">BIRTH</text>
-          <text class="editor-title">出生日期</text>
-        </view>
-        <text class="editor-close" hover-class="btn-hover" bindtap="closeDateSheet">✕</text>
-      </view>
-
-      <view class="date-picker-wrap">
-        <picker-view
-          class="date-picker-view"
-          value="{{draftDateValue}}"
-          indicator-style="height: 88rpx;"
-          bindchange="onDraftDateChange"
-        >
-          <picker-view-column>
-            <view class="date-col-item" wx:for="{{years}}" wx:key="*this">{{item}}年</view>
-          </picker-view-column>
-          <picker-view-column>
-            <view class="date-col-item" wx:for="{{months}}" wx:key="*this">{{item}}月</view>
-          </picker-view-column>
-          <picker-view-column>
-            <view class="date-col-item" wx:for="{{days}}" wx:key="*this">{{item}}日</view>
-          </picker-view-column>
-        </picker-view>
-      </view>
-
-      <view class="editor-actions">
-        <button class="editor-btn ghost" hover-class="btn-hover" bindtap="closeDateSheet">取消</button>
-        <button class="editor-btn primary" hover-class="btn-hover" bindtap="confirmDate">确定</button>
-      </view>
-    </view>
-  </view>
+  <!-- 出生日期弹层（通用日期选择组件） -->
+  <date-picker
+    visible="{{showDateSheet}}"
+    value="{{birthDate}}"
+    min-year="{{minBirthYear}}"
+    title="出生日期"
+    eyebrow="BIRTH"
+    bindconfirm="onDateConfirm"
+    bindcancel="closeDateSheet"
+  />
 
   <!-- 出生时辰弹层 -->
   <view class="editor-mask" wx:if="{{showTimeSheet}}" bindtap="closeTimeSheet" catchtouchmove="noop">

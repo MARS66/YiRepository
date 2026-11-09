@@ -1,0 +1,36 @@
+<!--components/date-picker/date-picker.wxml-->
+<view class="dp-mask" wx:if="{{visible}}" bindtap="onCancel" catchtouchmove="noop">
+  <view class="dp-sheet" catchtap="noop">
+    <view class="dp-head">
+      <view class="dp-titles">
+        <text class="dp-eyebrow">{{eyebrow}}</text>
+        <text class="dp-title">{{title}}</text>
+      </view>
+      <text class="dp-close" hover-class="dp-btn-hover" bindtap="onCancel">✕</text>
+    </view>
+
+    <view class="dp-body">
+      <picker-view
+        class="dp-picker-view"
+        value="{{pickerValue}}"
+        indicator-style="height: 88rpx;"
+        bindchange="onPickerChange"
+      >
+        <picker-view-column>
+          <view class="dp-col-item" wx:for="{{years}}" wx:key="*this">{{item}}年</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view class="dp-col-item" wx:for="{{months}}" wx:key="*this">{{item}}月</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view class="dp-col-item" wx:for="{{days}}" wx:key="*this">{{item}}日</view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+
+    <view class="dp-actions">
+      <button class="dp-btn ghost" hover-class="dp-btn-hover" bindtap="onCancel">取消</button>
+      <button class="dp-btn primary" hover-class="dp-btn-hover" bindtap="onConfirm">确定</button>
+    </view>
+  </view>
+</view>

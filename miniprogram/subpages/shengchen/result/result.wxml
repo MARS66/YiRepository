@@ -1,82 +1,141 @@
 <!--subpages/shengchen/result/result.wxml-->
 <layout title="生辰查询" eyebrow="YI LIFE · SHENGCHEN">
 
-  <!-- 彝历生辰 -->
-  <view class="card">
+  <!-- 生辰名片 -->
+  <view class="hero">
+    <view class="hero-deco deco-a"></view>
+    <view class="hero-deco deco-b"></view>
+    <view class="hero-top">
+      <text class="hero-eyebrow">彝历 · 生辰名片 · SHENGCHEN</text>
+    </view>
+    <view class="hero-yi">{{yiYear.yi}}ꈎ · {{yiMonth.yi}}ꆪ · {{yiDay.yi}}ꑍ · {{yiMoon.yi}}ꑍ · {{shichen.yi}}</view>
+    <view class="hero-cn">{{yiYear.cn}}年 · {{yiMonth.cn}}月 · {{yiDay.cn}}日 · {{yiMoon.cn}}日 · {{shichen.cn}}</view>
+  </view>
+
+  <!-- 彝历属性 -->
+  <view class="section">
     <view class="sec-head">
-      <text class="section-title">彝历 · 生辰</text>
-      <text class="section-link">YI CALENDAR</text>
+      <text class="section-title">彝历·生辰属性</text>
+      <text class="section-link">YI PROFILE</text>
     </view>
-    <view class="yi-hero">
-      <text class="yi-line">{{yiYear.yi}}ꈎ · {{yiMonth.yi}}ꆪ · {{yiDay.yi}}ꑍ · {{yiMoon.yi}}ꑍ · {{shichen.yi}}</text>
-      <text class="cn-line">{{yiYear.cn}}年 · {{yiMonth.cn}}月 · {{yiDay.cn}}日 · {{yiMoon.cn}}日 · {{shichen.cn}}</text>
-    </view>
-    <view class="term-grid">
-      <view class="term-item">
-        <view class="term-key"><text class="key-yi">ꑞꅉ</text><text class="key-cn">方位</text></view>
-        <view class="term-val"><text class="val-yi">{{xiDe[0]}}</text><text class="val-cn">{{xiDe[1]}}</text></view>
+    <view class="attr-grid">
+      <view class="attr-item">
+        <view class="attr-head">
+          <text class="attr-dot"></text>
+          <text class="attr-yi">ꑞꅉ</text>
+          <text class="attr-cn">方位</text>
+        </view>
+        <view class="attr-val"><text class="val-yi">{{xiDe[0]}}</text><text class="val-cn">{{xiDe[1]}}</text></view>
       </view>
-      <view class="term-item">
-        <view class="term-key"><text class="key-yi">ꇗꊖ</text><text class="key-cn">五行</text></view>
-        <view class="term-val"><text class="val-yi">{{yearInfo.wuXing[0]}}</text><text class="val-cn">{{yearInfo.wuXing[1]}}</text></view>
+      <view class="attr-item">
+        <view class="attr-head">
+          <text class="attr-dot"></text>
+          <text class="attr-yi">ꇗꊖ</text>
+          <text class="attr-cn">五行</text>
+        </view>
+        <view class="attr-val"><text class="val-yi">{{yearInfo.wuXing[0]}}</text><text class="val-cn">{{yearInfo.wuXing[1]}}</text></view>
       </view>
-      <view class="term-item">
-        <view class="term-key"><text class="key-yi">ꈋꈌ</text><text class="key-cn">阴阳</text></view>
-        <view class="term-val"><text class="val-yi">{{yearInfo.yinYang[0]}}</text><text class="val-cn">{{yearInfo.yinYang[1]}}</text></view>
+      <view class="attr-item">
+        <view class="attr-head">
+          <text class="attr-dot"></text>
+          <text class="attr-yi">ꈋꈌ</text>
+          <text class="attr-cn">阴阳</text>
+        </view>
+        <view class="attr-val"><text class="val-yi">{{yearInfo.yinYang[0]}}</text><text class="val-cn">{{yearInfo.yinYang[1]}}</text></view>
       </view>
-      <view class="term-item">
-        <view class="term-key"><text class="key-yi">ꐰꇑ</text><text class="key-cn">吉神</text></view>
-        <view class="term-val"><text class="val-yi">{{yearInfo.jiSheng[0]}}</text><text class="val-cn">{{yearInfo.jiSheng[1]}}</text></view>
+      <view class="attr-item">
+        <view class="attr-head">
+          <text class="attr-dot"></text>
+          <text class="attr-yi">ꐰꇑ</text>
+          <text class="attr-cn">吉神</text>
+        </view>
+        <view class="attr-val"><text class="val-yi">{{yearInfo.jiSheng[0]}}</text><text class="val-cn">{{yearInfo.jiSheng[1]}}</text></view>
       </view>
-      <view class="term-item">
-        <view class="term-key"><text class="key-yi">ꈎꏸ</text><text class="key-cn">岁星</text></view>
-        <view class="term-val"><text class="val-yi">{{yearInfo.suizhiXing[0]}}</text><text class="val-cn">{{yearInfo.suizhiXing[0]}}</text></view>
+      <view class="attr-item">
+        <view class="attr-head">
+          <text class="attr-dot"></text>
+          <text class="attr-yi">ꈎꏸ</text>
+          <text class="attr-cn">岁星</text>
+        </view>
+        <view class="attr-val"><text class="val-yi">{{yearInfo.suizhiXing[0]}}</text><text class="val-cn">{{yearInfo.suizhiXing[1]}}</text></view>
       </view>
-      <view class="term-item">
-        <view class="term-key"><text class="key-yi">ꄤꁨꌺ</text><text class="key-cn">塔博惹</text></view>
-        <view class="term-val"><text class="val-yi">{{tabooSon.yi}}</text><text class="val-cn">{{tabooSon.cn}}</text></view>
+      <view class="attr-item">
+        <view class="attr-head">
+          <text class="attr-dot"></text>
+          <text class="attr-yi">ꄤꁨꌺ</text>
+          <text class="attr-cn">塔博惹</text>
+        </view>
+        <view class="attr-val"><text class="val-yi">{{tabooSon.yi}}</text><text class="val-cn">{{tabooSon.cn}}</text></view>
       </view>
-      <view class="term-item">
-        <view class="term-key"><text class="key-yi">ꄤꁨꀋꃀ</text><text class="key-cn">母塔博</text></view>
-        <view class="term-val"><text class="val-yi">{{tabooMon.yi}}</text><text class="val-cn">{{tabooMon.cn}}</text></view>
+      <view class="attr-item">
+        <view class="attr-head">
+          <text class="attr-dot"></text>
+          <text class="attr-yi">ꄤꁨꀋꃀ</text>
+          <text class="attr-cn">母塔博</text>
+        </view>
+        <view class="attr-val"><text class="val-yi">{{tabooMon.yi}}</text><text class="val-cn">{{tabooMon.cn}}</text></view>
       </view>
-      <view class="term-item">
-        <view class="term-key"><text class="key-yi">ꄤꁨꀋꀮ</text><text class="key-cn">公塔博</text></view>
-        <view class="term-val"><text class="val-yi">{{tabooFat.yi}}</text><text class="val-cn">{{tabooFat.cn}}</text></view>
+      <view class="attr-item">
+        <view class="attr-head">
+          <text class="attr-dot"></text>
+          <text class="attr-yi">ꄤꁨꀋꀮ</text>
+          <text class="attr-cn">公塔博</text>
+        </view>
+        <view class="attr-val"><text class="val-yi">{{tabooFat.yi}}</text><text class="val-cn">{{tabooFat.cn}}</text></view>
       </view>
-      <view class="term-item">
-        <view class="term-key"><text class="key-yi">ꈐꐡ</text><text class="key-cn">库觉</text></view>
-        <view class="term-val"><text class="val-yi">{{kuJior.yi}}</text><text class="val-cn">{{kuJior.cn}}</text></view>
+      <view class="attr-item">
+        <view class="attr-head">
+          <text class="attr-dot"></text>
+          <text class="attr-yi">ꈐꐡ</text>
+          <text class="attr-cn">库觉</text>
+        </view>
+        <view class="attr-val"><text class="val-yi">{{kuJior.yi}}</text><text class="val-cn">{{kuJior.cn}}</text></view>
       </view>
-      <view class="term-item">
-        <view class="term-key"><text class="key-yi">ꆿꌋ</text><text class="key-cn">狼色</text></view>
-        <view class="term-val"><text class="val-yi">{{laSe.yi}}</text><text class="val-cn">{{laSe.cn}}</text></view>
+      <view class="attr-item">
+        <view class="attr-head">
+          <text class="attr-dot"></text>
+          <text class="attr-yi">ꍀꌋ</text>
+          <text class="attr-cn">日色</text>
+        </view>
+        <view class="attr-val"><text class="val-yi">{{xingxiu.yi}}</text><text class="val-cn">{{xingxiu.cn}}</text></view>
       </view>
-      <view class="term-item">
-        <view class="term-key"><text class="key-yi">ꃅꌋꋠꑍ</text><text class="key-cn">木色则尼</text></view>
-        <view class="term-val"><text class="val-yi">{{zeta.yi}}</text><text class="val-cn">{{zeta.cn}}</text></view>
+      <view class="attr-item">
+        <view class="attr-head">
+          <text class="attr-dot"></text>
+          <text class="attr-yi">ꆿꌋ</text>
+          <text class="attr-cn">狼色</text>
+        </view>
+        <view class="attr-val"><text class="val-yi">{{laSe.yi}}</text><text class="val-cn">{{laSe.cn}}</text></view>
+      </view>
+      <view class="attr-item">
+        <view class="attr-head">
+          <text class="attr-dot"></text>
+          <text class="attr-yi">ꃅꌋꋠꑍ</text>
+          <text class="attr-cn">木色则尼</text>
+        </view>
+        <view class="attr-val"><text class="val-yi">{{zeta.yi}}</text><text class="val-cn">{{zeta.cn}}</text></view>
       </view>
     </view>
   </view>
-
   <!-- 生辰八字 -->
-  <view class="card">
+  <view class="section">
     <view class="sec-head">
-      <text class="section-title">农历 · 生辰八字</text>
+      <text class="section-title">农历·生辰八字</text>
       <text class="section-link">BAZI</text>
     </view>
-    <view class="pillar-grid">
-      <view class="pillar-item" wx:for="{{pillars}}" wx:key="label">
+    <view class="pillar-strip">
+      <view class="pillar" wx:for="{{pillars}}" wx:key="label">
         <text class="pillar-label">{{item.label}}</text>
         <text class="pillar-gz">{{item.ganZhi}}</text>
         <text class="pillar-sub">{{item.wuXing}} · {{item.naYin}}</text>
       </view>
     </view>
-    <view class="bazi-line">
-      <view>{{lunarText}}</view>
-      <view>{{baziText}}</view>
-      </view>
+    <view class="bazi-tag">
+      <text class="bazi-line">{{baziText}}</text>
+      <text class="bazi-lunar">{{lunarText}}</text>
+    </view>
   </view>
+
 
   <text class="page-foot">结果仅供文化参考 · YI LIFE</text>
 </layout>
