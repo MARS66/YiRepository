@@ -16,6 +16,8 @@ export * from "./components/getYearInfo";
 export { getGanZhiIndex, GAN, ZHI, JIA_ZI_60 } from "./components/getYearInfo";
 export type { WuXing, HouseBuildLevel } from "./components/getHouseBuild";
 export { getMoonAlcyoneConjunction } from "./components/getMoonAlcyoneConjunction";
+export { getShiChen, SHI_CHEN_TIME } from "./components/getShiChen";
+export type { ShiChenInfo } from "./components/getShiChen";
 export type {
   MoonAlcyoneConjunctionOptions,
   MoonAlcyoneConjunctionResult,
