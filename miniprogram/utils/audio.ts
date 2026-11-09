@@ -1,5 +1,6 @@
 /**
- * 音频播放工具：单字读音 + 彝语词组合成播放（多字去静音拼接）。
+ * 音频播放工具：单字读音 + 彝语词组合成播放
+ * （多字拼接：去静音 + 音量归一 + 词间停顿 + 边界淡入淡出，使拼接自然连贯）。
  * 供学习/回顾/详情等页面共用。
  */
 import { wordAudioMap } from './wordAudioMap'
@@ -9,6 +10,9 @@ let phraseAudioCtx: WechatMiniprogram.InnerAudioContext | null = null
 let phraseBusy = false
 const BaseUrl = 'https://wordsound.yixueyanjiu.com/liangshan_'
 const phraseCache = new Map<string, string>()
+const PHRASE_GAP_MS = 60 // 词间固定自然停顿，避免字与字贴得过紧
+const PHRASE_FADE_MS = 25 // 词首尾淡入淡出，消除拼接接缝的波形突变
+const PHRASE_PEAK = 0.9 // 峰值归一化目标，统一各单字音量
 
 
 
@@ -196,6 +200,33 @@ function encodeWav(channel: Float32Array, sampleRate: number): ArrayBuffer {
   return buffer
 }
 
+function normalizePeak(channel: Float32Array, target: number): Float32Array {
+  let peak = 0
+  for (let i = 0; i < channel.length; i++) {
+    const v = Math.abs(channel[i])
+    if (v > peak) peak = v
+  }
+  if (peak <= 0) return channel
+  const gain = target / peak
+  if (gain > 0.999 && gain < 1.001) return channel
+  const out = new Float32Array(channel.length)
+  for (let i = 0; i < channel.length; i++) out[i] = channel[i] * gain
+  return out
+}
+
+function applyEdgeFades(channel: Float32Array, sampleRate: number, fadeMs: number): Float32Array {
+  const n = Math.min(channel.length, Math.round((fadeMs / 1000) * sampleRate))
+  if (n < 2) return channel
+  const out = channel.slice()
+  for (let i = 0; i < n; i++) {
+    const t = i / (n - 1)
+    const g = t * t
+    out[i] *= g
+    out[out.length - 1 - i] *= g
+  }
+  return out
+}
+
 function writeFileBuffer(filePath: string, data: ArrayBuffer): Promise<string> {
   return new Promise((resolve, reject) => {
     wx.getFileSystemManager().writeFile({
@@ -213,17 +244,24 @@ function buildTrimmedWav(audio: WebAudioContextLike, urls: string[]): Promise<st
     .then((buffers) => Promise.all(buffers.map((b) => decodeSegment(audio, b))))
     .then((segments) => {
       const sampleRate = segments[0].sampleRate
-      const trimmed = segments.map((s) => {
-        const ch = resampleTo(s.channel, s.sampleRate, sampleRate)
-        return trimSilence(ch, sampleRate)
+      const gapLen = Math.round((PHRASE_GAP_MS / 1000) * sampleRate)
+      const parts = segments.map((s) => {
+        let ch = resampleTo(s.channel, s.sampleRate, sampleRate)
+        ch = trimSilence(ch, sampleRate)
+        ch = normalizePeak(ch, PHRASE_PEAK)
+        return applyEdgeFades(ch, sampleRate, PHRASE_FADE_MS)
       })
       let total = 0
-      for (const t of trimmed) total += t.length
+      for (let i = 0; i < parts.length; i++) {
+        total += parts[i].length
+        if (i < parts.length - 1) total += gapLen
+      }
       const merged = new Float32Array(total)
       let offset = 0
-      for (const t of trimmed) {
-        merged.set(t, offset)
-        offset += t.length
+      for (let i = 0; i < parts.length; i++) {
+        merged.set(parts[i], offset)
+        offset += parts[i].length
+        if (i < parts.length - 1) offset += gapLen
       }
       return writeFileBuffer(`${wx.env.USER_DATA_PATH}/phrase_${Date.now()}.wav`, encodeWav(merged, sampleRate))
     })
@@ -272,9 +310,19 @@ function shuffle<T>(arr: T[]): T[] {
   return a
 }
 
+/** 点击轻震反馈：播放前先给用户触觉反馈，避免处理延迟期间重复点击 */
+function vibrateFeedback(): void {
+  try {
+    wx.vibrateShort({ type: 'light', fail: () => {} })
+  } catch (e) {
+    /* 低版本基础库不支持震动时忽略 */
+  }
+}
+
 /** 播放单个文字读音 */
 export function playWordAudio(url: string): void {
   if (!url) return
+  vibrateFeedback()
   playUrl(url)
 }
 
@@ -286,6 +334,7 @@ export function playPhraseAudio(yi: string): void {
     if (u) urls.push(`${BaseUrl}${u}.mp3`)
   }
   if (urls.length === 0) return
+  vibrateFeedback()
   if (urls.length === 1) {
     playUrl(urls[0])
     return
@@ -296,5 +345,5 @@ export function playPhraseAudio(yi: string): void {
 /** 从词组列表中随机抽取一条 */
 export function pickPhrases(phrases: { yi: string; han: string }[] | undefined): { yi: string; han: string } | null {
   if (!phrases || phrases.length === 0) return null
-  return shuffle(phrases)[0] ?? null
+  return shuffle(phrases)[0] || null
 }

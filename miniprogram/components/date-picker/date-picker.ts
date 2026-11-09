@@ -1,6 +1,6 @@
 // components/date-picker/date-picker.ts
 // 通用日期选择组件：底部弹出年/月/日三列滚轮选择器，
-// 供生辰查询、彝历查询等页面共用。页面通过 visible 控制开关，
+// 供生辰推算、彝历查询等页面共用。页面通过 visible 控制开关，
 // 确认后触发 confirm 事件（detail.date 为 YYYY-MM-DD），取消触发 cancel。
 /** 数字补零 */
 function pad2(n: number): string {

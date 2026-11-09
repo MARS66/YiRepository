@@ -29,6 +29,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isDark: (wx.getStorageSync('yi-theme') || 'dark') === 'dark',
     yiDate:{} as any,
     todayFortune:{},
     detailItems: [] as DetailItem[],
@@ -42,6 +43,13 @@ Page({
     badFortune: { main: '争执 · 仓促', sub: '重大动土 · 远行' },
     cloudWords: WORDS.slice(0, 90).split(' ') as string[],
     monthStart: 0
+  },
+
+  /**
+   * 主题切换（由 layout 组件触发）：同步 isDark，用于 page-meta 背景色
+   */
+  onThemeChange(e: WechatMiniprogram.CustomEvent) {
+    this.setData({ isDark: e.detail.isDark })
   },
 
   /**
@@ -87,6 +95,12 @@ Page({
     if (!isAutoAudio()) return
     const audio = this.selectComponent('#page-audio')
     if (audio && this.data.solarDate) audio.playDate(this.data.solarDate)
+  },
+  /**
+   * 跳转「我的」月份设置（彝历起始月因区域而异）
+   */
+  goMonthSetting() {
+    wx.navigateTo({ url: '/subpages/mine/month/month' })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

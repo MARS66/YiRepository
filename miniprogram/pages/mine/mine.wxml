@@ -1,4 +1,5 @@
 <!--pages/mine/mine.wxml-->
+<page-meta background-color="{{isDark ? '#181713' : '#f8f4eb'}}" page-style="background-color: {{isDark ? '#181713' : '#f8f4eb'}};" />
 <layout needBack="{{false}}">
 
   <!-- 概览 -->

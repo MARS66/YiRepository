@@ -1,4 +1,5 @@
 <!--pages/zeri/result/result.wxml-->
+<page-meta background-color="{{isDark ? '#181713' : '#f8f4eb'}}" page-style="background-color: {{isDark ? '#181713' : '#f8f4eb'}};" />
 <layout title="{{eventLabel}}" eyebrow="YI LIFE · ZERI" bind:themechange="onThemeChange">
 
   <!-- 日历 -->

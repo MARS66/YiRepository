@@ -122,7 +122,7 @@ Page({
     this.eventKey = event.key
     this.monthStart = getMonthStartIndex()
     this.setData({
-      isDark: wx.getStorageSync('yi-theme') === 'dark',
+      isDark: (wx.getStorageSync('yi-theme') || 'dark') === 'dark',
       eventLabel: event.label,
       personMeta: `${ZODIAC_CN[zodiacIndex]}属 · ${age}岁 · ${gender === 'female' ? '女' : '男'}`
     })

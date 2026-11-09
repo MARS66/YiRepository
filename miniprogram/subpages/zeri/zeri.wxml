@@ -1,14 +1,6 @@
 <!--pages/zeri/zeri.wxml-->
-<layout title="择日测算" eyebrow="YI LIFE · ZERI">
-
-  <!-- 功能说明 -->
-  <view class="intro">
-    <view class="intro-glow"></view>
-    <text class="intro-eyebrow">{{eventLabel}}吉日</text>
-    <view class="intro-title">{{eventDesc}}</view>
-    <view class="intro-desc">填写{{personLabel}}的属相{{showGender ? '、岁数与性别' : '与岁数'}}，查看近期日子的综合吉凶</view>
-  </view>
-
+<page-meta background-color="{{isDark ? '#181713' : '#f8f4eb'}}" page-style="background-color: {{isDark ? '#181713' : '#f8f4eb'}};" />
+<layout title="{{eventLabel}}吉日测算" eyebrow="YI LIFE · ZERI">
   <!-- 测算信息 -->
   <view class="person-card">
     <view class="person-row" hover-class="btn-hover" bindtap="openPerson">

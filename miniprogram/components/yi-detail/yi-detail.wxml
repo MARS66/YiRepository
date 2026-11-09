@@ -2,15 +2,15 @@
 <view class="yd-card">
   <view class="yd-head">
     <text class="yd-title">{{title}}</text>
-    <text class="yd-link">术语说明</text>
+    <view class="yd-icon iconfont icon-shengyinkai">彝文可点读</view>
   </view>
   <view class="yd-grid">
-    <view class="yd-item" wx:for="{{items}}" wx:key="cn" bindtap="onTapItem" data-item="{{item}}">
-      <view class="yd-left">
+    <view class="yd-item" wx:for="{{items}}" wx:key="cn" bindtap="onTapItem" >
+      <view class="yd-left" bindtap="onTapItem" data-item="{{item.yi}}">
         <text class="yd-yi">{{item.yi}}</text>
         <text class="yd-label">{{item.cn}}</text>
       </view>
-      <view class="yd-val">
+      <view class="yd-val" bindtap="onTapItem" data-item="{{item.valueYi}}">
         <view class="yd-yi">{{item.valueYi}}</view>
         <view class="yd-label">{{item.valueCn}}</view>
       </view>

@@ -1,4 +1,5 @@
 <!--pages/mine/audio/audio.wxml-->
+<page-meta background-color="{{isDark ? '#181713' : '#f8f4eb'}}" page-style="background-color: {{isDark ? '#181713' : '#f8f4eb'}};" />
 <layout title="音频设置" eyebrow="MINE · AUDIO">
 
   <view class="mode-card {{audioMode === 'auto' ? 'active' : ''}}" hover-class="btn-hover" data-mode="auto" bindtap="onAudioMode">

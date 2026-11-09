@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "yi-detail": "/components/yi-detail/yi-detail",
+    "audio-btn": "/components/audio-btn/audio-btn"
+  }
 }

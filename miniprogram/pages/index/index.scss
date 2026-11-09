@@ -121,6 +121,7 @@
   .date-line,
   .yi-text,
   .muted,
+  .region-note,
   .solar {
     position: relative;
     z-index: 2;
@@ -200,6 +201,31 @@
     display: block;
     opacity: 0.9;
     text-shadow: 0 0 20rpx rgba(53, 12, 10, 0.5);
+  }
+
+  .region-note {
+    display: flex;
+    align-items: center;
+    gap: 10rpx;
+    margin-top: 14rpx;
+    padding: 14rpx 18rpx;
+    border-radius: 16rpx;
+    background: rgba(255, 253, 247, 0.12);
+    border: 2rpx solid rgba(255, 253, 247, 0.22);
+    box-sizing: border-box;
+
+    .region-mark {
+      color: #f1d89d;
+      font-size: 26rpx;
+      font-weight: 600;
+    }
+
+    .region-text {
+      color: #eadfd3;
+      font-size: 22rpx;
+      line-height: 1.5;
+      letter-spacing: 1rpx;
+    }
   }
 
   .solar {

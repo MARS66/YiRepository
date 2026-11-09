@@ -38,7 +38,7 @@ Component({
    */
   lifetimes: {
     attached() {
-      this.applyTheme(wx.getStorageSync(THEME_KEY)==='dark', false)
+      this.applyTheme((wx.getStorageSync(THEME_KEY) || 'dark') === 'dark', false)
     }
   },
 
@@ -47,7 +47,7 @@ Component({
    */
   pageLifetimes: {
     show() {
-      const storedDark = wx.getStorageSync(THEME_KEY)==='dark'
+      const storedDark = (wx.getStorageSync(THEME_KEY) || 'dark') === 'dark'
       if (storedDark !== this.data.isDark) {
         this.applyTheme(storedDark, false)
       }
@@ -78,6 +78,10 @@ Component({
       wx.setTabBarStyle(isDark
         ? { backgroundColor: '#2b2923', color: '#9e9588', selectedColor: '#9c2d25', borderStyle: 'black' }
         : { backgroundColor: '#fffdf7', color: '#70695e', selectedColor: '#9c2d25', borderStyle: 'white' })
+      // 同步状态栏文字颜色，避免深色背景下黑字不可见
+      wx.setNavigationBarColor({ frontColor: isDark ? '#ffffff' : '#000000', backgroundColor: isDark ? '#2b2923' : '#fffdf7' })
+      // 同步窗口背景色：页面容器背景已设为透明，转场/下拉时透出的是这一层
+      wx.setBackgroundColor({ backgroundColor: isDark ? '#181713' : '#f8f4eb' })
       this.triggerEvent('themechange', { isDark })
       if (showTip) {
         wx.showToast({ title: isDark ? '已切换深色模式' : '已切换浅色模式', icon: 'none' })

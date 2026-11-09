@@ -4,23 +4,23 @@
   height: 100%;
   overflow: hidden;
   background: var(--cream);
-  &.theme-dark{
-    --coal:#f6f0e4;
-    --coal2:#eb7569;
-    --fire:#de6659;
-    --fire2:#eb7569;
-    --gold:#dab061;
-    --cream:#181713;
-    --paper:#2b2923;
-    --muted:#bdb4a6;
-    --line:#49443a;
-    --green:#77b68b;
-    --shadow:0 12px 30px rgba(0,0,0,.22);
-    --soft:#343128;
-    --accent:#dab061;
-    --accent-border:#dab06166;
-    --good-bg:#304137;
-    --bad-bg:#482b28;
+  &.theme-light{
+    --coal:#201d18;
+    --coal2:#79211c;
+    --fire:#9c2d25;
+    --fire2:#9c2d25;
+    --gold:#aa7b2d;
+    --cream:#f8f4eb;
+    --paper:#fffdf7;
+    --muted:#70695e;
+    --line:#ddd3c2;
+    --green:#427553;
+    --shadow:0 10px 26px rgba(32,29,24,.08);
+    --soft:#f2eadb;
+    --accent:#79211c;
+    --accent-border:#aa7b2d66;
+    --good-bg:#e8f0e9;
+    --bad-bg:#f4e3df;
   }
   .navi-bar{
     background-color: var(--cream);
@@ -55,18 +55,14 @@
     }
   }
   .ghost{
-    background: #f2eadb;
-    color: #201d18;
+    background: var(--soft);
+    color: var(--coal);
     display: flex;
     border-radius: 50%;
     align-items: center;
     justify-content: center;
     position: fixed;
     z-index: 1000;
-  }
-  &.theme-dark .ghost{
-    background: #343128;
-    color: #f6f0e4;
   }
   .container{
     padding: 28rpx;

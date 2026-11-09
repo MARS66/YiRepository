@@ -36,6 +36,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isDark: (wx.getStorageSync('yi-theme') || 'dark') === 'dark',
     solarDate: '',
     showDateSheet: false,
     dateText: '',
@@ -74,6 +75,13 @@ Page({
     posYinGui: '',
     baZi: '',
     monthStart: 0
+  },
+
+  /**
+   * 主题切换（由 layout 组件触发）：同步 isDark，用于 page-meta 背景色
+   */
+  onThemeChange(e: WechatMiniprogram.CustomEvent) {
+    this.setData({ isDark: e.detail.isDark })
   },
 
   /**

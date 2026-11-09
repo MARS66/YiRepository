@@ -1,5 +1,5 @@
 // subpages/shengchen/shengchen.ts
-// 生辰查询：填写母亲属相与岁数、查询人出生日期与出生时辰，
+// 生辰推算：填写母亲属相与岁数、查询人出生日期与出生时辰，
 // 点击「查询生辰」进入结果页查看出生时的彝历、农历与八字。
 import { ZODIAC, ZODIAC_CN, getYiAge } from '../../plugin/yi-lunar/index'
 import { Lunar } from '../libs/lunar-typescript'
@@ -47,6 +47,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isDark: (wx.getStorageSync('yi-theme') || 'dark') === 'dark',
     zodiacs: [] as ZodiacOption[],
     shichens: SHICHENS,
     motherZodiacIndex: -1,
@@ -68,6 +69,13 @@ Page({
     showDateSheet: false,
     showTimeSheet: false,
     draftShichenIndex: -1
+  },
+
+  /**
+   * 主题切换（由 layout 组件触发）：同步 isDark，用于 page-meta 背景色
+   */
+  onThemeChange(e: WechatMiniprogram.CustomEvent) {
+    this.setData({ isDark: e.detail.isDark })
   },
 
   /**
@@ -249,7 +257,7 @@ Page({
    */
   onShareAppMessage() {
     return {
-      title: '彝族生活日历 · 生辰查询',
+      title: '彝族生活日历 · 生辰推算',
       path: '/pages/index/index'
     }
   }

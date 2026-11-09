@@ -92,6 +92,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isDark: (wx.getStorageSync('yi-theme') || 'dark') === 'dark',
     zodiacs: [] as ZodiacOption[],
     directions: [] as DirectionOption[],
     quickNames: QUICK_NAMES,
@@ -102,6 +103,13 @@ Page({
     form: emptyForm(),
     ageOptions: [] as AgeOption[],
     canSave: false
+  },
+
+  /**
+   * 主题切换（由 layout 组件触发）：同步 isDark，用于 page-meta 背景色
+   */
+  onThemeChange(e: WechatMiniprogram.CustomEvent) {
+    this.setData({ isDark: e.detail.isDark })
   },
 
   /**

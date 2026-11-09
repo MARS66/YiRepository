@@ -1,4 +1,5 @@
 /* components/yi-detail/yi-detail.wxss */
+@import '../../static/icon/index.scss';
 
 .yd-card {
   background: var(--paper);
@@ -18,6 +19,10 @@
     .yd-title {
       font-size: 32rpx;
       font-weight: bold;
+    }
+
+    .yd-icon {
+      font-size: 24rpx;
     }
 
     .yd-link {

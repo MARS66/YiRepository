@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/assistant/assistant",
     "pages/index/index",
+    "pages/assistant/assistant",
     "pages/calendar/calendar",
     "pages/mine/mine"
   ],
@@ -33,8 +33,8 @@
     }
   },
   "tabBar": {
-    "backgroundColor": "#fffdf7",
-    "color": "#70695e",
+    "backgroundColor": "#2b2923",
+    "color": "#9e9588",
     "selectedColor": "#9c2d25",
     "list": [
       {
@@ -65,9 +65,13 @@
   },
   "window": {
     "navigationStyle": "custom",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#181713",
+    "backgroundColorContent": "#00000000",
+    "backgroundTextStyle": "light"
   },
   "style": "v2",
+  "defaultLanguage": "zh_CN",
   "rendererOptions": {
     "skyline": {
       "defaultDisplayBlock": true,

@@ -1,4 +1,5 @@
 <!--pages/index/index.wxml-->
+<page-meta background-color="{{isDark ? '#181713' : '#f8f4eb'}}" page-style="background-color: {{isDark ? '#181713' : '#f8f4eb'}};" />
 <layout needBack="{{false}}" >
   <view class="hero">
     <!-- 彝文词云装饰背景 -->
@@ -21,10 +22,15 @@
     </view>
     <text class="yi-text">{{yiDate.year[0]}}ꈎ·{{yiDate.month[0]}}ꆪ·{{yiDate.day[0]}}ꑍ·{{yiDate.dayMoon[0]}}ꑍ</text>
     <text class="muted light">{{yiDate.year[1]}}年·{{yiDate.month[1]}}月·{{yiDate.day[1]}}日·{{yiDate.dayMoon[1]}}日</text>
+ 
     <view class="solar">
       <text>{{year}}</text>
       <view class="solar-divider"></view>
       <text>{{monthEn}}</text>
+    </view>   
+    <view class="region-note" bindtap="goMonthSetting">
+      <text class="region-mark">※</text>
+      <text class="region-text">因区域差异彝历月份不尽相同，可在「我的」中调整</text>
     </view>
   </view>
 

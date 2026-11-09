@@ -32,7 +32,7 @@ export const ASSISTANT_TOOLS: AssistantTool[] = [
   }, 
   {
     icon: '生',
-    label: '生辰查询',
+    label: '生辰推算',
     desc: '公历日期查询彝历生辰、黄历生辰',
     suggest: true,
     url: '/subpages/shengchen/shengchen',

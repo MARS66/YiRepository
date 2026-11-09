@@ -37,6 +37,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isDark: (wx.getStorageSync('yi-theme') || 'dark') === 'dark',
     eventKey: ZERI_EVENTS[0].key as ZeriEventKey,
     eventIcon: ZERI_EVENTS[0].icon,
     eventLabel: ZERI_EVENTS[0].label,
@@ -60,6 +61,13 @@ Page({
     draftGender: '',
     draftQuickId: '',
     draftCanSave: false
+  },
+
+  /**
+   * 主题切换（由 layout 组件触发）：同步 isDark，用于 page-meta 背景色
+   */
+  onThemeChange(e: WechatMiniprogram.CustomEvent) {
+    this.setData({ isDark: e.detail.isDark })
   },
 
   /**

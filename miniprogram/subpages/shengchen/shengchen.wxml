@@ -1,14 +1,6 @@
 <!--subpages/shengchen/shengchen.wxml-->
-<layout title="生辰查询" eyebrow="YI LIFE · SHENGCHEN">
-
-  <!-- 功能说明 -->
-  <view class="intro">
-    <view class="intro-glow"></view>
-    <text class="intro-eyebrow">彝历生辰 · 农历生辰 · 八字</text>
-    <view class="intro-title">依出生日期时刻查询彝历生辰</view>
-    <view class="intro-desc">填写母亲属相与岁数、查询人出生年月日与出生时辰，查看出生时的彝历信息、农历信息与生辰八字</view>
-  </view>
-
+<page-meta background-color="{{isDark ? '#181713' : '#f8f4eb'}}" page-style="background-color: {{isDark ? '#181713' : '#f8f4eb'}};" />
+<layout title="生辰推算" eyebrow="YI LIFE · SHENGCHEN">
   <!-- 生辰信息 -->
   <view class="person-card">
     <view class="person-row" hover-class="btn-hover" bindtap="openMother">
@@ -40,7 +32,7 @@
   </view>
 
   <text class="page-tip">YI LIFE · 结果仅供文化参考</text>
-  <view class="calc-btn " hover-class="btn-hover" bindtap="startQuery">查询生辰</view>
+  <view class="calc-btn " hover-class="btn-hover" bindtap="startQuery">开始推算</view>
 
   <!-- 母亲信息弹层 -->
   <view class="editor-mask" wx:if="{{showEditor}}" bindtap="closeEditor" catchtouchmove="noop">

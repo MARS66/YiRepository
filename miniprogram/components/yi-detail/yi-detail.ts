@@ -32,9 +32,9 @@ Component({
   methods: {
     /** 点击术语项，播放彝语读音（yi + valueYi 拼成词组） */
     onTapItem(e: WechatMiniprogram.TouchEvent) {
-      const item = e.currentTarget.dataset.item as { yi?: string; valueYi?: string } | undefined
+      const item = e.currentTarget.dataset.item as string | undefined
       if (!item) return
-      playPhraseAudio(`${item.yi ?? ''}${item.valueYi ?? ''}`)
+      playPhraseAudio(item)
     }
   }
 })

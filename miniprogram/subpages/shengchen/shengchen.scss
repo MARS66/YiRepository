@@ -39,8 +39,11 @@
   }
 
   .intro-eyebrow {
+    width: 100%;
     font-size: 18rpx;
     letter-spacing: 4rpx;
+    padding-bottom: 10rpx;
+    text-align: center;
     color: #f3d9a4;
   }
 
@@ -55,7 +58,7 @@
     margin-top: 10rpx;
     font-size: 22rpx;
     line-height: 1.6;
-    color: rgba(255, 253, 247, 0.82);
+    color: rgba(255, 253, 247, 0.62);
   }
 }
 

@@ -267,7 +267,7 @@ Page({
    */
   onLoad() {
     this.setData({
-      isDark: wx.getStorageSync('yi-theme') === 'dark',
+      isDark: (wx.getStorageSync('yi-theme') || 'dark') === 'dark',
       monthStart: getMonthStartIndex()
     });
   },

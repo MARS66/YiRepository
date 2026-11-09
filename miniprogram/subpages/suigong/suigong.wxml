@@ -1,14 +1,6 @@
 <!--pages/suigong/suigong.wxml-->
+<page-meta background-color="{{isDark ? '#181713' : '#f8f4eb'}}" page-style="background-color: {{isDark ? '#181713' : '#f8f4eb'}};" />
 <layout title="西德推算" eyebrow="SUIGONG · XIDE">
-
-  <!-- 功能说明 -->
-  <view class="intro">
-    <view class="intro-glow"></view>
-    <text class="intro-eyebrow">永恒西德 · 今年西德</text>
-    <view class="intro-title">依母亲与本人岁数推算西德方位</view>
-    <view class="intro-desc">点击填写母亲与测算人的属相、岁数及性别即可推算西德方位</view>
-  </view>
-
   <!-- 人员信息 -->
   <view class="person-card">
     <view class="person-row" hover-class="btn-hover" bindtap="openMother">
@@ -30,7 +22,7 @@
     </view>
   </view>
   <text class="page-tip">按彝族毕摩方法推算 · 结果仅供文化参考</text>
-  <text class="page-foot">YI LIFE · 西德推算</text>
+  <text class="page-foot">YI LIFE · 结果仅供文化参考</text>
   <!-- 测算入口 -->
   <view class="calc-btn {{canCalc ? '' : 'disabled'}}" hover-class="btn-hover" bindtap="calculate">开始推算</view>
 
