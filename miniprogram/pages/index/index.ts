@@ -10,6 +10,7 @@ import {
 } from '../../plugin/yi-lunar/index'
 import {WORDS} from '../../utils/word'
 import { isAutoAudio, getMonthStartIndex } from '../../utils/settings'
+import { getNextFestival } from '../../utils/festival'
 import dayjs from "dayjs";
 const CH_MONTHS = [ '一' , '二' , '三' , '四' , '五' , '六' , '七' , '八' , '九' , '十' , '十一' , '十二' ]
 /** 首页是否已完成首次渲染（用于区分首次自动播放与切回tab） */
@@ -21,6 +22,14 @@ interface DetailItem {
   cn: string
   valueYi: string
   valueCn: string
+}
+
+/** 节日倒计时展示项 */
+interface FestivalCountdownView {
+  name: string
+  days: number
+  label: string
+  isToday: boolean
 }
 
 Page({
@@ -42,7 +51,8 @@ Page({
     goodFortune: { main: '会友 · 出行', sub: '整理家宅 · 祈福' },
     badFortune: { main: '争执 · 仓促', sub: '重大动土 · 远行' },
     cloudWords: WORDS.slice(0, 90).split(' ') as string[],
-    monthStart: 0
+    monthStart: 0,
+    festivalCountdown: null as FestivalCountdownView | null
   },
 
   /**
@@ -67,7 +77,9 @@ Page({
     const zeta = getZeTa(dataStr)
     const yearInfo = getYearInfo(dataStr)
     const xingxiu = getXingxiu(dataStr)
-     this.setData({
+    // 节日倒计时：距下一次节日还有多少天（0 表示今天即是节日）
+    const countdown = getNextFestival(dataStr)
+    this.setData({
       yiDate,
       solarDate: dataStr,
       month: (dayjs(dataStr).month() + 1).toString(),
@@ -76,6 +88,12 @@ Page({
       year: dayjs(dataStr).year().toString(),
       monthEn: dayjs(dataStr).format('MMMM').toUpperCase(),
       todayFortune: getTodayFortune(yiDate.dayZodiacIndex),
+      festivalCountdown: countdown ? {
+        name: countdown.name,
+        days: countdown.days,
+        label: countdown.days === 0 ? `今日${countdown.name}` : `距${countdown.name}还有`,
+        isToday: countdown.days === 0
+      } : null,
       detailItems: [
         { yi: 'ꄤꁨꌺ', cn: '塔博惹', valueYi: yiDate.tabooSon[0], valueCn: yiDate.tabooSon[1] },
         { yi: 'ꈐꐡ', cn: '库觉', valueYi: kuJior[0], valueCn: kuJior[1] },
@@ -122,8 +140,6 @@ Page({
       this.setData({ monthStart })
       if (this.data.solarDate) this.initPage(this.data.solarDate)
     }
-    // 切回首页时按设置自动播放
-    if (pageReady) this.playDailyAudio()
   },
 
   /**
@@ -138,7 +154,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    
   },
 
   /**

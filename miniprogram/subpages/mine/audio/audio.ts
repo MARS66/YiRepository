@@ -8,7 +8,7 @@ Page({
    */
   data: {
     isDark: (wx.getStorageSync('yi-theme') || 'dark') === 'dark',
-    audioMode: 'manual' as AudioMode
+    audioMode: 'auto' as AudioMode
   },
 
   /**

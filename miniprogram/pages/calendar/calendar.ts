@@ -1,9 +1,9 @@
 // pages/calendar/calendar.ts
 import { getYiTaBoo, getKujior,getLaSe,getZeTa,getYearInfo,
-  getXingxiu,getTodayFortune } from '../../plugin/yi-lunar/index'
+  getXingxiu,getTodayFortune,getYiDate } from '../../plugin/yi-lunar/index'
 import { getFestival } from 'chinese-workday'
 import { isAutoAudio, getMonthStartIndex } from '../../utils/settings'
-
+import { playPhraseAudio } from '../../utils/audio'
 /**
  * 火把节起始日对照表：每年农历六月二十四对应的阳历月日（1900-2100）。
  * 由 lunar-typescript 预生成，避免整份农历库（约 415KB）被打入主包。
@@ -125,11 +125,9 @@ Page({
     this.updateSelected(e.detail.checked);
     // 自动播放：点选日期后立即播报该日彝历语音
     if (isAutoAudio()) {
-      // 等组件属性同步完成后再播放，避免 date observer 把新播放停掉
-      wx.nextTick(() => {
-        const audio = this.selectComponent('#page-audio');
-        if (audio && this.data.solarDate) audio.playDate(this.data.solarDate);
-      });
+      const d = new Date(e.detail.checked.year, e.detail.checked.month - 1, e.detail.checked.day);
+      const y= getYiDate(fmt(d))
+      playPhraseAudio(y.day[0]+'ꑍ')
     }
   },
 

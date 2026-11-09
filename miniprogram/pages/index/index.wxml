@@ -16,8 +16,15 @@
       <text class="date-strong">{{date}}</text>
       <view class="date-meta">
         <text class="date-month">{{year}}</text>
-        <text class="date-month">{{month}}月</text>
-        <text class="date-weekday">星期{{weekday}}</text>
+        <text class="date-month">{{month}}月 <text class="date-weekday">星期{{weekday}}</text></text>
+        
+      </view>
+      <view class="countdown" wx:if="{{festivalCountdown}}">
+        <text class="countdown-label">{{festivalCountdown.label}}</text>
+        <view class="countdown-num">
+          <text class="countdown-days">{{festivalCountdown.isToday ? '今' : festivalCountdown.days}}</text>
+          <text class="countdown-unit">天</text>
+        </view>
       </view>
     </view>
     <text class="yi-text">{{yiDate.year[0]}}ꈎ·{{yiDate.month[0]}}ꆪ·{{yiDate.day[0]}}ꑍ·{{yiDate.dayMoon[0]}}ꑍ</text>

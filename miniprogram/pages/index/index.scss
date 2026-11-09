@@ -182,6 +182,47 @@
         text-shadow: 0 0 20rpx rgba(53, 12, 10, 0.5);
       }
     }
+
+    /* 距下一节日倒计时（靠右，填充卡片右侧空白） */
+    .countdown {
+      margin-left: auto;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8rpx;
+      padding: 16rpx 22rpx;
+      border-radius: 24rpx;
+      background: rgba(255, 253, 247, 0.12);
+      border: 2rpx solid rgba(255, 253, 247, 0.22);
+      box-sizing: border-box;
+
+      .countdown-label {
+        font-size: 20rpx;
+        color: #eadfd3;
+        letter-spacing: 1rpx;
+        white-space: nowrap;
+      }
+
+      .countdown-num {
+        display: flex;
+        align-items: baseline;
+
+        .countdown-days {
+          font-size: 52rpx;
+          font-weight: 800;
+          line-height: 1;
+          color: #f1d89d;
+          text-shadow: 0 0 20rpx rgba(53, 12, 10, 0.4);
+        }
+
+        .countdown-unit {
+          font-size: 22rpx;
+          color: #eadfd3;
+          margin-left: 6rpx;
+        }
+      }
+    }
   }
 
   .yi-text {

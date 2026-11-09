@@ -37,9 +37,9 @@ export function saveMembers(members: MemberRecord[]) {
   wx.setStorageSync(MEMBERS_KEY, members)
 }
 
-/** 音频播放模式，默认手动播放 */
+/** 音频播放模式，默认自动播放 */
 export function getAudioMode(): AudioMode {
-  return wx.getStorageSync(AUDIO_KEY) === 'auto' ? 'auto' : 'manual'
+  return wx.getStorageSync(AUDIO_KEY) === 'manual' ? 'manual' : 'auto'
 }
 
 /** 保存音频播放模式 */
@@ -49,7 +49,7 @@ export function setAudioMode(mode: AudioMode) {
 
 /** 是否自动播放 */
 export function isAutoAudio(): boolean {
-  return getAudioMode() === 'auto'
+  return getAudioMode()  === 'auto'
 }
 
 /** 彝历正月对应的属相下标，默认 6（马月为正月） */
