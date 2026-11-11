@@ -41,9 +41,9 @@ Page({
     eventKey: ZERI_EVENTS[0].key as ZeriEventKey,
     eventIcon: ZERI_EVENTS[0].icon,
     eventLabel: ZERI_EVENTS[0].label,
-    eventDesc: '依属相、岁数推算吉日',
+    eventDesc: '依属相、岁数选择吉日',
     /** 输入对象称谓：房屋修建填女主人，其余为测算人 */
-    personLabel: '测算人',
+    personLabel: '女主人',
     /** 是否需要选择性别：房屋修建的女主人固定为女，无需选择 */
     showGender: true,
     zodiacs: [] as ZodiacOption[],

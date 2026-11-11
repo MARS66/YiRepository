@@ -1,6 +1,6 @@
 <!--pages/zeri/zeri.wxml-->
 <page-meta background-color="{{isDark ? '#181713' : '#f8f4eb'}}" page-style="background-color: {{isDark ? '#181713' : '#f8f4eb'}};" />
-<layout title="{{eventLabel}}吉日测算" eyebrow="YI LIFE · ZERI">
+<layout title="{{eventLabel}}民俗" eyebrow="YI LIFE · ZERI">
   <!-- 测算信息 -->
   <view class="person-card">
     <view class="person-row" hover-class="btn-hover" bindtap="openPerson">
@@ -13,9 +13,8 @@
     </view>
   </view>
 
-  <text class="page-tip">岁数按当前年彝族虚岁算法自动换算 · 结果仅供文化参考</text>
-  <view class="calc-btn {{canCalc ? '' : 'disabled'}}" hover-class="btn-hover" bindtap="startCalc">开始推算</view>
-  <text class="page-foot">YI LIFE · 择日测算</text>
+  <view class="calc-btn {{canCalc ? '' : 'disabled'}}" hover-class="btn-hover" bindtap="startCalc">开始学习</view>
+  <text class="page-foot">YI LIFE · 彝历民俗</text>
 
   <!-- 人员信息弹层 -->
   <view class="editor-mask" wx:if="{{showEditor}}" bindtap="closeEditor" catchtouchmove="noop">

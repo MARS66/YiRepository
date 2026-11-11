@@ -282,7 +282,7 @@ Page({
    */
   onShareAppMessage() {
     return {
-      title: '彝族生活日历 · 西德测算',
+      title: '彝族生活日历 · 彝历民俗西德',
       path: '/pages/index/index'
     }
   }

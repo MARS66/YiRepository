@@ -6,6 +6,14 @@ import { getMonthStartIndex } from '../../utils/settings'
 
 const WEEKDAYS = ['日', '一', '二', '三', '四', '五', '六']
 
+/** 彝历详情术语项：{ yi: 彝文, cn: 中文, valueYi: 值彝文, valueCn: 值中文 } */
+interface DetailItem {
+  yi: string
+  cn: string
+  valueYi: string
+  valueCn: string
+}
+
 /** 格式化 Date → YYYY-MM-DD */
 function fmt(d: Date): string {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
@@ -48,10 +56,8 @@ Page({
     lunarText: '',
     jieQi: '',
     yiDate: {} as any,
+    detailItems: [] as DetailItem[],
     todayFortune: {} as any,
-    kuJior: [] as string[],
-    laSe: [] as string[],
-    zeta: [] as string[],
     yearGanZhi: '',
     shengXiao: '',
     dayGanZhi: '',
@@ -109,6 +115,19 @@ Page({
     const lunar = Lunar.fromDate(d)
     const festival = solarFestival || lunar.getFestivals()[0] || ''
 
+    // 彝历详情术语项
+    const kuJior = getKujior(dateStr).kujior as string[]
+    const laSe = getLaSe(dateStr)
+    const zeta = getZeTa(dateStr) || []
+    const detailItems: DetailItem[] = [
+      { yi: 'ꄤꁨꌺ', cn: '塔博惹', valueYi: yiDate.tabooSon[0], valueCn: yiDate.tabooSon[1] },
+      { yi: 'ꈐꐡ', cn: '库觉', valueYi: kuJior[0], valueCn: kuJior[1] },
+      { yi: 'ꆿꌋ', cn: '狼色', valueYi: laSe[0], valueCn: laSe[1] },
+      { yi: 'ꃅꌋꋠꑍ', cn: '木色则尼', valueYi: zeta[0], valueCn: zeta[1] },
+      { yi: 'ꄤꁨꀋꃀ', cn: '母塔博', valueYi: yiDate.tabooMon[0], valueCn: yiDate.tabooMon[1] },
+      { yi: 'ꄤꁨꀋꀮ', cn: '公塔博', valueYi: yiDate.tabooFat[0], valueCn: yiDate.tabooFat[1] }
+    ]
+
     // 农历 / 黄历信息
     const lunarText = `农历${lunar.getMonthInChinese()}月${lunar.getDayInChinese()}`
     const chongDesc = lunar.getDayChongDesc()
@@ -125,10 +144,8 @@ Page({
       lunarText,
       jieQi: lunar.getJieQi(),
       yiDate,
+      detailItems,
       todayFortune: getTodayFortune(yiDate.dayZodiacIndex),
-      kuJior: getKujior().kujior,
-      laSe: getLaSe(dateStr),
-      zeta: getZeTa(dateStr),
       yearGanZhi: lunar.getYearInGanZhi(),
       shengXiao: lunar.getYearShengXiao(),
       dayGanZhi: lunar.getDayInGanZhi(),

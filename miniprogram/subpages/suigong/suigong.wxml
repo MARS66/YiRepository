@@ -1,6 +1,6 @@
 <!--pages/suigong/suigong.wxml-->
 <page-meta background-color="{{isDark ? '#181713' : '#f8f4eb'}}" page-style="background-color: {{isDark ? '#181713' : '#f8f4eb'}};" />
-<layout title="西德推算" eyebrow="SUIGONG · XIDE">
+<layout title="西德学习" eyebrow="SUIGONG · XIDE">
   <!-- 人员信息 -->
   <view class="person-card">
     <view class="person-row" hover-class="btn-hover" bindtap="openMother">
@@ -13,24 +13,23 @@
     </view>
 
     <view class="person-row" hover-class="btn-hover" bindtap="openPerson">
-      <view class="person-avatar">我</view>
+      <view class="person-avatar">谁</view>
       <view class="person-main">
-        <view class="person-name">测算人</view>
+        <view class="person-name">人员信息</view>
         <view class="person-meta {{personMeta ? '' : 'pending'}}">{{personMeta || '点击填写属相、岁数与性别'}}</view>
       </view>
       <text class="person-action">编辑</text>
     </view>
   </view>
-  <text class="page-tip">按彝族毕摩方法推算 · 结果仅供文化参考</text>
-  <text class="page-foot">YI LIFE · 结果仅供文化参考</text>
   <!-- 测算入口 -->
-  <view class="calc-btn {{canCalc ? '' : 'disabled'}}" hover-class="btn-hover" bindtap="calculate">开始推算</view>
+  <view class="calc-btn {{canCalc ? '' : 'disabled'}}" hover-class="btn-hover" bindtap="calculate">开始学习</view>
 
+  <text class="page-foot">YI LIFE · 民俗西德</text>
   <!-- 测算结果 -->
   <view class="result" wx:if="{{hasResult}}">
     <view class="result-head">
       <text class="result-eyebrow">LIFE PALACE RESULT</text>
-      <text class="result-title">西德推算结果</text>
+      <text class="result-title">彝族西德</text>
     </view>
 
     <view class="result-board">

@@ -1,21 +1,21 @@
 <!--subpages/shengchen/shengchen.wxml-->
 <page-meta background-color="{{isDark ? '#181713' : '#f8f4eb'}}" page-style="background-color: {{isDark ? '#181713' : '#f8f4eb'}};" />
-<layout title="生辰推算" eyebrow="YI LIFE · SHENGCHEN">
+<layout title="彝历生辰民俗" eyebrow="YI LIFE · SHENGCHEN">
   <!-- 生辰信息 -->
   <view class="person-card">
     <view class="person-row" hover-class="btn-hover" bindtap="openMother">
       <view class="person-avatar">母</view>
       <view class="person-main">
-        <view class="person-name">查询人母亲属相年纪</view>
+        <view class="person-name">母亲</view>
         <view class="person-meta {{motherMeta ? '' : 'pending'}}">{{motherMeta || '点击填写属相与岁数'}}</view>
       </view>
-      <text class="person-action">编辑</text>
+      <text class="person-action">选择</text>
     </view>
 
     <view class="person-row" hover-class="btn-hover" bindtap="openDateSheet">
       <view class="person-avatar">生</view>
       <view class="person-main">
-        <view class="person-name">查询人出生日期</view>
+        <view class="person-name">出生日期</view>
         <view class="person-meta {{birthDate ? '' : 'pending'}}">{{birthDateText || '点击选择出生日期'}}<text class="pick-hint"> 点选 ▾</text></view>
       </view>
       <text class="person-action">选择</text>
@@ -24,15 +24,15 @@
     <view class="person-row" hover-class="btn-hover" bindtap="openTimeSheet">
       <view class="person-avatar">时</view>
       <view class="person-main">
-        <view class="person-name">查询人出生时间</view>
+        <view class="person-name">出生时间</view>
         <view class="person-meta {{birthTime ? '' : 'pending'}}">{{birthTimeMeta || '点击选择出生时辰'}}<text class="pick-hint"> 点选 ▾</text></view>
       </view>
       <text class="person-action">选择</text>
     </view>
   </view>
 
-  <text class="page-tip">YI LIFE · 结果仅供文化参考</text>
-  <view class="calc-btn " hover-class="btn-hover" bindtap="startQuery">开始推算</view>
+  <view class="calc-btn " hover-class="btn-hover" bindtap="startQuery">开始学习</view>
+  <text class="page-foot">YI LIFE · 彝历民俗</text>
 
   <!-- 母亲信息弹层 -->
   <view class="editor-mask" wx:if="{{showEditor}}" bindtap="closeEditor" catchtouchmove="noop">

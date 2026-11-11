@@ -1,4 +1,5 @@
 /* components/audio-btn/audio-btn.wxss */
+@import '../../static/icon/index.scss';
 
 .audio-btn {
   /* 通过 --btn-* 变量控制颜色，.gold 变体切换为金色 */
@@ -57,7 +58,7 @@
 
   /* 音符（音频相关图标） */
   .icon-play {
-    font-size: 34rpx;
+    font-size: 40rpx;
     line-height: 1;
     color: #fffdf7;
     transform: scale(1);

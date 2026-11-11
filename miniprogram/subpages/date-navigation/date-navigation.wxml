@@ -16,78 +16,9 @@
     </view>
   </view>
 
-  <!-- 彝历罗盘 -->
-  <view class="card compass-card">
-    <view class="compass">
-      <view class="ring outer"></view>
-      <view class="ring inner"></view>
-      <view class="spoke" style="transform: rotate(0deg);"></view>
-      <view class="spoke" style="transform: rotate(60deg);"></view>
-      <view class="spoke" style="transform: rotate(120deg);"></view>
 
-      <view class="compass-center">
-        <text class="center-year">{{yiDate.year[0]}}ꈎ · {{yiDate.month[0]}}ꆪ</text>
-        <text class="center-day">{{yiDate.day[0]}}ꑍ · {{yiDate.dayMoon[0]}}ꑍ</text>
-        <text class="center-cn">{{yiDate.year[1]}}年·{{yiDate.month[1]}}月·{{yiDate.day[1]}}日·{{yiDate.dayMoon[1]}}日</text>
-      </view>
-
-      <!-- 塔博惹 -->
-      <view class="compass-name" style="transform: rotate(0deg) translateY(-185rpx) rotate(0deg);">
-        <text class="name-yi">ꄤꁨꌺ</text>
-        <text class="name-cn">塔博惹</text>
-      </view>
-      <view class="compass-value" style="transform: rotate(0deg) translateY(-270rpx) rotate(0deg);">
-        <text class="value-yi">{{yiDate.tabooSon[0]}}</text>
-        <text class="value-cn">{{yiDate.tabooSon[1]}}</text>
-      </view>
-      <!-- 库觉 -->
-      <view class="compass-name" style="transform: rotate(60deg) translateY(-185rpx) rotate(-60deg);">
-        <text class="name-yi">ꈐꐡ</text>
-        <text class="name-cn">库觉</text>
-      </view>
-      <view class="compass-value" style="transform: rotate(60deg) translateY(-270rpx) rotate(-60deg);">
-        <text class="value-yi">{{kuJior[0]}}</text>
-        <text class="value-cn">{{kuJior[1]}}</text>
-      </view>
-      <!-- 狼色 -->
-      <view class="compass-name" style="transform: rotate(120deg) translateY(-185rpx) rotate(-120deg);">
-        <text class="name-yi">ꆿꌋ</text>
-        <text class="name-cn">狼色</text>
-      </view>
-      <view class="compass-value" style="transform: rotate(120deg) translateY(-270rpx) rotate(-120deg);">
-        <text class="value-yi">{{laSe[0]}}</text>
-        <text class="value-cn">{{laSe[1]}}</text>
-      </view>
-      <!-- 木色则尼 -->
-      <view class="compass-name" style="transform: rotate(180deg) translateY(-185rpx) rotate(-180deg);">
-        <text class="name-yi">ꃅꌋꋠꑍ</text>
-        <text class="name-cn">木色则尼</text>
-      </view>
-      <view class="compass-value" style="transform: rotate(180deg) translateY(-270rpx) rotate(-180deg);">
-        <text class="value-yi">{{zeta[0]}}</text>
-        <text class="value-cn">{{zeta[1]}}</text>
-      </view>
-      <!-- 母塔博 -->
-      <view class="compass-name" style="transform: rotate(240deg) translateY(-185rpx) rotate(-240deg);">
-        <text class="name-yi">ꄤꁨꀋꃀ</text>
-        <text class="name-cn">母塔博</text>
-      </view>
-      <view class="compass-value" style="transform: rotate(240deg) translateY(-270rpx) rotate(-240deg);">
-        <text class="value-yi">{{yiDate.tabooMon[0]}}</text>
-        <text class="value-cn">{{yiDate.tabooMon[1]}}</text>
-      </view>
-      <!-- 公塔博 -->
-      <view class="compass-name" style="transform: rotate(300deg) translateY(-185rpx) rotate(-300deg);">
-        <text class="name-yi">ꄤꁨꀋꀮ</text>
-        <text class="name-cn">公塔博</text>
-      </view>
-      <view class="compass-value" style="transform: rotate(300deg) translateY(-270rpx) rotate(-300deg);">
-        <text class="value-yi">{{yiDate.tabooFat[0]}}</text>
-        <text class="value-cn">{{yiDate.tabooFat[1]}}</text>
-      </view>
-    </view>
-
-    <!-- 彝历宜忌 -->
+  <!-- 彝历宜忌 -->
+  <view class="card fortune-card">
     <view class="fortune-strip">
       <view class="fortune-label">
         <view>彝族</view>
@@ -100,8 +31,9 @@
       <audio-btn date="{{solarDate}}" />
     </view>
   </view>
-
-  <!-- 农历黄历 -->
+  <!-- 彝历详情 -->
+  <yi-detail title="彝历详情" items="{{detailItems}}" />
+  <!-- 老黄历 -->
   <view class="card lunar-card">
     <view class="section-head">
       <text class="section-title">农历黄历</text>

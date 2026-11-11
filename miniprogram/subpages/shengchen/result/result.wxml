@@ -1,6 +1,6 @@
 <!--subpages/shengchen/result/result.wxml-->
 <page-meta background-color="{{isDark ? '#181713' : '#f8f4eb'}}" page-style="background-color: {{isDark ? '#181713' : '#f8f4eb'}};" />
-<layout title="生辰推算结果" eyebrow="YI LIFE · SHENGCHEN">
+<layout title="彝历生辰" eyebrow="YI LIFE · SHENGCHEN">
 
   <!-- 生辰名片 -->
   <view class="hero">
@@ -13,11 +13,11 @@
   </view>
 
   <!-- 彝历属性 -->
-  <yi-detail title="彝历·生辰属性" items="{{detailItems}}" />
+  <yi-detail title="彝历" items="{{detailItems}}" />
   <!-- 生辰八字 -->
   <view class="section">
     <view class="sec-head">
-      <text class="section-title">农历·生辰八字</text>
+      <text class="section-title">农历</text>
       <text class="section-link">BAZI</text>
     </view>
     <view class="pillar-strip">

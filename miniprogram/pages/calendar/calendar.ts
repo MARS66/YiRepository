@@ -220,7 +220,7 @@ Page({
     const d = new Date(checked.year, checked.month - 1, checked.day);
     const today = new Date();
     const yiDate = getYiTaBoo(fmt(d), this.data.monthStart);
-    const kuJior = getKujior().kujior as string[];
+    const kuJior = getKujior(fmt(d)).kujior as string[];
     const laSe = getLaSe(fmt(d)) as string[];
     const zeta = getZeTa(fmt(d)) as string[];
     const xingxiu = getXingxiu(fmt(d)) as any;

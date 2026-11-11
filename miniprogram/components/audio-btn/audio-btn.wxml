@@ -1,6 +1,6 @@
 <!--components/audio-btn/audio-btn.wxml-->
 <view class="audio-btn {{playing ? 'playing' : ''}} {{color === 'gold' ? 'gold' : ''}}" hover-class="audio-btn-hover" bindtap="toggleAudio">
-  <text class="icon icon-play">♫</text>
+  <text class="icon icon-play iconfont icon-shengyinkai"></text>
   <view class="icon icon-pause">
     <view class="pause-bar"></view>
     <view class="pause-bar"></view>

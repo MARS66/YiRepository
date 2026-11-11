@@ -164,7 +164,7 @@ Page({
    */
   onShareAppMessage() {
     return {
-      title: '彝族生活日历 · 生辰推算',
+      title: '彝族生活日历 · 生辰学习',
       path: '/pages/index/index'
     }
   }

@@ -72,7 +72,7 @@ Page({
   },
   initPage(dataStr:string){
     const yiDate=getYiTaBoo(dataStr, this.data.monthStart)
-    const kuJior = getKujior().kujior as string[]
+    const kuJior = getKujior(dataStr).kujior as string[]
     const laSe = getLaSe(dataStr)
     const zeta = getZeTa(dataStr)
     const yearInfo = getYearInfo(dataStr)
