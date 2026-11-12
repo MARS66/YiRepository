@@ -1,43 +1,17 @@
 /* pages/assistant/assistant.wxss */
 
-.search {
-  height: 92rpx;
+.card {
   background: var(--paper);
   border: 2rpx solid var(--line);
-  border-radius: 30rpx;
-  display: flex;
-  align-items: center;
-  gap: 16rpx;
-  padding: 0 26rpx;
-
-  .search-icon {
-    color: var(--muted);
-    font-size: 42rpx;
-    font-weight: 200;
-  }
-
-  input {
-    border: 0;
-    outline: 0;
-    background: transparent;
-    width: 100%;
-    font-size: 26rpx;
-    color: var(--coal);
-  }
-}
-
-.search-placeholder {
-  color: var(--muted);
-}
-
-.section-block {
-  margin-top: 36rpx;
+  border-radius: 36rpx;
+  padding: 30rpx;
+  box-shadow: 0 10rpx 30rpx rgba(45, 28, 15, 0.045);
+  margin-top: 24rpx;
 
   .section-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     .section-title {
       font-size: 32rpx;
       font-weight: bold;
@@ -48,130 +22,309 @@
       font-size: 22rpx;
     }
   }
+}
 
-  .quick-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 16rpx;
+/* 日期导航工具栏 */
+.toolbar {
+  padding: 24rpx 30rpx;
+
+  .toolbar-main {
+    display: flex;
+    align-items: center;
+    gap: 20rpx;
+
+    .nav-btn {
+      width: 72rpx;
+      height: 72rpx;
+      border-radius: 50%;
+      background: var(--soft);
+      border: 2rpx solid var(--line);
+      color: var(--fire);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40rpx;
+      font-weight: 700;
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+
+    .nav-btn-hover {
+      opacity: 0.7;
+    }
+
+    .date-picker {
+      flex: 1;
+      min-width: 0;
+      display: block;
+    }
+
+    .date-block {
+      text-align: center;
+
+      .date-main {
+        font-size: 40rpx;
+        font-weight: 800;
+        color: var(--coal);
+      }
+
+      .date-sub {
+        font-size: 22rpx;
+        color: var(--muted);
+        margin-top: 4rpx;
+
+        .pick-hint {
+          color: var(--fire);
+        }
+      }
+    }
+  }
+
+  .tag-row {
+    display: flex;
+    align-items: center;
+    gap: 12rpx;
     margin-top: 20rpx;
-    
-    .quick-item {
+
+    .chip {
+      display: inline-flex;
+      padding: 8rpx 16rpx;
+      border-radius: 198rpx;
+      font-size: 20rpx;
+      font-weight: 700;
+
+      &.gold {
+        background: #aa7b2d2b;
+        color: var(--gold);
+        border: 2rpx solid #aa7b2d55;
+      }
+
+      &.plain {
+        background: var(--soft);
+        color: var(--muted);
+        border: 2rpx solid var(--line);
+      }
+    }
+  }
+}
+
+/* 彝历 / 黄历 标签切换 */
+.tabs {
+  display: flex;
+  padding: 6rpx;
+  margin-top: 24rpx;
+  background: var(--soft);
+  border: 2rpx solid var(--line);
+  border-radius: 198rpx;
+
+  .tab {
+    flex: 1;
+    text-align: center;
+    padding: 14rpx 0;
+    border-radius: 198rpx;
+    font-size: 28rpx;
+    font-weight: 700;
+    color: var(--muted);
+    transition: color 0.2s ease, background 0.2s ease;
+
+    &.active {
+      background: var(--paper);
+      color: var(--fire);
+      box-shadow: 0 4rpx 14rpx rgba(45, 28, 15, 0.1);
+    }
+  }
+}
+
+/* 彝历日期 */
+.fortune-card {
+  .fortune-strip {
+    display: flex;
+    align-items: center;
+    gap: 20rpx;
+
+    .fortune-label {
+      flex-shrink: 0;
+      font-size: 30rpx;
+      font-weight: 500;
+      letter-spacing: 8rpx;
+      padding: 10rpx 18rpx;
+      border-radius: 24rpx;
+      color: var(--fire);
+      background: #9c2d2518;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fortune-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6rpx;
+      min-width: 0;
+
+      .fortune-main {
+        font-size: 40rpx;
+        letter-spacing: 4rpx;
+        font-weight: 700;
+        color: var(--coal);
+      }
+
+      .fortune-desc {
+        font-size: 24rpx;
+        letter-spacing: 4rpx;
+        color: var(--muted);
+      }
+    }
+  }
+}
+
+/* 农历黄历 */
+.lunar-card {
+  margin-bottom: 24rpx;
+
+  .lunar-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 16rpx -30rpx 0;
+    border-top: 2rpx solid var(--line);
+
+    .lunar-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14rpx 24rpx;
+      box-sizing: border-box;
+      border-bottom: 2rpx solid var(--line);
+
+      &:nth-child(odd) {
+        border-right: 2rpx solid var(--line);
+      }
+
+      &:nth-child(7),
+      &:nth-child(8) {
+        border-bottom: none;
+      }
+
+      .lunar-label {
+        color: var(--muted);
+        font-size: 22rpx;
+        flex-shrink: 0;
+      }
+
+      .lunar-val {
+        font-size: 24rpx;
+        font-weight: 700;
+        color: var(--coal);
+        text-align: right;
+      }
+    }
+  }
+
+  .lunar-rows {
+    margin: 0 -30rpx;
+    border-top: 2rpx solid var(--line);
+
+    .lunar-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 20rpx;
+      padding: 14rpx 30rpx;
+      border-bottom: 2rpx solid var(--line);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .row-label {
+        color: var(--muted);
+        font-size: 22rpx;
+        flex-shrink: 0;
+        line-height: 1.5;
+        margin-top: 4rpx;
+      }
+
+      .row-val {
+        flex: 1;
+        font-size: 24rpx;
+        color: var(--coal);
+        line-height: 1.5;
+      }
+    }
+  }
+
+  .pos-row {
+    display: flex;
+    margin: 30rpx -30rpx 0;
+    border-top: 2rpx solid var(--line);
+    border-bottom: 2rpx solid var(--line);
+    margin-top: 0;
+    .pos-item {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12rpx;
+      gap: 8rpx;
+      padding: 14rpx 4rpx;
+      box-sizing: border-box;
 
-      .quick-icon {
-        width: 88rpx;
-        height: 88rpx;
-        border-radius: 28rpx;
-        background: var(--soft);
-        color: var(--accent);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-style: normal;
-        font-weight: 800;
-        font-size: 36rpx;
-        border: 2rpx solid var(--line);
+      & + .pos-item {
+        border-left: 2rpx solid var(--line);
       }
 
-      .quick-label {
+      .pos-label {
         font-size: 20rpx;
-        color: var(--coal);
-      }
-    }
-  }
-}
-
-.card {
-  background: var(--paper);
-  border: 2rpx solid var(--line);
-  border-radius: 36rpx;
-  padding: 30rpx;
-  box-shadow: 0 10rpx 30rpx rgba(45, 28, 15, 0.045);
-  margin-top: 24rpx;
-
-  &.tool-list {
-    .section-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 10rpx;
-      .section-title {
-        font-size: 32rpx;
-        font-weight: bold;
-      }
-
-      .chip {
-        display: inline-flex;
-        padding: 10rpx 18rpx;
-        border-radius: 198rpx;
-        font-size: 22rpx;
-        font-weight: 700;
-
-        &.gold {
-          background: #aa7b2d2b;
-          color: #c59a50;
-          border: 2rpx solid #aa7b2d55;
-        }
-      }
-    }
-
-    .tool-item {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 20rpx;
-      padding: 24rpx 0;
-      border-top: 2rpx solid var(--line);
-
-      &:first-of-type {
-        margin-top: 18rpx;
-      }
-
-      .tool-icon {
-        width: 88rpx;
-        height: 88rpx;
-        border-radius: 28rpx;
-        background: var(--soft);
-        color: var(--accent);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-style: normal;
-        font-weight: 800;
-        font-size: 36rpx;
-        border: 2rpx solid var(--line);
-        flex-shrink: 0;
-      }
-
-      .tool-info {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 4rpx;
-
-        .tool-name {
-          font-size: 28rpx;
-          font-weight: bold;
-        }
-
-        .tool-desc {
-          font-size: 22rpx;
-          color: var(--muted);
-        }
-      }
-
-      .tool-arrow {
         color: var(--muted);
-        font-size: 36rpx;
+      }
+
+      .pos-val {
+        font-size: 28rpx;
+        font-weight: 700;
+        color: var(--fire);
       }
     }
   }
-}
 
-.family-block {
-  margin-bottom: 40rpx;
+  .yi-ji {
+    display: flex;
+    gap: 20rpx;
+    margin-top: 16rpx;
+
+    .yi-ji-block {
+      flex: 1;
+      border-radius: 28rpx;
+      padding: 16rpx;
+      display: flex;
+      flex-direction: column;
+      gap: 8rpx;
+
+      &.good {
+        background: var(--good-bg);
+
+        .yi-ji-title {
+          color: var(--green);
+        }
+      }
+
+      &.bad {
+        background: var(--bad-bg);
+
+        .yi-ji-title {
+          color: var(--fire);
+        }
+      }
+
+      .yi-ji-title {
+        font-size: 24rpx;
+        font-weight: 800;
+      }
+
+      .yi-ji-content {
+        font-size: 22rpx;
+        color: var(--coal);
+        line-height: 1.5;
+      }
+    }
+  }
 }

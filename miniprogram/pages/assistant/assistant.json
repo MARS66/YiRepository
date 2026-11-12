@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "audio-btn": "/components/audio-btn/audio-btn",
+    "date-picker": "/components/date-picker/date-picker",
+    "yi-detail": "/components/yi-detail/yi-detail"
+  }
 }

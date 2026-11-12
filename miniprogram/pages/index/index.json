@@ -1,8 +1,7 @@
 {
   "usingComponents": {
     "audio-btn": "/components/audio-btn/audio-btn",
-    "daily-fortune": "/components/daily-fortune/daily-fortune",
-    "yi-detail": "/components/yi-detail/yi-detail"
+    "daily-fortune": "/components/daily-fortune/daily-fortune"
   },
   "navigationBarTitleText": "彝族生活日历"
 }

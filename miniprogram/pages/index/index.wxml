@@ -42,34 +42,5 @@
   </view>
 
 
-  <!-- <view class="section-block">
-    <view class="section-head">
-      <text class="section-title">推荐助手</text>
-      <text class="section-link">全部助手</text>
-    </view>
-    <view class="quick-grid">
-      <view class="quick-item">
-        <text class="quick-icon">囍</text>
-        <text class="quick-label">结婚吉日</text>
-      </view>
-      <view class="quick-item">
-        <text class="quick-icon">囍</text>
-        <text class="quick-label">结婚吉日</text>
-      </view>
-      <view class="quick-item">
-        <text class="quick-icon">迁</text>
-        <text class="quick-label">乔迁吉日</text>
-      </view>
-      <view class="quick-item">
-        <text class="quick-icon">译</text>
-        <text class="quick-label">彝汉互译</text>
-      </view>
-      <view class="quick-item">
-        <text class="quick-icon">☆</text>
-        <text class="quick-label">收藏今日</text>
-      </view>
-    </view>
-  </view> -->
   <daily-fortune fortune="{{todayFortune}}" />
-  <yi-detail title="今日彝历详情" items="{{detailItems}}" />
 </layout>

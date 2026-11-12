@@ -30,5 +30,4 @@
     </view>
   </view>
   <daily-fortune fortune="{{todayFortune}}" title="彝历·宜忌" />
-  <yi-detail title="彝历详情" items="{{detailItems}}" />
 </layout>

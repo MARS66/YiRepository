@@ -1,6 +1,6 @@
 // pages/mine/mine.ts
 import { ZODIAC, ZODIAC_CN } from '../../plugin/yi-lunar/index'
-import { getMembers, getMonthStartIndex } from '../../utils/settings'
+import { getMonthStartIndex } from '../../utils/settings'
 
 Page({
 
@@ -10,8 +10,7 @@ Page({
   data: {
     isDark: (wx.getStorageSync('yi-theme') || 'dark') === 'dark',
     monthYi: '',
-    monthLabel: '',
-    members: [] as { id: string; icon: string }[]
+    monthLabel: ''
   },
 
   /**
@@ -33,7 +32,6 @@ Page({
    */
   onShow() {
     this.refreshSummary()
-    this.refreshMembers()
   },
 
   /** 刷新概览状态 */
@@ -43,20 +41,6 @@ Page({
       monthYi: ZODIAC[monthStart],
       monthLabel: `${ZODIAC_CN[monthStart]}月为正月`
     })
-  },
-
-  /** 刷新常用信息图标 */
-  refreshMembers() {
-    const members = getMembers().map((record) => ({
-      id: record.id,
-      icon: record.name.slice(0, 1)
-    }))
-    this.setData({ members })
-  },
-
-  /** 常用人员管理 */
-  goMembers() {
-    wx.navigateTo({ url: '/subpages/mine/members/members' })
   },
 
   /** 音频设置 */

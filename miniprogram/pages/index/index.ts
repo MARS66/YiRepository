@@ -1,12 +1,7 @@
 // pages/index/index.ts
 import { 
   getYiTaBoo, 
-  getTodayFortune, 
-  getKujior,
-  getLaSe, 
-  getZeTa,
-  getXingxiu,
-  getYearInfo
+  getTodayFortune
 } from '../../plugin/yi-lunar/index'
 import {WORDS} from '../../utils/word'
 import { isAutoAudio, getMonthStartIndex } from '../../utils/settings'
@@ -15,14 +10,6 @@ import dayjs from "dayjs";
 const CH_MONTHS = [ '一' , '二' , '三' , '四' , '五' , '六' , '七' , '八' , '九' , '十' , '十一' , '十二' ]
 /** 首页是否已完成首次渲染（用于区分首次自动播放与切回tab） */
 let pageReady = false
-
-/** 彝历详情术语项：{ yi: 彝文, cn: 中文, valueYi: 值彝文, valueCn: 值中文 } */
-interface DetailItem {
-  yi: string
-  cn: string
-  valueYi: string
-  valueCn: string
-}
 
 /** 节日倒计时展示项 */
 interface FestivalCountdownView {
@@ -41,7 +28,6 @@ Page({
     isDark: (wx.getStorageSync('yi-theme') || 'dark') === 'dark',
     yiDate:{} as any,
     todayFortune:{},
-    detailItems: [] as DetailItem[],
     solarDate: '',
     date: '01',
     month: '九月',
@@ -72,11 +58,6 @@ Page({
   },
   initPage(dataStr:string){
     const yiDate=getYiTaBoo(dataStr, this.data.monthStart)
-    const kuJior = getKujior(dataStr).kujior as string[]
-    const laSe = getLaSe(dataStr)
-    const zeta = getZeTa(dataStr)
-    const yearInfo = getYearInfo(dataStr)
-    const xingxiu = getXingxiu(dataStr)
     // 节日倒计时：距下一次节日还有多少天（0 表示今天即是节日）
     const countdown = getNextFestival(dataStr)
     this.setData({
@@ -93,17 +74,7 @@ Page({
         days: countdown.days,
         label: countdown.days === 0 ? `今日${countdown.name}` : `距${countdown.name}还有`,
         isToday: countdown.days === 0
-      } : null,
-      detailItems: [
-        { yi: 'ꄤꁨꌺ', cn: '塔博惹', valueYi: yiDate.tabooSon[0], valueCn: yiDate.tabooSon[1] },
-        { yi: 'ꈐꐡ', cn: '库觉', valueYi: kuJior[0], valueCn: kuJior[1] },
-        { yi: 'ꆿꌋ', cn: '狼色', valueYi: laSe[0], valueCn: laSe[1] },
-        { yi: 'ꍀꌋ', cn: '日色', valueYi: xingxiu.yi, valueCn: xingxiu.cn },
-        { yi: 'ꃅꌋꋠꑍ', cn: '木色则尼', valueYi: zeta[0], valueCn: zeta[1] },
-        { yi: 'ꄤꁨꀋꃀ', cn: '母塔博', valueYi: yiDate.tabooMon[0], valueCn: yiDate.tabooMon[1] },
-        { yi: 'ꄤꁨꀋꀮ', cn: '公塔博', valueYi: yiDate.tabooFat[0], valueCn: yiDate.tabooFat[1] },
-        { yi: 'ꈎꏸ', cn: '值星', valueYi: yearInfo.suizhiXing[0], valueCn: yearInfo.suizhiXing[1] }
-      ]
+      } : null
     })
   },
   /**

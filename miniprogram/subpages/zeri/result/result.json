@@ -1,5 +1,0 @@
-{
-  "usingComponents": {
-    "calendar": "@lspriv/wx-calendar"
-  }
-}

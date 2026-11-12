@@ -10,15 +10,8 @@
       "root": "subpages",
       "name": "subpages",
       "pages": [
-        "suigong/suigong",
-        "date-navigation/date-navigation",
-        "shengchen/shengchen",
-        "shengchen/result/result",
-        "zeri/zeri",
-        "zeri/result/result",
         "mine/audio/audio",
-        "mine/month/month",
-        "mine/members/members"
+        "mine/month/month"
       ]
     }
   ],
@@ -51,7 +44,7 @@
       },
       {
         "pagePath": "pages/assistant/assistant",
-        "text": "助手",
+        "text": "导航",
         "iconPath": "/static/assistant.png",
         "selectedIconPath": "/static/assistant_active.png"
       },

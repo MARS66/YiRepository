@@ -19,33 +19,6 @@
     </view>
   </view>
 
-  <!-- 常用信息 -->
-  <view class="member-card">
-    <view class="member-head">
-      <view class="member-head-text">
-        <view class="member-title">常用信息</view>
-      </view>
-      <view class="member-manage" hover-class="btn-hover" bindtap="goMembers">
-        <text>去管理</text>
-        <text class="member-manage-arrow iconfont icon-you2"></text>
-      </view>
-    </view>
-    <view class="member-grid">
-      <view
-        class="member-cell"
-        wx:for="{{members}}"
-        wx:key="id"
-        hover-class="btn-hover"
-        bindtap="goMembers"
-      >
-        <view class="member-avatar">{{item.icon}}</view>
-      </view>
-      <view class="member-cell" hover-class="btn-hover" bindtap="goMembers">
-        <view class="member-avatar member-avatar-add">＋</view>
-      </view>
-    </view>
-  </view>
-
   <!-- 设置菜单 -->
   <view class="menu-card">
     <view class="menu-row" hover-class="btn-hover" bindtap="goAudio">
