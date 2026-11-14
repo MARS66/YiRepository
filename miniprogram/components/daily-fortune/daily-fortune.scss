@@ -4,11 +4,17 @@
   background: var(--paper);
   border: 2rpx solid var(--line);
   border-radius: 36rpx;
-  padding: 30rpx;
+  padding: 20rpx;
   box-shadow: 0 10rpx 30rpx rgba(45, 28, 15, 0.045);
   margin-top: 24rpx;
   border-left: 8rpx solid var(--gold);
-
+  display: flex;
+  gap: 20rpx;
+  align-items: center;
+.fortune-seal{
+  width: 100rpx;
+  height: 120rpx;
+}
   .df-label {
     color: var(--fire);
     font-size: 22rpx;

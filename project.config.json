@@ -15,7 +15,7 @@
     "coverView": false,
     "postcss": false,
     "minified": true,
-    "enhance": false,
+    "enhance": true,
     "showShadowRootInWxmlPanel": false,
     "packNpmRelationList": [
       {
@@ -26,7 +26,7 @@
     "ignoreUploadUnusedFiles": true,
     "compileHotReLoad": false,
     "skylineRenderEnable": true,
-    "es6": false,
+    "es6": true,
     "uglifyFileName": false,
     "uploadWithSourceMap": true,
     "packNpmManually": true,
@@ -57,7 +57,16 @@
         "value": ".js.map"
       }
     ],
-    "include": []
+    "include": [
+      {
+        "type": "folder",
+        "value": "static/normal"
+      },
+      {
+        "type": "folder",
+        "value": "static/nian"
+      }
+    ]
   },
   "appid": "wxf9405b07ad62dbc3"
 }

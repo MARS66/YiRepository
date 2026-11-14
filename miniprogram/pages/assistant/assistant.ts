@@ -61,7 +61,6 @@ Page({
     yearText: '',
     monthText: '',
     weekday: '',
-    relativeDay: '',
     festival: '',
     lunarText: '',
     jieQi: '',
@@ -106,13 +105,6 @@ Page({
     const d = parse(dateStr)
     const yiDate = getYiTaBoo(dateStr, this.data.monthStart)
 
-    // 相对今天
-    const d0 = new Date(d.getFullYear(), d.getMonth(), d.getDate())
-    const today0 = new Date()
-    today0.setHours(0, 0, 0, 0)
-    const diff = Math.round((d0.getTime() - today0.getTime()) / 86400000)
-    const relativeDay = diff === 0 ? '今天' : diff < 0 ? `${-diff}天前` : `${diff}天后`
-
     // 节日：火把节 / 彝族年 > 国家法定节假日 > 农历节日
     const ts = getTorchStart(d.getFullYear())
     const te = new Date(ts)
@@ -130,16 +122,18 @@ Page({
     const yearInfo = getYearInfo(dateStr)
     const xingxiu = getXingxiu(dateStr)
     const detailItems: DetailItem[] = [
-      { yi: 'ꇗꊖ', cn: '五行', valueYi: yearInfo.wuXing[0], valueCn: yearInfo.wuXing[1] },
-      { yi: 'ꈋꈌ', cn: '阴阳', valueYi: yearInfo.yinYang[0], valueCn: yearInfo.yinYang[1] },
-      { yi: 'ꈎꏸ', cn: '岁星', valueYi: yearInfo.suizhiXing[0], valueCn: yearInfo.suizhiXing[1] },
+      { yi: 'ꃅꈎ', cn: '年属相', valueYi: yiDate.year[0], valueCn: yiDate.year[1] },
+      { yi: 'ꈎꏸ', cn: '年值星', valueYi: yearInfo.suizhiXing[0], valueCn: yearInfo.suizhiXing[1] },
+      { yi: 'ꃅꑍ', cn: '日属相', valueYi: yiDate.day[0], valueCn: yiDate.day[1] },
       { yi: 'ꄤꁨꌺ', cn: '塔博惹', valueYi: yiDate.tabooSon[0], valueCn: yiDate.tabooSon[1] },
-      { yi: 'ꄤꁨꀋꃀ', cn: '母塔博', valueYi: yiDate.tabooMon[0], valueCn: yiDate.tabooMon[1] },
-      { yi: 'ꄤꁨꀋꀮ', cn: '公塔博', valueYi: yiDate.tabooFat[0], valueCn: yiDate.tabooFat[1] },
       { yi: 'ꈐꐡ', cn: '库觉', valueYi: kuJior[0], valueCn: kuJior[1] },
       { yi: 'ꍀꌋ', cn: '日色', valueYi: xingxiu.yi, valueCn: xingxiu.cn },
       { yi: 'ꆿꌋ', cn: '狼色', valueYi: laSe[0], valueCn: laSe[1] },
-      { yi: 'ꃅꌋꋠꑍ', cn: '木色则尼', valueYi: zeta[0], valueCn: zeta[1] }
+      { yi: 'ꃅꌋꋠꑍ', cn: '木色则尼', valueYi: zeta[0], valueCn: zeta[1] },
+      { yi: 'ꄤꁨꀋꃀ', cn: '母塔博', valueYi: yiDate.tabooMon[0], valueCn: yiDate.tabooMon[1] },
+      { yi: 'ꄤꁨꀋꀮ', cn: '公塔博', valueYi: yiDate.tabooFat[0], valueCn: yiDate.tabooFat[1] },
+      { yi: 'ꈋꈌ', cn: '阴阳', valueYi: yearInfo.yinYang[0], valueCn: yearInfo.yinYang[1] },
+      { yi: 'ꇗꊖ', cn: '五行', valueYi: yearInfo.wuXing[0], valueCn: yearInfo.wuXing[1] },
     ]
 
     // 农历 / 黄历信息
@@ -153,7 +147,6 @@ Page({
       yearText: String(d.getFullYear()),
       monthText: String(d.getMonth() + 1),
       weekday: WEEKDAYS[d.getDay()],
-      relativeDay,
       festival,
       lunarText,
       jieQi: lunar.getJieQi(),

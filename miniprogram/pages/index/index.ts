@@ -7,21 +7,21 @@ import dayjs from 'dayjs'
 const WEEKDAYS = ['日', '一', '二', '三', '四', '五', '六']
 /** 平时海报底图：/static/normal 下的照片 */
 const NORMAL_BACKGROUNDS = [
-  '/static/normal/0.webp',
-  '/static/normal/1.webp',
-  '/static/normal/2.webp',
-  '/static/normal/3.webp',
-  '/static/normal/4.webp',
-  '/static/normal/5.webp',
-  '/static/normal/6.webp'
+  '/static/normal/0.jpg',
+  '/static/normal/1.jpg',
+  '/static/normal/2.jpg',
+  '/static/normal/3.jpg',
+  '/static/normal/4.jpg',
+  '/static/normal/5.jpg',
+  '/static/normal/6.jpg'
 ]
 
 /** 彝族年海报底图：/static/nian 下的图片 */
 const YI_NEW_YEAR_BACKGROUNDS = [
-  '/static/nian/0.webp',
-  '/static/nian/1.webp',
-  '/static/nian/2.webp',
-  '/static/nian/3.webp'
+  '/static/nian/0.jpg',
+  '/static/nian/1.jpg',
+  '/static/nian/2.jpg',
+  '/static/nian/3.jpg'
 ]
 
 Page({
@@ -52,7 +52,7 @@ Page({
 
     const yiDate = getYiTaBoo(solarDate, monthStart)
     const festivalCountdown = getNextFestival(solarDate)
-    const showYiNewYearPoster = festivalCountdown?.name === '彝族年' && festivalCountdown.days <= 7
+    const showYiNewYearPoster = festivalCountdown !== null && festivalCountdown.name === '彝族年' && festivalCountdown.days <= 7
     let posterBackground = this.data.posterBackground
     if (solarDate !== this.data.solarDate) {
       const pool = showYiNewYearPoster ? YI_NEW_YEAR_BACKGROUNDS : NORMAL_BACKGROUNDS

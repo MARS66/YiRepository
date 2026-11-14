@@ -2,140 +2,132 @@
 <page-meta background-color="{{isDark ? '#181713' : '#f8f4eb'}}" page-style="background-color: {{isDark ? '#181713' : '#f8f4eb'}};" />
 <layout needBack="{{false}}" title="彝历导航" eyebrow="YI NAVIGATION" bind:themechange="onThemeChange">
 
-  <!-- 日期导航工具栏 -->
-  <view class="card toolbar">
-    <view class="toolbar-main">
-      <view class="nav-btn" hover-class="nav-btn-hover" bindtap="prevDay">‹</view>
-      <view class="date-picker" hover-class="nav-btn-hover" bindtap="openDateSheet">
-        <view class="date-block">
-          <view class="date-main">{{yearText}}年{{monthText}}月{{dateText}}日</view>
-          <view class="date-sub">{{lunarText}} · 星期{{weekday}}<text class="pick-hint"> 点选 ▾</text></view>
-        </view>
-      </view>
-      <view class="nav-btn" hover-class="nav-btn-hover" bindtap="nextDay">›</view>
+  <view class="date-panel">
+    <view wx:if="{{festival}}" class="date-context">
+      <text class="festival">{{festival}}</text>
     </view>
-    <view class="tag-row">
-      <text class="chip gold">{{festival || '今日彝历'}}</text>
-      <text class="chip plain">{{relativeDay}}</text>
+    <view class="date-controls">
+      <button class="day-button" hover-class="date-pressed" aria-label="前一天" bindtap="prevDay">
+        <view class="chevron previous" aria-hidden="true"></view>
+      </button>
+      <button class="date-trigger" hover-class="date-pressed" aria-label="{{yearText}}年{{monthText}}月{{dateText}}日，选择日期" bindtap="openDateSheet">
+        <text class="date-main">{{yearText}}年{{monthText}}月{{dateText}}日</text>
+        <text class="date-sub">{{lunarText}} · 星期{{weekday}}</text>
+      </button>
+      <button class="day-button" hover-class="date-pressed" aria-label="后一天" bindtap="nextDay">
+        <view class="chevron next" aria-hidden="true"></view>
+      </button>
     </view>
   </view>
 
-  <!-- 彝历 / 黄历 切换 -->
   <view class="tabs">
-    <view class="tab {{activeTab === 'yi' ? 'active' : ''}}" data-tab="yi" bindtap="switchTab">彝历</view>
-    <view class="tab {{activeTab === 'lunar' ? 'active' : ''}}" data-tab="lunar" bindtap="switchTab">黄历</view>
+    <button class="tab {{activeTab === 'yi' ? 'active' : ''}}" aria-label="{{activeTab === 'yi' ? '彝历，当前页签' : '彝历'}}" hover-class="tab-pressed" data-tab="yi" bindtap="switchTab">彝历</button>
+    <button class="tab {{activeTab === 'lunar' ? 'active' : ''}}" aria-label="{{activeTab === 'lunar' ? '黄历，当前页签' : '黄历'}}" hover-class="tab-pressed" data-tab="lunar" bindtap="switchTab">黄历</button>
   </view>
 
-  <!-- 彝历标签页 -->
   <block wx:if="{{activeTab === 'yi'}}">
-    <!-- 彝历日期 -->
-    <view class="card fortune-card">
+     <view class="calendar-detail">
     <view class="fortune-strip">
       <view class="fortune-label">
         <view>彝族</view>
-        <view><text class="green">日</text><text class="fire">历</text></view>
+        <view>日历</view>
       </view>
       <view class="fortune-body">
         <text class="fortune-main">{{yiDate.year[0]}}ꈎ·{{yiDate.month[0]}}ꆪ·{{yiDate.day[0]}}ꑍ·{{yiDate.dayMoon[0]}}ꑍ</text>
         <text class="fortune-desc">{{yiDate.year[1]}}年·{{yiDate.month[1]}}月·{{yiDate.day[1]}}日·{{yiDate.dayMoon[1]}}日</text>
       </view>
-      <audio-btn date="{{solarDate}}" />
+      <audio-btn id="page-audio" date="{{solarDate}}" />
     </view>
   </view>
-
-  <!-- 彝历详情 -->
-  <yi-detail title="彝历详情" items="{{detailItems}}" />
+    <yi-detail title="彝历详情" items="{{detailItems}}" />
   </block>
 
   <!-- 黄历标签页 -->
   <block wx:if="{{activeTab === 'lunar'}}">
     <!-- 农历黄历 -->
     <view class="card lunar-card">
-    <view class="section-head">
       <text class="section-title">农历黄历</text>
-      <text class="section-link">{{lunarText}}</text>
+      <view class="yi-ji">
+        <view class="yi-ji-block good">
+          <text class="yi-ji-title">宜</text>
+          <text class="yi-ji-content">{{lunarYi}}</text>
+        </view>
+        <view class="yi-ji-block bad">
+          <text class="yi-ji-title">忌</text>
+          <text class="yi-ji-content">{{lunarJi}}</text>
+        </view>
+      </view>
+      <view class="lunar-grid">
+        <view class="lunar-item">
+          <text class="lunar-label">农历</text>
+          <text class="lunar-val">{{lunarText}}</text>
+        </view>
+        <view class="lunar-item">
+          <text class="lunar-label">月相</text>
+          <text class="lunar-val">{{yueXiang}}</text>
+        </view>
+        <view class="lunar-item">
+          <text class="lunar-label">年干支</text>
+          <text class="lunar-val">{{yearGanZhi}} · {{shengXiao}}</text>
+        </view>
+        <view class="lunar-item">
+          <text class="lunar-label">日干支</text>
+          <text class="lunar-val">{{dayGanZhi}} · {{naYin}}</text>
+        </view>
+        <view class="lunar-item">
+          <text class="lunar-label">值日</text>
+          <text class="lunar-val">{{zhiXing}}日 · {{dayTianShen}}</text>
+        </view>
+        <view class="lunar-item">
+          <text class="lunar-label">星宿</text>
+          <text class="lunar-val">{{xiu}}宿 · {{xiuLuck}}</text>
+        </view>
+        <view class="lunar-item">
+          <text class="lunar-label">节气</text>
+          <text class="lunar-val">{{jieQi || '无'}}</text>
+        </view>
+        <view class="lunar-item">
+          <text class="lunar-label">旬空</text>
+          <text class="lunar-val">{{xunKong}}</text>
+        </view>
+      </view>
+      <view class="lunar-rows">
+        <view class="lunar-row">
+          <text class="row-label">当日八字</text>
+          <text class="row-val">{{baZi}}(当前时刻)</text>
+        </view>
+        <view class="lunar-row">
+          <text class="row-label">冲煞</text>
+          <text class="row-val">{{chongSha}}</text>
+        </view>
+        <view class="lunar-row">
+          <text class="row-label">吉神宜趋</text>
+          <text class="row-val">{{jiShen}}</text>
+        </view>
+      </view>
+      <view class="pos-row">
+        <view class="pos-item">
+          <text class="pos-label">喜神</text>
+          <text class="pos-val">{{posXi}}</text>
+        </view>
+        <view class="pos-item">
+          <text class="pos-label">福神</text>
+          <text class="pos-val">{{posFu}}</text>
+        </view>
+        <view class="pos-item">
+          <text class="pos-label">财神</text>
+          <text class="pos-val">{{posCai}}</text>
+        </view>
+        <view class="pos-item">
+          <text class="pos-label">阳贵</text>
+          <text class="pos-val">{{posYangGui}}</text>
+        </view>
+        <view class="pos-item">
+          <text class="pos-label">阴贵</text>
+          <text class="pos-val">{{posYinGui}}</text>
+        </view>
+      </view>
     </view>
-    <view class="lunar-grid">
-      <view class="lunar-item">
-        <text class="lunar-label">农历</text>
-        <text class="lunar-val">{{lunarText}}</text>
-      </view>
-      <view class="lunar-item">
-        <text class="lunar-label">月相</text>
-        <text class="lunar-val">{{yueXiang}}</text>
-      </view>
-      <view class="lunar-item">
-        <text class="lunar-label">年干支</text>
-        <text class="lunar-val">{{yearGanZhi}} · {{shengXiao}}</text>
-      </view>
-      <view class="lunar-item">
-        <text class="lunar-label">日干支</text>
-        <text class="lunar-val">{{dayGanZhi}} · {{naYin}}</text>
-      </view>
-      <view class="lunar-item">
-        <text class="lunar-label">值日</text>
-        <text class="lunar-val">{{zhiXing}}日 · {{dayTianShen}}</text>
-      </view>
-      <view class="lunar-item">
-        <text class="lunar-label">星宿</text>
-        <text class="lunar-val">{{xiu}}宿 · {{xiuLuck}}</text>
-      </view>
-      <view class="lunar-item">
-        <text class="lunar-label">节气</text>
-        <text class="lunar-val">{{jieQi || '无'}}</text>
-      </view>
-      <view class="lunar-item">
-        <text class="lunar-label">旬空</text>
-        <text class="lunar-val">{{xunKong}}</text>
-      </view>
-    </view>
-    <view class="lunar-rows">
-      <view class="lunar-row">
-        <text class="row-label">当日八字</text>
-        <text class="row-val">{{baZi}}(当前时刻)</text>
-      </view>
-      <view class="lunar-row">
-        <text class="row-label">冲煞</text>
-        <text class="row-val">{{chongSha}}</text>
-      </view>
-      <view class="lunar-row">
-        <text class="row-label">吉神宜趋</text>
-        <text class="row-val">{{jiShen}}</text>
-      </view>
-    </view>
-    <view class="pos-row">
-      <view class="pos-item">
-        <text class="pos-label">喜神</text>
-        <text class="pos-val">{{posXi}}</text>
-      </view>
-      <view class="pos-item">
-        <text class="pos-label">福神</text>
-        <text class="pos-val">{{posFu}}</text>
-      </view>
-      <view class="pos-item">
-        <text class="pos-label">财神</text>
-        <text class="pos-val">{{posCai}}</text>
-      </view>
-      <view class="pos-item">
-        <text class="pos-label">阳贵</text>
-        <text class="pos-val">{{posYangGui}}</text>
-      </view>
-      <view class="pos-item">
-        <text class="pos-label">阴贵</text>
-        <text class="pos-val">{{posYinGui}}</text>
-      </view>
-    </view>
-    <view class="yi-ji">
-      <view class="yi-ji-block good">
-        <text class="yi-ji-title">宜</text>
-        <text class="yi-ji-content">{{lunarYi}}</text>
-      </view>
-      <view class="yi-ji-block bad">
-        <text class="yi-ji-title">忌</text>
-        <text class="yi-ji-content">{{lunarJi}}</text>
-      </view>
-    </view>
-  </view>
   </block>
 
   <!-- 日期选择弹层（通用日期选择组件） -->

@@ -3,18 +3,18 @@
 // 运行 npm run sync:backgrounds 重新生成。
 
 export const NORMAL_BACKGROUNDS: string[] = [
-  "/static/normal/0.webp",
-  "/static/normal/1.webp",
-  "/static/normal/2.webp",
-  "/static/normal/3.webp",
-  "/static/normal/4.webp",
-  "/static/normal/5.webp",
-  "/static/normal/6.webp"
+  "/static/normal/0.jpg",
+  "/static/normal/1.jpg",
+  "/static/normal/2.jpg",
+  "/static/normal/3.jpg",
+  "/static/normal/4.jpg",
+  "/static/normal/5.jpg",
+  "/static/normal/6.jpg"
 ]
 
 export const YI_NEW_YEAR_BACKGROUNDS: string[] = [
-  "/static/nian/0.webp",
-  "/static/nian/1.webp",
-  "/static/nian/2.webp",
-  "/static/nian/3.webp"
+  "/static/nian/0.jpg",
+  "/static/nian/1.jpg",
+  "/static/nian/2.jpg",
+  "/static/nian/3.jpg"
 ]

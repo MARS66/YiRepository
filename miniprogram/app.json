@@ -32,25 +32,25 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "今日",
+        "text": "今日彝历",
         "iconPath": "/static/index.png",
         "selectedIconPath": "/static/index_active.png"
       },
       {
         "pagePath": "pages/calendar/calendar",
-        "text": "日历",
+        "text": "彝族日历",
         "iconPath": "/static/calendar.png",
         "selectedIconPath": "/static/calendar_active.png"
       },
       {
         "pagePath": "pages/assistant/assistant",
-        "text": "导航",
+        "text": "更多历法",
         "iconPath": "/static/assistant.png",
         "selectedIconPath": "/static/assistant_active.png"
       },
       {
         "pagePath": "pages/mine/mine",
-        "text": "我的",
+        "text": "个人中心",
         "iconPath": "/static/mine.png",
         "selectedIconPath": "/static/mine_active.png"
       }

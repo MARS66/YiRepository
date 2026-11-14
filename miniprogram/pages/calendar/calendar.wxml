@@ -29,5 +29,5 @@
       <audio-btn id="page-audio" date="{{solarDate}}" />
     </view>
   </view>
-  <daily-fortune fortune="{{todayFortune}}" title="彝历·宜忌" />
+  <daily-fortune fortune="{{todayFortune}}"/>
 </layout>

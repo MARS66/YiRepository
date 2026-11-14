@@ -1,142 +1,308 @@
 /* pages/assistant/assistant.wxss */
 
-.card {
-  background: var(--paper);
-  border: 2rpx solid var(--line);
-  border-radius: 36rpx;
-  padding: 30rpx;
-  box-shadow: 0 10rpx 30rpx rgba(45, 28, 15, 0.045);
-  margin-top: 24rpx;
-
-  .section-head {
+.date-panel,
+.tabs {
+  button {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    .section-title {
-      font-size: 32rpx;
-      font-weight: bold;
-    }
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    line-height: inherit;
 
-    .section-link {
-      color: var(--fire);
-      font-size: 22rpx;
+    &::after {
+      border: 0;
     }
   }
 }
 
-/* 日期导航工具栏 */
-.toolbar {
-  padding: 24rpx 30rpx;
+.date-panel {
+  padding: 12rpx 16rpx;
+  border-radius: 32rpx;
+  background: #652821;
+  color: #fff5e8;
+}
 
-  .toolbar-main {
-    display: flex;
-    align-items: center;
-    gap: 20rpx;
+.date-context {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx 16rpx;
+  padding: 0 16rpx;
+  font-size: 24rpx;
+  line-height: 1.5;
+}
 
-    .nav-btn {
-      width: 72rpx;
-      height: 72rpx;
-      border-radius: 50%;
-      background: var(--soft);
-      border: 2rpx solid var(--line);
-      color: var(--fire);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 40rpx;
-      font-weight: 700;
-      box-sizing: border-box;
-      flex-shrink: 0;
-    }
+.festival {
+  padding: 2rpx 16rpx;
+  border-radius: 24rpx;
+  background: #8c3d2d;
+  color: #ffe4ae;
+  font-weight: 700;
+}
 
-    .nav-btn-hover {
-      opacity: 0.7;
-    }
+.date-controls {
+  display: flex;
+  align-items: center;
+  gap: 4rpx;
 
-    .date-picker {
-      flex: 1;
-      min-width: 0;
-      display: block;
-    }
-
-    .date-block {
-      text-align: center;
-
-      .date-main {
-        font-size: 40rpx;
-        font-weight: 800;
-        color: var(--coal);
-      }
-
-      .date-sub {
-        font-size: 22rpx;
-        color: var(--muted);
-        margin-top: 4rpx;
-
-        .pick-hint {
-          color: var(--fire);
-        }
-      }
-    }
+  .day-button {
+    flex: 0 0 auto;
+    width: max(92rpx, 48px);
+    height: max(92rpx, 48px);
+    border-radius: 24rpx;
+    background: #ffffff16;
   }
 
-  .tag-row {
-    display: flex;
-    align-items: center;
-    gap: 12rpx;
-    margin-top: 20rpx;
+  .date-trigger {
+    flex: 1;
+    min-width: 0;
+    flex-direction: column;
+    gap: 6rpx;
+    padding: 12rpx 0 8rpx;
+    border-radius: 20rpx;
+    text-align: center;
+  }
 
-    .chip {
-      display: inline-flex;
-      padding: 8rpx 16rpx;
-      border-radius: 198rpx;
-      font-size: 20rpx;
-      font-weight: 700;
-
-      &.gold {
-        background: #aa7b2d2b;
-        color: var(--gold);
-        border: 2rpx solid #aa7b2d55;
-      }
-
-      &.plain {
-        background: var(--soft);
-        color: var(--muted);
-        border: 2rpx solid var(--line);
-      }
-    }
+  .date-pressed {
+    background: #ffffff30;
   }
 }
 
-/* 彝历 / 黄历 标签切换 */
+.chevron {
+  box-sizing: border-box;
+  width: 18rpx;
+  height: 18rpx;
+  border-top: 4rpx solid currentColor;
+  border-right: 4rpx solid currentColor;
+
+  &.previous {
+    transform: translateX(4rpx) rotate(-135deg);
+  }
+
+  &.next {
+    transform: translateX(-4rpx) rotate(45deg);
+  }
+}
+
+.date-main {
+  font-size: 40rpx;
+  font-weight: 800;
+  line-height: 1.25;
+  font-variant-numeric: tabular-nums;
+}
+
+.date-sub {
+  color: #f0cfbc;
+  font-size: 24rpx;
+  line-height: 1.4;
+}
+
 .tabs {
   display: flex;
-  padding: 6rpx;
-  margin-top: 24rpx;
-  background: var(--soft);
-  border: 2rpx solid var(--line);
-  border-radius: 198rpx;
+  border-bottom: 2rpx solid var(--line);
 
   .tab {
+    box-sizing: border-box;
     flex: 1;
-    text-align: center;
-    padding: 14rpx 0;
-    border-radius: 198rpx;
-    font-size: 28rpx;
-    font-weight: 700;
+    min-height: max(92rpx, 48px);
+    border-bottom: 5rpx solid transparent;
     color: var(--muted);
-    transition: color 0.2s ease, background 0.2s ease;
+    font-size: 30rpx;
 
     &.active {
-      background: var(--paper);
-      color: var(--fire);
-      box-shadow: 0 4rpx 14rpx rgba(45, 28, 15, 0.1);
+      border-bottom-color: var(--accent);
+      color: var(--coal);
+      font-weight: 800;
+    }
+
+    &.tab-pressed {
+      background: var(--soft);
     }
   }
 }
 
-/* 彝历日期 */
-.fortune-card {
+.card {
+  margin-top: 24rpx;
+  padding: 28rpx;
+  border: 2rpx solid var(--line);
+  border-radius: 28rpx;
+  background: var(--paper);
+}
+
+.section-title {
+  display: block;
+  color: var(--coal);
+  font-size: 30rpx;
+  font-weight: 800;
+}
+
+.yi-summary {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  border-left: 6rpx solid var(--accent);
+}
+
+.yi-date {
+  flex: 1;
+  min-width: 0;
+}
+
+.yi-script,
+.yi-translation {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.yi-script {
+  margin-top: 10rpx;
+  font-size: 38rpx;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.yi-translation {
+  margin-top: 4rpx;
+  color: var(--muted);
+  font-size: 25rpx;
+  line-height: 1.5;
+}
+
+.lunar-card {
+  margin-bottom: 28rpx;
+}
+
+.yi-ji,
+.lunar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.yi-ji {
+  gap: 16rpx;
+  margin-top: 18rpx;
+}
+
+.yi-ji-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+  padding: 16rpx;
+  border-radius: 16rpx;
+
+  &.good {
+    background: var(--good-bg);
+  }
+
+  &.bad {
+    background: var(--bad-bg);
+  }
+}
+
+.yi-ji-title {
+  color: var(--coal);
+  font-size: 28rpx;
+  font-weight: 800;
+}
+
+.lunar-grid {
+  margin-top: 20rpx;
+}
+
+.lunar-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+  padding: 14rpx 0;
+  border-top: 1rpx solid var(--line);
+
+  &:nth-child(odd) {
+    padding-right: 16rpx;
+  }
+
+  &:nth-child(even) {
+    padding-left: 16rpx;
+    border-left: 1rpx solid var(--line);
+  }
+}
+
+.lunar-label,
+.row-label,
+.pos-label {
+  color: var(--muted);
+  font-size: 24rpx;
+  line-height: 1.45;
+}
+
+.lunar-val,
+.row-val,
+.yi-ji-content {
+  color: var(--coal);
+  font-size: 26rpx;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.lunar-val {
+  font-weight: 700;
+}
+
+.lunar-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16rpx;
+  padding: 14rpx 0;
+  border-top: 1rpx solid var(--line);
+}
+
+.row-label {
+  flex: 0 0 104rpx;
+}
+
+.row-val {
+  flex: 1;
+  min-width: 0;
+}
+
+.pos-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: 4rpx;
+  padding: 14rpx 0;
+  border-radius: 16rpx;
+  background: var(--soft);
+}
+
+.pos-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rpx;
+
+  & + .pos-item {
+    border-left: 1rpx solid var(--line);
+  }
+}
+
+.pos-val {
+  color: var(--coal);
+  font-size: 28rpx;
+  font-weight: 700;
+}
+/* 彝历日期渐变卡 */
+.calendar-detail {
+  margin-top: 24rpx;
+  padding: 30rpx;
+  border-radius: 36rpx;
+  border: 2rpx solid var(--accent-border);
+  background: linear-gradient(135deg, rgba(156, 45, 37, 0.18) 0%, rgba(170, 123, 45, 0.22) 100%);
+  box-shadow: 0 10rpx 30rpx rgba(45, 28, 15, 0.045);
+
   .fortune-strip {
     display: flex;
     align-items: center;
@@ -144,28 +310,36 @@
 
     .fortune-label {
       flex-shrink: 0;
-      font-size: 30rpx;
-      font-weight: 500;
-      letter-spacing: 8rpx;
-      padding: 10rpx 18rpx;
-      border-radius: 24rpx;
-      color: var(--fire);
-      background: #9c2d2518;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 10rpx 18rpx;
+      border-radius: 24rpx;
+      font-size: 30rpx;
+      font-weight: 500;
+      letter-spacing: 8rpx;
+      background: var(--paper);
+      color: var(--fire);
+
+      .green {
+        color: var(--green);
+      }
+
+      .fire {
+        color: var(--fire);
+      }
     }
 
     .fortune-body {
       flex: 1;
+      min-width: 0;
       display: flex;
       flex-direction: column;
       gap: 6rpx;
-      min-width: 0;
 
       .fortune-main {
-        font-size: 40rpx;
+        font-size: 38rpx;
         letter-spacing: 4rpx;
         font-weight: 700;
         color: var(--coal);
@@ -175,155 +349,6 @@
         font-size: 24rpx;
         letter-spacing: 4rpx;
         color: var(--muted);
-      }
-    }
-  }
-}
-
-/* 农历黄历 */
-.lunar-card {
-  margin-bottom: 24rpx;
-
-  .lunar-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin: 16rpx -30rpx 0;
-    border-top: 2rpx solid var(--line);
-
-    .lunar-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14rpx 24rpx;
-      box-sizing: border-box;
-      border-bottom: 2rpx solid var(--line);
-
-      &:nth-child(odd) {
-        border-right: 2rpx solid var(--line);
-      }
-
-      &:nth-child(7),
-      &:nth-child(8) {
-        border-bottom: none;
-      }
-
-      .lunar-label {
-        color: var(--muted);
-        font-size: 22rpx;
-        flex-shrink: 0;
-      }
-
-      .lunar-val {
-        font-size: 24rpx;
-        font-weight: 700;
-        color: var(--coal);
-        text-align: right;
-      }
-    }
-  }
-
-  .lunar-rows {
-    margin: 0 -30rpx;
-    border-top: 2rpx solid var(--line);
-
-    .lunar-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 20rpx;
-      padding: 14rpx 30rpx;
-      border-bottom: 2rpx solid var(--line);
-
-      &:last-child {
-        border-bottom: none;
-      }
-
-      .row-label {
-        color: var(--muted);
-        font-size: 22rpx;
-        flex-shrink: 0;
-        line-height: 1.5;
-        margin-top: 4rpx;
-      }
-
-      .row-val {
-        flex: 1;
-        font-size: 24rpx;
-        color: var(--coal);
-        line-height: 1.5;
-      }
-    }
-  }
-
-  .pos-row {
-    display: flex;
-    margin: 30rpx -30rpx 0;
-    border-top: 2rpx solid var(--line);
-    border-bottom: 2rpx solid var(--line);
-    margin-top: 0;
-    .pos-item {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8rpx;
-      padding: 14rpx 4rpx;
-      box-sizing: border-box;
-
-      & + .pos-item {
-        border-left: 2rpx solid var(--line);
-      }
-
-      .pos-label {
-        font-size: 20rpx;
-        color: var(--muted);
-      }
-
-      .pos-val {
-        font-size: 28rpx;
-        font-weight: 700;
-        color: var(--fire);
-      }
-    }
-  }
-
-  .yi-ji {
-    display: flex;
-    gap: 20rpx;
-    margin-top: 16rpx;
-
-    .yi-ji-block {
-      flex: 1;
-      border-radius: 28rpx;
-      padding: 16rpx;
-      display: flex;
-      flex-direction: column;
-      gap: 8rpx;
-
-      &.good {
-        background: var(--good-bg);
-
-        .yi-ji-title {
-          color: var(--green);
-        }
-      }
-
-      &.bad {
-        background: var(--bad-bg);
-
-        .yi-ji-title {
-          color: var(--fire);
-        }
-      }
-
-      .yi-ji-title {
-        font-size: 24rpx;
-        font-weight: 800;
-      }
-
-      .yi-ji-content {
-        font-size: 22rpx;
-        color: var(--coal);
-        line-height: 1.5;
       }
     }
   }
