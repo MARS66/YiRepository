@@ -1,151 +1,104 @@
-// pages/index/index.ts
-import { 
-  getYiTaBoo, 
-  getTodayFortune
-} from '../../plugin/yi-lunar/index'
-import {WORDS} from '../../utils/word'
+import { getYiTaBoo, getTodayFortune } from '../../plugin/yi-lunar/index'
+import { playPhraseAudio } from '../../utils/audio'
 import { isAutoAudio, getMonthStartIndex } from '../../utils/settings'
-import { getNextFestival } from '../../utils/festival'
-import dayjs from "dayjs";
-const CH_MONTHS = [ '一' , '二' , '三' , '四' , '五' , '六' , '七' , '八' , '九' , '十' , '十一' , '十二' ]
-/** 首页是否已完成首次渲染（用于区分首次自动播放与切回tab） */
-let pageReady = false
+import { FestivalCountdown, getNextFestival } from '../../utils/festival'
+import dayjs from 'dayjs'
 
-/** 节日倒计时展示项 */
-interface FestivalCountdownView {
-  name: string
-  days: number
-  label: string
-  isToday: boolean
-}
+const WEEKDAYS = ['日', '一', '二', '三', '四', '五', '六']
+/** 平时海报底图：/static/normal 下的照片 */
+const NORMAL_BACKGROUNDS = [
+  '/static/normal/0.webp',
+  '/static/normal/1.webp',
+  '/static/normal/2.webp',
+  '/static/normal/3.webp',
+  '/static/normal/4.webp',
+  '/static/normal/5.webp',
+  '/static/normal/6.webp'
+]
+
+/** 彝族年海报底图：/static/nian 下的图片 */
+const YI_NEW_YEAR_BACKGROUNDS = [
+  '/static/nian/0.webp',
+  '/static/nian/1.webp',
+  '/static/nian/2.webp',
+  '/static/nian/3.webp'
+]
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     isDark: (wx.getStorageSync('yi-theme') || 'dark') === 'dark',
-    yiDate:{} as any,
-    todayFortune:{},
+    yiDate: null as ReturnType<typeof getYiTaBoo> | null,
+    todayFortune: { taboo: [] as string[], tabooFull: '' },
     solarDate: '',
-    date: '01',
-    month: '九月',
-    weekday: '星期二',
+    date: '',
+    month: '',
+    weekday: '',
     year: '',
-    monthEn: 'SEPTEMBER',
-    goodFortune: { main: '会友 · 出行', sub: '整理家宅 · 祈福' },
-    badFortune: { main: '争执 · 仓促', sub: '重大动土 · 远行' },
-    cloudWords: WORDS.slice(0, 90).split(' ') as string[],
     monthStart: 0,
-    festivalCountdown: null as FestivalCountdownView | null
+    showYiNewYearPoster: false,
+    posterBackground: '',
+    festivalCountdown: null as FestivalCountdown | null
   },
 
-  /**
-   * 主题切换（由 layout 组件触发）：同步 isDark，用于 page-meta 背景色
-   */
   onThemeChange(e: WechatMiniprogram.CustomEvent) {
     this.setData({ isDark: e.detail.isDark })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad() {
-    pageReady = false
-    this.setData({ monthStart: getMonthStartIndex() })
-    this.initPage(dayjs().format('YYYY-MM-DD'))
-  },
-  initPage(dataStr:string){
-    const yiDate=getYiTaBoo(dataStr, this.data.monthStart)
-    // 节日倒计时：距下一次节日还有多少天（0 表示今天即是节日）
-    const countdown = getNextFestival(dataStr)
+  onShow() {
+    const monthStart = getMonthStartIndex()
+    const today = dayjs()
+    const solarDate = today.format('YYYY-MM-DD')
+    if (solarDate === this.data.solarDate && monthStart === this.data.monthStart) return
+
+    const yiDate = getYiTaBoo(solarDate, monthStart)
+    const festivalCountdown = getNextFestival(solarDate)
+    const showYiNewYearPoster = festivalCountdown?.name === '彝族年' && festivalCountdown.days <= 7
+    let posterBackground = this.data.posterBackground
+    if (solarDate !== this.data.solarDate) {
+      const pool = showYiNewYearPoster ? YI_NEW_YEAR_BACKGROUNDS : NORMAL_BACKGROUNDS
+      const index = Math.floor(Math.random() * pool.length)
+      posterBackground = pool[index]
+    }
     this.setData({
       yiDate,
-      solarDate: dataStr,
-      month: (dayjs(dataStr).month() + 1).toString(),
-      weekday: CH_MONTHS[dayjs(dataStr).day()],
-      date: dayjs(dataStr).date().toString(),
-      year: dayjs(dataStr).year().toString(),
-      monthEn: dayjs(dataStr).format('MMMM').toUpperCase(),
+      solarDate,
+      monthStart,
+      month: today.format('MM'),
+      date: today.format('DD'),
+      year: today.format('YYYY'),
+      weekday: WEEKDAYS[today.day()],
       todayFortune: getTodayFortune(yiDate.dayZodiacIndex),
-      festivalCountdown: countdown ? {
-        name: countdown.name,
-        days: countdown.days,
-        label: countdown.days === 0 ? `今日${countdown.name}` : `距${countdown.name}还有`,
-        isToday: countdown.days === 0
-      } : null
+      festivalCountdown,
+      showYiNewYearPoster,
+      posterBackground
     })
   },
-  /**
-   * 自动播放当日彝历语音
-   */
-  playDailyAudio() {
+
+  onReady() {
     if (!isAutoAudio()) return
     const audio = this.selectComponent('#page-audio')
     if (audio && this.data.solarDate) audio.playDate(this.data.solarDate)
   },
-  /**
-   * 跳转「我的」月份设置（彝历起始月因区域而异）
-   */
-  goMonthSetting() {
-    wx.navigateTo({ url: '/subpages/mine/month/month' })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-    pageReady = true
-    this.playDailyAudio()
-  },
 
-
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-    // 「我的」页面修改起始月份后，返回首页时同步刷新彝历
-    const monthStart = getMonthStartIndex()
-    if (monthStart !== this.data.monthStart) {
-      this.setData({ monthStart })
-      if (this.data.solarDate) this.initPage(this.data.solarDate)
-    }
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
   onHide() {
     const audio = this.selectComponent('#page-audio')
     if (audio) audio.stopAudio()
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-    
+  playFortune() {
+    const word = this.data.todayFortune.taboo[0]
+    if (word) playPhraseAudio(word)
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
+  goMonthSetting() {
+    wx.navigateTo({ url: '/subpages/mine/month/month' })
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage() {
-
+    const { solarDate, yiDate } = this.data
+    return {
+      title: yiDate ? `今日彝历｜${solarDate} · ${yiDate.month[1]}月${yiDate.day[1]}日` : '今日彝历',
+      path: '/pages/index/index'
+    }
   }
 })

@@ -1,46 +1,43 @@
-<!--pages/index/index.wxml-->
 <page-meta background-color="{{isDark ? '#181713' : '#f8f4eb'}}" page-style="background-color: {{isDark ? '#181713' : '#f8f4eb'}};" />
-<layout needBack="{{false}}" >
-  <view class="hero">
-    <!-- 彝文词云装饰背景 -->
-    <view class="hero-cloud">
-      <text wx:for="{{cloudWords}}" wx:key="item">{{item}}</text>
-    </view>
-    <view class="hero-glow"></view>
+<layout class="index_container" needBack="{{false}}" title="彝族生活日历" eyebrow="" bind:themechange="onThemeChange">
+  <view class="today">
+    <view class="poster {{isDark ? '' : 'poster-light'}}" wx:if="{{yiDate}}">
+      <view class="poster-body {{showYiNewYearPoster ? 'poster-festival' : ''}}">
+        <image wx:if="{{showYiNewYearPoster}}" class="yi-new-year-image" src="{{posterBackground}}" mode="aspectFill" aria-hidden="{{true}}" />
+        <image wx:else class="normal-bg" src="{{posterBackground}}" mode="aspectFill" aria-hidden="{{true}}" />
+        <view class="yi-new-year" >
+          <image class="festival-seal" src="/static/today-yi-seal.png" mode="aspectFit" aria-label="今日彝历" />
+          <view class="yi-new-year-copy">
+            <text class="poster-solar">{{year}} / {{month}} / {{date}}</text>
+            <text class="yi-new-year-title">{{showYiNewYearPoster ? '彝族年' : '今日彝历'}}</text>
+            <view class="countdown" wx:if="{{festivalCountdown.days > 0}}">
+              <text>距离{{festivalCountdown.name}}·还有</text>
+              <text class="countdown-number">{{festivalCountdown.days}}</text>
+              <text>天</text>
+            </view>
+            <view class="yi-new-year-calendar">
+              <view class="yi-new-year-date-copy">
+                <text class="yi-new-year-date">{{yiDate.year[0]}}ꈎ·{{yiDate.month[0]}}ꆪ·{{yiDate.day[0]}}ꑍ·{{yiDate.dayMoon[0]}}ꑍ</text>
+                <text class="yi-new-year-reading">{{yiDate.year[1]}}年 · {{yiDate.month[1]}}月 · {{yiDate.day[1]}}日 · {{yiDate.dayMoon[1]}}日</text>
+              </view>
+              <audio-btn class="listen" id="page-audio" date="{{solarDate}}" color="gold" aria-label="彝语播报" />
+            </view>
+          </view>
+        </view>
 
-    <view class="hero-top">
-      <text class="chip gold">今日彝历</text>
-      <audio-btn id="page-audio" date="{{solarDate}}" color="gold" />
-    </view>
-    <view class="date-line">
-      <text class="date-strong">{{date}}</text>
-      <view class="date-meta">
-        <text class="date-month">{{year}}</text>
-        <text class="date-month">{{month}}月 <text class="date-weekday">星期{{weekday}}</text></text>
-        
-      </view>
-      <view class="countdown" wx:if="{{festivalCountdown}}">
-        <text class="countdown-label">{{festivalCountdown.label}}</text>
-        <view class="countdown-num">
-          <text class="countdown-days">{{festivalCountdown.isToday ? '今' : festivalCountdown.days}}</text>
-          <text class="countdown-unit">天</text>
+      
+
+        <view class="poster-notes">
+          <view class="note fortune" wx:if="{{todayFortune.taboo.length}}" hover-class="pressed" bindtap="playFortune" aria-label="点读今日宜忌">
+            <image class="fortune-seal" src="/static/fortune-seal.png" mode="aspectFit" aria-hidden="{{true}}" />
+            <view class="fortune-content">
+              <text class="fortune-yi">{{todayFortune.taboo[0]}} · {{todayFortune.taboo[1]}}</text>
+              <text class="fortune-description">{{todayFortune.tabooFull}}</text>
+            </view>
+          </view>
         </view>
       </view>
     </view>
-    <text class="yi-text">{{yiDate.year[0]}}ꈎ·{{yiDate.month[0]}}ꆪ·{{yiDate.day[0]}}ꑍ·{{yiDate.dayMoon[0]}}ꑍ</text>
-    <text class="muted light">{{yiDate.year[1]}}年·{{yiDate.month[1]}}月·{{yiDate.day[1]}}日·{{yiDate.dayMoon[1]}}日</text>
- 
-    <view class="solar">
-      <text>{{year}}</text>
-      <view class="solar-divider"></view>
-      <text>{{monthEn}}</text>
-    </view>   
-    <view class="region-note" bindtap="goMonthSetting">
-      <text class="region-mark">※</text>
-      <text class="region-text">因区域差异彝历月份不尽相同，可在「我的」中调整</text>
-    </view>
+
   </view>
-
-
-  <daily-fortune fortune="{{todayFortune}}" />
 </layout>

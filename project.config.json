@@ -14,7 +14,7 @@
     },
     "coverView": false,
     "postcss": false,
-    "minified": false,
+    "minified": true,
     "enhance": false,
     "showShadowRootInWxmlPanel": false,
     "packNpmRelationList": [
@@ -51,7 +51,12 @@
   },
   "libVersion": "2.32.3",
   "packOptions": {
-    "ignore": [],
+    "ignore": [
+      {
+        "type": "suffix",
+        "value": ".js.map"
+      }
+    ],
     "include": []
   },
   "appid": "wxf9405b07ad62dbc3"
